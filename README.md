@@ -11,23 +11,30 @@ Para roda-lo na sua máquina é importante que você tenha alguns programas inst
 - adonis
 - banco de dados a sua escolha
 
-**Instalando o Node**
+**Instalando o Node** 
+
+
 existem várias formas de instalar o node e o npm mas eu recomendo utilizar a seguinte sequência de comandos:
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 source ~/.bashrc
 nvm install v12.18.4
 
-**Instalando o yarn**
+**Instalando o yarn** 
+
+
 Para instalar o yarn também é simples, basta rodar o comando:
 npm install -g yarn
 
-**Instalando o adonis**
+**Instalando o adonis** 
+
+
 Para instalar o adonis basta rodar o comando:
 npm i -g @adonisjs/cli
 
 
-**Fazendo o projeto rodar**
+**Fazendo o projeto rodar** 
+
 
 A pasta frontend, possui um projeto em react.js por isso é necessário rodar os comandos "yarn install", seguindo de "yarn start", automaticamente deve abrir um aba no seu navegador rodando a aplicação em localhost.
 
