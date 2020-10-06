@@ -5,10 +5,10 @@ A ideia do projeto é criar uma plataforma que contemple toda a experiencia de u
 
 
 Para roda-lo na sua máquina é importante que você tenha alguns programas instalados:
-- node.js
-- npm
-- yarn
-- adonis
+- node.js  || software para rodar comandos javascript no backend e no frontend
+- npm || instalador padrão do node
+- yarn || instalador que eu utilizei para construir a aplicação
+- adonis || framework que facilita a criação de aplicações backend em javascript
 - banco de dados a sua escolha
 
 **Instalando o Node** 
