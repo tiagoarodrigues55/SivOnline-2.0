@@ -11,6 +11,12 @@ let files = []
 let favorables = []
 let againsts = []
 let lastVote 
+let voteTitle
+const meet = {
+  room: '',
+  password: ''
+}
+
 io.on('connection', socket =>{
   //Conexão
   console.log('socket conectado: ' + socket.id)
@@ -20,6 +26,9 @@ io.on('connection', socket =>{
   socket.emit('setSpeechesList', speechesList)
   socket.emit('posts', files)
   socket.emit('lastVote', lastVote)
+  if(meet.room !== ''){
+    socket.emit('setMeet', meet)
+  }
 
   if(!actions[0]){
   io.emit('setActions', [])
@@ -106,6 +115,7 @@ io.on('connection', socket =>{
   socket.on('newVote', vote=>{
     console.log('newVote: ' + JSON.stringify(vote))
     io.emit('newVote', vote)
+    voteTitle = vote.title
   })
   
   socket.on('responseY', representation=>{
@@ -126,7 +136,16 @@ io.on('connection', socket =>{
      favorables = []
      againsts = []
      lastVote = vote
+     vote.title = voteTitle
     io.emit('finishVote', vote)
+
+  })
+
+  //Meet
+  socket.on('setMeet', ({room, password})=>{
+    meet.room = room
+    meet.password = password
+    socket.emit('setMeet', meet)
   })
 
   

@@ -22,10 +22,8 @@ const SpeechesList: React.FC<Props> = ({moderator}) => {
   useEffect(() => {
     if(delegations.map(i=>i.name).indexOf(user)!==-1){
       setButtonState('unvisible')
-      console.log(delegations.map(i=>i.name).map(i=>i===user))
     }else{
       setButtonState('visible')
-      console.log(delegations.map(i=>i.name).map(i=>i===user))
     }
   }, [delegations])
   socket.on('setSpeechesList', (list : string[])=>{

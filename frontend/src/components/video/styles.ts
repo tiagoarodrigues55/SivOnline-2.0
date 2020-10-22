@@ -14,6 +14,7 @@ img{
 div{
 display:flex;
 flex-direction: row;
+padding-top:10px;
 button{
 height:30px;
 background:#4444df;

@@ -43,6 +43,8 @@ const Votes: React.FC<Props> = ({moderator}) => {
   }
   socket.on('finishVote', (lastVote : LastVote) =>{
     setLastVote(lastVote)
+    console.log(lastVote)
+
   })
   function handleTitle(event: ChangeEvent<HTMLInputElement>){
     const {value} = event.target

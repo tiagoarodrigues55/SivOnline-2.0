@@ -1,14 +1,13 @@
 import React, {useState} from 'react'
 import Styles from './styles'
-import Jitsi from 'react-jitsi'
-
+import Jitsi from './Jitsi'
 interface Props{
   moderator?: boolean
 }
-const user = localStorage.getItem('representation')
 
 const Video: React.FC<Props> = ({moderator}) =>{
 
+  const user = localStorage.getItem('representation') || "Brasil"
 
   const [roomName, setRoomName] = useState('SivOnline100')
   const [password, setPassword] = useState('Tiago2003')
@@ -18,24 +17,15 @@ const Video: React.FC<Props> = ({moderator}) =>{
   if(moderator){
     return (
       <Styles className="components">
-       <>
-      <h1>Create a Meeting</h1>
-      <input type='text' placeholder='Room name' value={roomName} onChange={e => setRoomName(e.target.value)} />
-      <button onClick={() => setOnCall(true)}> Let&apos;s start!</button>
-    </>
+        <Jitsi moderator user={user} roomName={roomName} password={password}/>
         
       </Styles>
     )
   }
   return(
     <Styles className="components">
+        <Jitsi user={user} roomName={roomName} password={password}/>
 
-    <Jitsi
-      roomName={roomName}
-      displayName={user || 'Tiago'}
-      // password={password}
-      onAPILoad={JitsiMeetAPI => console.log('Good Morning everyone!')}
-    />
     <button>Aplausos virtuais</button>
     </Styles>
     )

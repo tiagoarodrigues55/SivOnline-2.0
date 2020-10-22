@@ -42,6 +42,7 @@ const Index: React.FC = () => {
   }
   return (
     <Div>
+
       <div>
         <img src={logo} alt=""/>
       <section>

@@ -65,7 +65,6 @@ const Actions: React.FC<Props> = ({moderator}) => {
     socket.emit('removeAction', action)
   }
 
-console.log(actions)
   if (moderator){
     return (
       <Styles className="components">
