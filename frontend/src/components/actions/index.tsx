@@ -1,6 +1,7 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import io from 'socket.io-client'
+const socket = io('http://localhost:3001')
 
 interface Props{
   moderator?: boolean
@@ -11,7 +12,6 @@ interface action{
   type: string,
   representation: string
 }
-const socket = io('http://localhost:3001')
 const user : string = localStorage.getItem('representation') || ''
 
 const Actions: React.FC<Props> = ({moderator}) => {
@@ -41,7 +41,7 @@ const Actions: React.FC<Props> = ({moderator}) => {
   },[])
 
   function handleSubmit(event: FormEvent){
-
+    event.preventDefault()
     const {text} = formData
     const action = selectedAction.action
     socket.emit('newAction', {

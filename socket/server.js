@@ -12,6 +12,8 @@ let favorables = []
 let againsts = []
 let lastVote 
 let voteTitle
+let privateDocs = []
+let publicDocs = []
 const meet = {
   room: '',
   password: ''
@@ -26,6 +28,9 @@ io.on('connection', socket =>{
   socket.emit('setSpeechesList', speechesList)
   socket.emit('posts', files)
   socket.emit('lastVote', lastVote)
+  socket.emit("setPublicDocs", publicDocs)
+  socket.emit("setPrivateDocs", privateDocs)
+
   if(meet.room !== ''){
     socket.emit('setMeet', meet)
   }
@@ -141,13 +146,20 @@ io.on('connection', socket =>{
 
   })
 
-  //Meet
-  socket.on('setMeet', ({room, password})=>{
-    meet.room = room
-    meet.password = password
-    socket.emit('setMeet', meet)
+ 
+
+  //Docs
+  socket.on('newPrivateDoc', doc=>{
+    privateDocs.push(doc)
+    io.emit("setPrivateDocs", privateDocs)
+  })
+  socket.on('newPublicDoc', doc=>{
+    publicDocs.push(doc)
+    io.emit("setPublicDocs", publicDocs)
+    console.log(publicDocs)
   })
 
-  
 })
 server.listen(3001)
+
+
