@@ -1,5 +1,6 @@
 import {Route, BrowserRouter} from 'react-router-dom'
 import DelegatePage from './pages/delegate/Layout/index'
+import StaffPage from './pages/staff/Layout/index'
 import ModeratorPage from './pages/moderator/Layout/index'
 import NewspaperPage from './pages/newspaper/Layout/index'
 import Login from './pages/login/index'
@@ -10,6 +11,7 @@ const Routes = () =>{
 
   return (
     <BrowserRouter>
+    <Route exact component={StaffPage} path="/Staff"/>
     <Route exact component={DelegatePage} path="/Delegate"/>
     <Route exact component={ModeratorPage} path="/Moderator"/>
     <Route exact component={NewspaperPage} path="/Newspaper"/>

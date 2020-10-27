@@ -152,8 +152,11 @@ io.on('connection', socket =>{
   socket.on('newPrivateDoc', doc=>{
     privateDocs.push(doc)
     io.emit("setPrivateDocs", privateDocs)
+    io.emit("newDoc", doc)
   })
   socket.on('newPublicDoc', doc=>{
+    io.emit("newDoc", doc)
+
     publicDocs.push(doc)
     io.emit("setPublicDocs", publicDocs)
     console.log(publicDocs)

@@ -27,9 +27,13 @@ const Index: React.FC = () => {
             history.push('/Delegate')
 
           }else{
-            
+            if(res.data.representation_type === 'Staff'){
+              history.push('/Staff')
+          }else{
+
           }
         }
+      }
 
       })
 

@@ -113,6 +113,7 @@ const Docs: React.FC<Props> = ({moderator}) => {
       </Styles>
     )
   }
+
   return (
     <Styles className="components">
       <div id="privateDocs">
