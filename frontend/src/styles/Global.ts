@@ -6,9 +6,9 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-  *:not(body){
-    margin-left: 5px;
-  }
+//   *:not(body){
+//     margin-left: 5px;
+//   }
   html, body, #root {
     height: 100%;
     margin-bottom: 5px;
