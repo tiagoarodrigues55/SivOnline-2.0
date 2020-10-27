@@ -6,7 +6,7 @@ grid-area: AD;
 display: flex;
   div.docs{
 display: flex;
-width:100%;
+width:99vw;
     flex-direction:row;
 
   overflow-x: scroll;
