@@ -12,6 +12,7 @@ import styled from 'styled-components'
 
 export const Grid = styled.div`
   display: grid;
+  gap: 10px;
   grid-template-columns: 520px auto 540px ;
   grid-template-rows: 240px 120px 160px auto;
   grid-template-areas:
