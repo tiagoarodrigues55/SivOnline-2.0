@@ -52,8 +52,7 @@ const Chats: React.FC<Props> = ({moderator}) => {
   if (moderator){
     return (
       <Styles className="components">
-        <div id="contats">
-        <ul>
+        <ul id="contats">
         {contats.map(contat=>(
           <div className="contat">
   
@@ -64,7 +63,6 @@ const Chats: React.FC<Props> = ({moderator}) => {
         <li onClick={()=>renderContat("Popup")}>Popup</li>
         <li onClick={()=>renderContat("Mensagem Geral")}>Mensagem Geral</li>
         </ul>
-        </div>
         
         <Chat haveMessages={haveMessages} contat={contat}/>
       </Styles>
@@ -74,7 +72,6 @@ const Chats: React.FC<Props> = ({moderator}) => {
   return (
     <Styles className="components">
       <div id="contats">
-      <ul>
       {contats.map(contat=>(
         <div className="contat">
 
@@ -82,7 +79,6 @@ const Chats: React.FC<Props> = ({moderator}) => {
         </div>
      
       ))}
-      </ul>
       </div>
       
       <Chat haveMessages={haveMessages}  contat={contat}/>

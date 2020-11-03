@@ -30,7 +30,18 @@ const Index: React.FC = () => {
             if(res.data.representation_type === 'Staff'){
               history.push('/Staff')
           }else{
+            if(res.data.representation_type === 'Imprensa'){
 
+            history.push('/Newspaper')
+            }else{
+              if(res.data.representation_type === 'Chefe de imprensa'){
+
+                history.push('/NewspaperBoss')
+              }else{
+                console.log(res.data.representation_type)
+
+              }
+            }
           }
         }
       }

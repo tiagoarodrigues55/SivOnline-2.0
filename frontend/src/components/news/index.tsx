@@ -23,30 +23,7 @@ const News: React.FC<Props> = ({moderator}) => {
     setArticles(posts)
   })
 
-  if(moderator){
-    return (
-      <Styles className="components">
-        {articles.map(article=>(
-          <div className="article">
-          <Article 
-          title={article.title} 
-          introduction={article.description} />
-  
-          <div className="separator"></div>
-          </div>
-         
-        ))}
-        {/* {organizeNews.map(organizeNew=>(
-          <div id="mesa" className="article">
-          <OrganizeNew title={organizeNew.title} communicate={organizeNew.communicate} />
-          <div className="separator"></div>
-          </div>
-  
-  
-        ))} */}
-      </Styles>
-    )
-  }
+ 
   return (
     <Styles className="components">
       {articles.map(article=>(

@@ -10,51 +10,42 @@ align-items: center;
   li{
     list-style: none;
   }
-div#chat{
-  margin:0;
-  height: 100%;
-  width: 100%;
-  h2{
-    text-align: center;
-  width:100%;
-  margin:0;
-border:solid 1px black;
-  }
-}
-section{
-  /* background-color: var(--secondary); */
-  margin:0;
-  border: solid 1px black;
-  height: 98%;
-  border-radius: 2px;
-  width: 100%;
-}
+
 form{
   margin:0;
   height: 100%;
+  width:100%;
 }
-
+div.titulo{
+  background-color: var(--quinary);
+  margin:0;
+  height:40px;
+  width:100%;
+  border-radius: 0px 8px 0px 0px;
+  padding:7px;
+  text-align: center;
+}
 div#messages{
-  height: 77%;
-  overflow-y: scroll;
-  ::-webkit-scrollbar { /* Sem Barra de rolagem */
-    display: none;
-  }
+  background-color: var(--primary);
+  border-radius: 0px 0px 8px 0px;
+  height: 89%;
+ 
 }
 input{
-  /* background-color: var(--tertiary); */
-
-  align-self:baseline;
-  width:97%;
+ 
+  width:400px;
   padding:5px;
-  border-radius:2px;
-  border: solid 1px black;
+  border-radius:10px;
 }
 div#contats{
-  max-height:250px;
-  overflow-y: scroll;
+  height:100%;
+  overflow-y: auto;
   ::-webkit-scrollbar { /* Sem Barra de rolagem */
-    display: none;
+    display: auto;
   }
+  background-color: var(--secondary);
+  padding:8px;
+  border-radius: 8px 0px 0px 8px;
+
 }
 `

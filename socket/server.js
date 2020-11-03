@@ -14,6 +14,8 @@ let lastVote
 let voteTitle
 let privateDocs = []
 let publicDocs = []
+let postsPreview = []
+
 const meet = {
   room: '',
   password: ''
@@ -30,6 +32,7 @@ io.on('connection', socket =>{
   socket.emit('lastVote', lastVote)
   socket.emit("setPublicDocs", publicDocs)
   socket.emit("setPrivateDocs", privateDocs)
+  socket.emit('setPostsPreview', postsPreview)
 
   if(meet.room !== ''){
     socket.emit('setMeet', meet)
@@ -162,6 +165,46 @@ io.on('connection', socket =>{
     console.log(publicDocs)
   })
 
+  //Cronometro
+
+  socket.on('startStop', (status)=>{
+    socket.emit('chronometer', status)
+  })
+  socket.on('reset', ()=>{
+    socket.emit('reset')
+  })
+
+  //PostsPreview
+
+  socket.on('postsPreview', post=>{
+    console.log('postsPreview')
+    postsPreview.push(post)
+    console.log(post)
+
+    socket.emit('setPostsPreview', postsPreview)
+  })
+  socket.on('removePostPreview', post=>{
+    console.log('removePostPreview')
+    postsPreview = postsPreview.filter(filter)
+    console.log(postsPreview)
+    if(!postsPreview[0]){
+      console.log([])
+    io.emit('setPostsPreview', [])
+
+    }else{
+      console.log(postsPreview[0].title)
+
+      io.emit('setPostsPreview', postsPreview)
+    }
+    function filter(i){
+      if(i.description!==post.description || i.representation !== post.representation){
+      console.log(i, post)
+      return true
+      }else{
+        return false
+      }
+    }
+  })
 })
 server.listen(3001)
 

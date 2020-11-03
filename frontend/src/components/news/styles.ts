@@ -3,23 +3,20 @@ import styled from 'styled-components'
 
 export default styled.div`
 grid-area: NS;
-/* background-color: var(--quaternary) ; */
+background-color: var(--quinary) ;
 display: flex;
 flex-direction: column;
-    border: solid 1px gray;
-    overflow-y: scroll;
+    overflow-y: auto;
     ::-webkit-scrollbar {
-    width: 4px;
+    display:auto;
   }
 
   ::-webkit-scrollbar-thumb {
-    /* background-color: ; */
-    border-radius: 4px;
+    display:auto;
+
   }
 
-  /* ::-webkit-scrollbar-track {
-    background-color: var(--secondary);
-  } */
+
 h1{
   font-size: 17px;
   margin-top: 6px;

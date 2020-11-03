@@ -10,24 +10,24 @@ margin-top:20px;
 /* background-color:var(--tertiary); */
 select{
   padding: 3px;
-  background-color: var(--secondary) ;
+  background-color: var(--tertiary);
   margin-right: 3px;
   border-radius:5px;
 }
 input{
   width:98%;
-  padding:5px;
+  padding:10px;
   /* background-color:var(--tertiary); */
   margin-top: 3px;
-  border-radius:5px;
-  border: solid 1px black;
+  border-radius:15px;
 }
 
 button{
   margin-top:4px;
   width:25%;
   height:18%; 
-  align-self: flex-start
+  align-self: flex-start;
+  border-radius:10px;
 }
 div{
   width:500px;

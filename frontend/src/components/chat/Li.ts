@@ -2,8 +2,13 @@ import styled from 'styled-components'
 
 export default styled.ul`
 width:100%;
+height:270px;
 flex-direction: column;
 padding-right:20px;
+overflow-y: auto;
+  ::-webkit-scrollbar { /* Sem Barra de rolagem */
+    display: auto;
+  }
 li{
   margin-top:5px;
 }

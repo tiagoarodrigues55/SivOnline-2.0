@@ -68,7 +68,7 @@ const AllDocs: React.FC = () => {
       <h3>Documentos</h3>
       <div className='docs'>
         {docs.map(doc=>(
-            <div>{doc.name} - {doc.user}
+            <div className="doc">{doc.name} - {doc.user}
             <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
             </div>
         ))}

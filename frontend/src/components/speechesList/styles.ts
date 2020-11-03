@@ -5,11 +5,8 @@ export default styled.div`
 grid-area: SL;
 display: flex;
 flex-direction: column;
-
-/* border: solid 1px gray; */
-/* background-color:var(--secondary); */
-
 align-items: center;
+padding:3px;
 li{
   list-style: none;
   margin-top: 7px;
@@ -19,24 +16,25 @@ li{
   display:none;
 }
 button{
+  color:black;
+  margin-top:3px;
   width:50%;
-  height:15%; 
-  align-self: flex-start;
-  background-color: var(--secondary);
+  height:13%; 
+  align-self: center;
+  background-color: var(--tertiary);
   border-radius:5px;
   margin-bottom:2px;
 }
 
-/* div.separator{
-  margin:1px 0px;
-  height:1px;
-  width:100%;
-  background-color: var(--secondary);
-} */
 div.box{
-  border:solid 1px gray;
 }
-div#speechesList{
+
+ul{
+  width:97%;
+  background-color: var(--quinary);
+  height:250px;
+  border-radius: 0px 0px 8px 8px;
+
   display: flex;
 flex-direction: column;
   max-height:90%;
@@ -49,6 +47,15 @@ flex-direction: column;
     /* background-color: ; */
     border-radius: 4px;
   }
+}
+div.titulo{
+  margin:0;
+  background-color: var(--quaternary);
+  height:40px;
+  width:97%;
+  border-radius: 8px 8px 0px 0px;
+  padding:7px;
+  text-align: center;
 }
 
 `

@@ -43,19 +43,17 @@ return(
  }
   return(
     <Styles className="components">
-      <div id="speechesList">
+        <div className="titulo">Lista de Discursos</div>
       <ul>
         {delegations.map(delegation=>(
           <div className="box">
-            <li key={delegation.position}>{delegation.name}</li>
-            <span>{`faltam aproximadamente ${delegation.position * timeOfSpeech} minutos`}</span>
+            <li key={delegation.position}>{delegation.name} -{` ${delegation.position * timeOfSpeech} minutos`}</li>
             <div className="separator"></div>
 
           </div>
         ))}
        
       </ul>
-      </div>
      {moderator ? <button onClick={removeDelegation}>{`Remover ${delegations[0].name} da lista`}</button> : <button id={buttonState} onClick={handleSpeechList}>Inscreva-se na lista</button>}
       
       

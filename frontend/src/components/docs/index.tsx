@@ -116,37 +116,45 @@ const Docs: React.FC<Props> = ({moderator}) => {
 
   return (
     <Styles className="components">
-      <div id="privateDocs">
-      <h3>Documentos privados</h3>
-      <ul>
-        {privateDocs.map(doc=>(
-          <div className="doc">
-            <li>{doc.name}
-            <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
-            </li>
-          </div>
-        ))}
-      </ul>
+      <div className="Docs">
+        <div className="titlePrivateDocs">Documentos privados</div>
+        <div className="privates">
+          <ul>
+            {privateDocs.map(doc=>(
+              <div className="doc">
+                <li>{doc.name}
+                  <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div id="publicDocs">
-      <h3>Documentos públicos</h3>
-      <ul>
-        {publicDocs.map(doc=>(
-          <div className="doc">
-            <li>{doc.name}
-            <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
-            </li>
-          </div>
-        ))}
-      </ul>
+       
+      <div className="Docs">
+        <div className="titlePublicDocs">Documentos públicos</div>
+        <div className="public">
+          <ul>
+            {publicDocs.map(doc=>(
+              <div className="doc">
+                <li>{doc.name}
+                  <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
+                </li>
+              </div>
+            ))}
+          </ul>
+        </div>
       </div>
-          <div id="createDoc">
-            <form onSubmit={handlePrivateDoc}>
-              <input onChange={handlePrivateName} type="text" placeholder="Nome do documento"/>
-              <input onChange={handlePrivateLink} type="text" placeholder="Link para o documento"/>
-              <button type="submit">Enviar</button>
-            </form>
-          </div>
+        
+      <div className="createDoc">
+        <form onSubmit={handlePrivateDoc}>
+          <input onChange={handlePrivateName} type="text" placeholder="Nome do documento"/>
+          <br/>
+          <input onChange={handlePrivateLink} type="text" placeholder="Link para o documento"/>
+          <br/>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
       
     </Styles>
   )

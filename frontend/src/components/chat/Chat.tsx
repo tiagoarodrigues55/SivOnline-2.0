@@ -58,10 +58,11 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
  }
 
   return (
-    <div id="chat"> 
-      <section>
         <form onSubmit={sendMessage}>
-        <h2>{contat}</h2>
+          <div className="titulo">
+          <h2>{contat}</h2>
+
+          </div>
         <div id="messages">
           <Ul>
              
@@ -69,11 +70,10 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
                 <li className={message.my}><p>{message.content}</p></li>
                   )): <li>Não rolou</li>}
           </Ul>
-          </div>
         <input onChange={e => setMessage(e.target.value)} value={message} type="text"/>
+
+          </div>
         </form>
-      </section>
-    </div>
   )
 }
 

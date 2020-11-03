@@ -6,17 +6,24 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  div{
+    border-radius: 10px
+  }
 //   *:not(body){
 //     margin-left: 5px;
 //   }
   html, body, #root {
     height: 100%;
-    margin-bottom: 5px;
-    background-color: #F0FFFF;
+    background-color: #6600FF;
+    padding:5px;
   }
   div.components{
     margin:0;
   }
+
+
+ 
   *, button, input {
     border: 0;
     outline: 0;
@@ -24,12 +31,12 @@ export default createGlobalStyle`
   }
  
   :root {
-    --primary: #36393f;
-    --secondary: #6495ED;
-    --tertiary: #5F9EA0;
-    --quaternary: #292b2f;
-    --quinary: #393d42;
-    --senary: #828386;
+    --primary: #BEC5C7;
+    --secondary:  rgba(190, 197, 199, 0.73);
+    --tertiary: #F4AD5E;
+    --quaternary: #96989D;
+    --quinary: #C4C4C4;
+    --senary: rgba(129, 129, 137, 0.6);
     
     --white: #fff;
     --gray: #8a8c90;

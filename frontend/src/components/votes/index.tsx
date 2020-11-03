@@ -73,16 +73,22 @@ const Votes: React.FC<Props> = ({moderator}) => {
   }
   if(!lastVote){
     return(
-      <div>
+      <Styles className="components">
 
+      <div className="LastVote">
+      
       </div>
+      <div className="votes">
+
+</div>
+      </Styles>
     )
   }
   return (
     <Styles className="components">
      <div className="LastVote">
         <h1>{lastVote.title}</h1>
-        <div id="votes">
+        <div className="votes">
           <div id="favorVotes">
             <h2>Votos a favor</h2>
               <ul>
