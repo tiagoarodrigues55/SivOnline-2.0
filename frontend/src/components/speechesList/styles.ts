@@ -17,8 +17,8 @@ li{
 }
 button{
   color:black;
-  margin-top:3px;
-  width:50%;
+  margin-top:7px;
+  width:60%;
   height:13%; 
   align-self: center;
   background-color: var(--tertiary);

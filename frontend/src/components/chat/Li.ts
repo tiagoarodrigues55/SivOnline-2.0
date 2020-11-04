@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.ul`
 width:100%;
-height:270px;
+height:82%;
 flex-direction: column;
 padding-right:20px;
 overflow-y: auto;

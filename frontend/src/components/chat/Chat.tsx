@@ -70,7 +70,9 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
                 <li className={message.my}><p>{message.content}</p></li>
                   )): <li>Não rolou</li>}
           </Ul>
-        <input onChange={e => setMessage(e.target.value)} value={message} type="text"/>
+          <div className="input-wrapper">
+            <input placeholder="Digite sua mensagem" onChange={e => setMessage(e.target.value)} value={message} type="text"/>
+          </div>
 
           </div>
         </form>

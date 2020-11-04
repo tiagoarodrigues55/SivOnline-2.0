@@ -14,6 +14,8 @@ export default createGlobalStyle`
 //     margin-left: 5px;
 //   }
   html, body, #root {
+    max-width: 1600px;
+    margin: 0 auto;
     height: 100%;
     background-color: #6600FF;
     padding:5px;
