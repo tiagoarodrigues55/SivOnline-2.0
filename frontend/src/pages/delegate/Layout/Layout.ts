@@ -25,5 +25,5 @@ export const Grid = styled.div`
   
   ;
   
-  height: 100vh;
+  max-height: 100vh;
 `;
