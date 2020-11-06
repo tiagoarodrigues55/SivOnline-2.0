@@ -3,6 +3,7 @@ import api from '../../services/api'
 import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
+import {Background} from '../../components/backgroundImg/styles';
 
 const Index: React.FC = () => {
   const history = useHistory()
@@ -56,20 +57,21 @@ const Index: React.FC = () => {
     setData({...data, [name]: value})
   }
   return (
-    <Div>
-
-      <div>
-        <img src={logo} alt=""/>
-      <section>
-        <form onSubmit={login}>
-        <input type="email" name="email" placeholder="exemplo@alunoviva.com.br"  onChange={handleInputChange}/>
-        <input type="password" name="password" placeholder="senha" onChange={handleInputChange}/>
-        <button type="submit">Entrar</button>
-        </form>
-     
-      </section>
-      </div>
-    </Div>
+    <>
+      <Div>
+        <div>
+          <img src={logo} alt=""/>
+          <section>
+            <form onSubmit={login}>
+            <input type="email" name="email" placeholder="exemplo@alunoviva.com.br"  onChange={handleInputChange}/>
+            <input type="password" name="password" placeholder="senha" onChange={handleInputChange}/>
+            <button type="submit">Entrar</button>
+            </form>
+          </section>
+        </div>
+      </Div>
+      <Background />
+    </>
   )
 }
 export default Index
