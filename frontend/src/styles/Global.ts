@@ -17,7 +17,7 @@ export default createGlobalStyle`
     max-width: 1600px;
     margin: 0 auto;
     height: 100%;
-    background-color: #6600FF;
+    background-image: url('/assets/background.jpg');
     padding:5px;
   }
   div.components{
@@ -51,23 +51,5 @@ export default createGlobalStyle`
     --link: #5d80d6;
     --rocketseat: #6633cc;
   }
-  /* :root {
-    --primary: #fff;
-    --secondary: #fff;
-    --tertiary: #fff
-    --quaternary: #fff;
-    --quinary: #fff;
-    --senary: #fff;
-    
-    --white: #fff;
-    --gray: #fff;
-    --chat-input: #fff
-    --symbol: #fff;
-    --notification: #fff;
-    --discord: #fff;
-    --mention-detail: #fff;
-    --mention-message: #fff;
-    --link: #fff;
-    --rocketseat: #fff;
-  } */
+
 `;

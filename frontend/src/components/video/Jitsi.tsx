@@ -44,7 +44,7 @@ const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.Re
           parentNode: document.getElementById(jitsiContainerId),
           userInfo: {displayName: user},
           width: 500,
-          height: 300,
+          height: 350,
          
         });
       setJitsi(_jitsi)
@@ -72,7 +72,6 @@ const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.Re
      
   
     };
-  
     React.useEffect(() => {
       initialiseJitsi();
   
