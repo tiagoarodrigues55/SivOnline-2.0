@@ -20,6 +20,7 @@ const Index: React.FC = () => {
       api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
       api.get('getUserInfo', {headers: {Authorization : `Bearer ${res.data.token.token}`}}).then(res=>{
       localStorage.setItem('representation', res.data.representation)
+      localStorage.setItem('representation_type', res.data.representation_type)
 
         if(res.data.representation_type === 'Mesa'){
           history.push('/Moderator')

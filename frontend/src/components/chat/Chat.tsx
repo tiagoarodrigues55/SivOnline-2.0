@@ -16,6 +16,7 @@ interface MessageType{
   content: string
 }
 const user = localStorage.getItem('representation')
+const representation_type = localStorage.getItem('representation_type')
 const socket = io('http://localhost:3001')
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
   
@@ -31,6 +32,7 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
     if(msg.destiny === user && msg.author !== contat){
       haveMessages(msg.author)
     }
+   
   })
   useEffect(()=>{
     socket.emit('changeContat', {

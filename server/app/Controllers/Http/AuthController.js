@@ -20,6 +20,10 @@ class AuthController {
     const userInfo = auth.getUser()
     return userInfo
   }
+  async index(){
+    const users = await User.all()
+    return users
+  }
 }
 
 module.exports = AuthController
