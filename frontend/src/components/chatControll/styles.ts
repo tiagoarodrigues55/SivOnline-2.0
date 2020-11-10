@@ -6,7 +6,7 @@ grid-area: CC;
 display: flex;
 flex-direction: column;
 padding: 20px;
-/* background-color: var(--primary); */
+background-color: var(--primary);
 margin-top: 20px;
   li{
     list-style: none;

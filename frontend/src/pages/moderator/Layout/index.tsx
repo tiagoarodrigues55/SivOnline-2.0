@@ -22,12 +22,12 @@ function Layout() {
   const [favorables, setFavorables] = useState<string[]>([])
   const [againsts, setAgainsts] = useState<string[]>([])
   const [display, setDisplay] = useState<string>('none')
-  useEffect(()=>{
-    api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-      alert(`Bem vindo ${res.data.username}`)
-    })
-  },[])
-  if(!token || representation==='null'){
+  // useEffect(()=>{
+  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
+  //     alert(`Bem vindo ${res.data.username}`)
+  //   })
+  // },[])
+  if( representation==='null'){
     console.log('sem token ou representação')
     return(
       <Redirect to="Login" />

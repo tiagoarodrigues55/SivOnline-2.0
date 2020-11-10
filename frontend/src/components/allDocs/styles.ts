@@ -6,6 +6,9 @@ export default styled.div`
 grid-area: AD;
 display: flex;
   div.docs{
+background-color: var(--secondary);
+margin:5px;
+padding:10px;
 display: flex;
 width:97vw;
     flex-direction:row;

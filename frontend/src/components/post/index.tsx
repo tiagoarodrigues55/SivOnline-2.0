@@ -13,6 +13,7 @@ const Post: React.FC = () => {
 
  function handleSubmit(event: FormEvent){
    event.preventDefault()
+   alert('Seu artigo foi enviado com sucesso')
    if(user==='Pedro José'){
      console.log(user)
     socket.emit('post', {

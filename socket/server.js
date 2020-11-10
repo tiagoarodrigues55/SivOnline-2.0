@@ -4,6 +4,59 @@ const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 
+let users = [
+  {
+    id: 1,
+    username: "Tiago Rodrigues",
+    email: "tiago.americano.03@gmail.com",
+    password: "Tiago2003",
+    representation_type: "Mesa",
+    representation: "Mesa-Tiago",
+    created_at: "2020-10-01 16:22:43",
+    updated_at: "2020-10-01 16:22:43"
+  },
+  {
+    id: 2,
+    username: "Marcos Rodrigues",
+    email: "marcos.americano.03@gmail.com",
+    password: "Marcos2003",
+    representation_type: "Delegado",
+    representation: "Brasil",
+    created_at: "2020-10-01 16:23:45",
+    updated_at: "2020-10-01 16:23:45"
+  },
+  {
+    id: 3,
+    username: "Rafael Rodrigues",
+    email: "rafael.americano.03@gmail.com",
+    password: "Rafael2003",
+    representation_type: "Staff",
+    representation: "Rafael",
+    created_at: "2020-10-27 15:32:23",
+    updated_at: "2020-10-27 15:32:23"
+  },
+  {
+    id: 4,
+    username: "Bento Rodrigues",
+    email: "bento.americano.03@gmail.com",
+    password: "Bento2003",
+    representation_type: "Imprensa",
+    representation: "Bento",
+    group: 0,
+    created_at: "2020-11-03 10:52:40",
+    updated_at: "2020-11-03 10:52:40"
+  },
+  {
+    id: 5,
+    username: "Pedro José",
+    email: "pedro.almeida@alunoviva.com.br",
+    password: "Pedro2003",
+    representation_type: "Chefe de imprensa",
+    representation: "Pedro José",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  }
+]
 let messages = []
 let speechesList = []
 let actions = []
@@ -51,12 +104,18 @@ io.on('connection', socket =>{
     messages.map(msg=>{
       if(msg.author === data.user && msg.destiny === data.contat){
         Messages.push({content: msg.content, my: 'mine'})
+      }else{
+        console.log(msg.author, data.user, msg.destiny, data.contat)
       }
       if(msg.destiny === data.user && msg.author === data.contat){
         Messages.push({content: msg.content, my: 'notMine'})
+      }else{
+        console.log(msg.author, data.user, msg.destiny, data.contat)
+
       }
     })
     console.log(Messages)
+    console.log(messages)
     socket.emit('previousMessages', Messages)
   })
   socket.on('sendMessage', data =>{
@@ -204,6 +263,21 @@ io.on('connection', socket =>{
         return false
       }
     }
+  })
+
+
+  socket.on('login', user=>{
+    console.log('login')
+    for(i of users){
+      if(user.email === i.email && user.password === i.password){
+        socket.emit('login', i)
+      }
+    }
+   
+  })
+
+  socket.on('getUsers', ()=>{
+    socket.emit('getUsers', users)
   })
 })
 server.listen(3001)

@@ -9,6 +9,7 @@ class Chronometer extends Component {
     super(props)
     this.state = {
       count: 1,
+      startCount: 100,
       status: 'start'
     }
   }
@@ -22,6 +23,8 @@ class Chronometer extends Component {
             {this.state.status}
           </button>
           <button onClick={()=>{ socket.emit('reset')}}>Reset</button>
+       
+            <input onChange={(e)=>this.setState({count : Number(e.target.value), startCount: Number(e.target.value)})} type="number"/>
         </div>
       )
     }
@@ -57,7 +60,7 @@ class Chronometer extends Component {
      }
    })
    socket.on('reset', ()=>{
-    this.setState({count: this.props.startCount})
+    this.setState({count: this.state.startCount})
    })
     // this.doIntervalChange()
   }

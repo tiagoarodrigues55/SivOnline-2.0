@@ -6,6 +6,8 @@ grid-area: NS;
 background-color: var(--quinary) ;
 display: flex;
 flex-direction: column;
+padding:10px;
+
     overflow-y: auto;
     ::-webkit-scrollbar {
     display:auto;

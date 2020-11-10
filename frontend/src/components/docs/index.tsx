@@ -77,40 +77,37 @@ const Docs: React.FC<Props> = ({moderator}) => {
 
   if(moderator){
     return (
+      <>
+
       <Styles className="components">
-        <div id="privateDocs">
-        <h3>Documentos privados</h3>
-     <ul>
-        {privateDocs.map(doc=>(
-          <div className="doc">
-            <li>{doc.name}
-            <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
-            </li>
-          </div>
-        ))}
-      </ul>
+       
+      <div className="Docs">
+        <div className="titlePublicDocsModerator">Documentos públicos</div>
+        <div className="publicModerator">
+          <ul>
+            {publicDocs.map(doc=>(
+              <div className="doc">
+                <li>{doc.name}
+                <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
+                </li>
+              </div>
+            ))}
+          </ul>
         </div>
-        <div id="publicDocs">
-        <h3>Documentos públicos</h3>
-        <ul>
-          {publicDocs.map(doc=>(
-            <div className="doc">
-              <li>{doc.name}
-              <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>
-              </li>
-            </div>
-          ))}
-        </ul>
-        </div>
-            <div id="createDoc">
-            <form onSubmit={handlePublicDoc}>
-              <input onChange={handlePublicName} type="text" placeholder="Nome do documento"/>
-              <input onChange={handlePublicLink} type="text" placeholder="Link para o documento"/>
-              <button type="submit">Enviar</button>
-            </form>
-            </div>
+      </div>
         
-      </Styles>
+      <div className="createDoc">
+        <form onSubmit={handlePublicDoc}>
+          <input onChange={handlePublicName} type="text" placeholder="Nome do documento"/>
+          <br/>
+          <input onChange={handlePublicLink} type="text" placeholder="Link para o documento"/>
+          <br/>
+          <button type="submit">Enviar</button>
+        </form>
+      </div>
+      
+    </Styles>
+    </>
     )
   }
 

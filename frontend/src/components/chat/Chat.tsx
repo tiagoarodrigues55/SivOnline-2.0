@@ -53,6 +53,7 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
       destiny: contat,
       content:message
     })
+    alert(message)
   }, [message]);
 
  if(!contat){

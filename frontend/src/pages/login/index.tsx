@@ -4,54 +4,97 @@ import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
 import {Background} from '../../components/backgroundImg/styles';
+import io from 'socket.io-client'
 
+const socket = io('http://localhost:3001')
+interface User{
+  token: string,
+  representation: string,
+  representation_type: string,
+  group?: number
+}
 const Index: React.FC = () => {
   const history = useHistory()
   const [data, setData] = useState({email: '', password: ''})
   function login(event: FormEvent){
     event.preventDefault()
-    api.post('/auth',{
-        email:data.email,
-        password:data.password
-    }).then(res=>{
-      console.log(res.data.token.token)
+    console.log(data)
+    socket.emit('login', {email: data.email, password: data.password})
+    // api.post('/auth',{
+    //     email:data.email,
+    //     password:data.password
+    // }).then(res=>{
+    //   console.log(res.data.token.token)
 
-      localStorage.setItem('token', res.data.token.token)
-      api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-      api.get('getUserInfo', {headers: {Authorization : `Bearer ${res.data.token.token}`}}).then(res=>{
-      localStorage.setItem('representation', res.data.representation)
-      localStorage.setItem('representation_type', res.data.representation_type)
+    //   localStorage.setItem('token', res.data.token.token)
+    //   api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+    //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${res.data.token.token}`}}).then(res=>{
+    //   localStorage.setItem('representation', res.data.representation)
+    //   localStorage.setItem('representation_type', res.data.representation_type)
 
-        if(res.data.representation_type === 'Mesa'){
-          history.push('/Moderator')
+    //     if(res.data.representation_type === 'Mesa'){
+    //       history.push('/Moderator')
+    //     }else{
+    //       if(res.data.representation_type === 'Delegado'){
+    //         history.push('/Delegate')
+
+    //       }else{
+    //         if(res.data.representation_type === 'Staff'){
+    //           history.push('/Staff')
+    //       }else{
+    //         if(res.data.representation_type === 'Imprensa'){
+
+    //         history.push('/Newspaper')
+    //         }else{
+    //           if(res.data.representation_type === 'Chefe de imprensa'){
+
+    //             history.push('/NewspaperBoss')
+    //           }else{
+    //             console.log(res.data.representation_type)
+
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   })
+
+    // }).catch(err=>console.log(err))
+  }
+  socket.on('login', (data: User)=>{
+    console.log(data)
+    localStorage.setItem('representation', data.representation)
+    localStorage.setItem('representation_type', data.representation_type)
+
+      if(data.representation_type === 'Mesa'){
+        history.push('/Moderator')
+      }else{
+        if(data.representation_type === 'Delegado'){
+          history.push('/Delegate')
+
         }else{
-          if(res.data.representation_type === 'Delegado'){
-            history.push('/Delegate')
-
+          if(data.representation_type === 'Staff'){
+            history.push('/Staff')
+        }else{
+          if(data.representation_type === 'Imprensa'){
+            if(data.group){
+          localStorage.setItem('group', data.group.toString())
+            }
+          history.push('/Newspaper')
           }else{
-            if(res.data.representation_type === 'Staff'){
-              history.push('/Staff')
-          }else{
-            if(res.data.representation_type === 'Imprensa'){
+            if(data.representation_type === 'Chefe de imprensa'){
 
-            history.push('/Newspaper')
+              history.push('/NewspaperBoss')
             }else{
-              if(res.data.representation_type === 'Chefe de imprensa'){
+              console.log(data.representation_type)
 
-                history.push('/NewspaperBoss')
-              }else{
-                console.log(res.data.representation_type)
-
-              }
             }
           }
         }
       }
-
-      })
-
-    }).catch(err=>console.log(err))
-  }
+    }
+  })
   function handleInputChange(event: ChangeEvent<HTMLInputElement>){
     const {name, value} = event.target
     

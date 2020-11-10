@@ -23,10 +23,10 @@ const Actions: React.FC<Props> = ({moderator}) => {
   const moções = [
     {value:'tempo>', text:'aumento do tempo de discurso'},
     {value:'tempo<', text:'diminuição do tempo de discurso'},
-    {value:'>lista', text:'abertura da lista de discursos'},
-    {value:'<lista', text:'fechamento da lista de discursos'},
     {value:'>seção', text:'abrir seção'},
-    {value:'<seção', text:'fechar seção'}
+    {value:'<seção', text:'fechar seção'},
+    {value:'reconhecimento', text:'reconhecer delegação'},
+    {value: 'outros', text: "outros"}
   ]
   const questões = [
     {value: 'ordem', text:'ordem'}, 
@@ -68,7 +68,7 @@ const Actions: React.FC<Props> = ({moderator}) => {
   if (moderator){
     return (
       <Styles className="components">
-        <div>
+        <div className="actions">
           <ul>
             {actions ? actions.map(action=>(
               <>

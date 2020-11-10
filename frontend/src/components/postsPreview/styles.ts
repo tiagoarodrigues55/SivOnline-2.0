@@ -7,7 +7,7 @@ display: flex;
 align-items: top;
 margin-top:20px;
 /* border: solid 1px gray; */
-/* background-color:var(--tertiary); */
+
 select{
   padding: 3px;
   background-color: var(--secondary) ;
@@ -30,11 +30,19 @@ button{
   align-self: flex-start
 }
 div{
-  width:500px;
+  width:800px;
   height:130px;
   padding:2px;
   margin:2px;
   border: 1px black solid;
+  background-color:var(--secondary);
+button{
+  margin-top:4px;
+  width:25%;
+  height:18%; 
+  align-self: flex-start;
+  border-radius:10px;
+}
 }
 ul{
   margin-left:15px;

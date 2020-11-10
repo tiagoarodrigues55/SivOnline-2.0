@@ -3,6 +3,7 @@ import Chat from './Chat'
 import Styles from './styles'
 import api from '../../services/api'
 import { AiFillBulb } from "react-icons/ai";
+import io from 'socket.io-client'
 
 interface Props{
   moderator?: boolean
@@ -11,6 +12,11 @@ interface Messages{
   content: string,
   my: boolean
 }
+interface User{
+representation: string,
+representation_type: string
+}
+const socket = io('http://localhost:3001')
 
 const Chats: React.FC<Props> = ({moderator}) => {
   const [haveMessage, sethaveMessage] = useState('')
@@ -19,12 +25,15 @@ const Chats: React.FC<Props> = ({moderator}) => {
   const [siglas, setSiglas] = useState<string[]>([
     
   ])
+  useEffect(()=>{
+    socket.emit('getUsers')
 
-api.get('/getUsers').then(users=>{
+  },[])
+socket.on('getUsers', (users: User[]) =>{
   const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
   const Siglas = ['Mes-T', 'Mes-P', 'Sta-T', 'Sta-A']
   const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
-  for(let i of users.data){
+  for(let i of users){
     if(i.representation === localStorage.getItem('representation')){
 
     }else{
@@ -40,6 +49,26 @@ api.get('/getUsers').then(users=>{
   setContats(Contats)
   setSiglas(Siglas)
 })
+// api.get('/getUsers').then(users=>{
+//   const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
+//   const Siglas = ['Mes-T', 'Mes-P', 'Sta-T', 'Sta-A']
+//   const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
+//   for(let i of users.data){
+//     if(i.representation === localStorage.getItem('representation')){
+
+//     }else{
+//     if(i.representation_type === "Delegado"){
+//       Contats.push(i.representation)
+//       Siglas.push(i.representation.substr(0,3).toUpperCase())
+//       ContatsForModerator.push(i.representation)
+//     }
+//   }
+//   }
+
+//   setContatsForModerator(ContatsForModerator)
+//   setContats(Contats)
+//   setSiglas(Siglas)
+// })
 
   const [contat, setContat] = useState('')
   function renderContat(contat: string){

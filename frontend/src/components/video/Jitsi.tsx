@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 interface Props{
   moderator?: boolean,
+  newspaper?: boolean,
   roomName: string,
   password: string
   user: string,
@@ -15,7 +16,7 @@ interface ParticipantJoined{
   id: string, 
   // displayName: string
 }
-const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.ReactElement => {
+const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}): React.ReactElement => {
 
     const jitsiContainerId = "jitsi-container-id";
     const [jitsi, setJitsi] = useState<JitsiTypes>({});
@@ -38,7 +39,7 @@ const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.Re
       if (!window.JitsiMeetExternalAPI) {
         await loadJitsiScript();
       }
-      if(moderator===true){
+      if(newspaper){
         const _jitsi = new window.JitsiMeetExternalAPI("meet.jit.si", {
           roomName,
           parentNode: document.getElementById(jitsiContainerId),
@@ -50,6 +51,18 @@ const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.Re
       setJitsi(_jitsi)
 
       }else{
+        if(moderator){
+          const _jitsi = new window.JitsiMeetExternalAPI("meet.jit.si", {
+            roomName,
+            parentNode: document.getElementById(jitsiContainerId),
+            userInfo: {displayName: user},
+            width: 500,
+            height: 430,
+           
+          });
+        setJitsi(_jitsi)
+  
+        }else{
         const _jitsi = new window.JitsiMeetExternalAPI("meet.jit.si", {
           roomName,
           parentNode: document.getElementById(jitsiContainerId),
@@ -67,9 +80,8 @@ const Jitsi: React.FC<Props> = ({moderator, roomName, password, user}): React.Re
           },
         });
       setJitsi(_jitsi)
-
       }
-     
+    }
   
     };
     React.useEffect(() => {

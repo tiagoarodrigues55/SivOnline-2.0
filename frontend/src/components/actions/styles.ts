@@ -6,6 +6,9 @@ grid-area: AT;
 display: flex;
 align-items: top;
 margin-top:20px;
+div.actions{
+  background-color: var(--secondary)
+}
 /* border: solid 1px gray; */
 /* background-color:var(--tertiary); */
 select{

@@ -54,5 +54,15 @@ div#againstVotes{
 h3{
   width:100%;
 }
+input{
+    border-radius:8px;
+    padding:5px;
+    margin:5px;
+  }
+  button{
+    border-radius: 8px;
+    padding:10px;
+  background-color: var(--tertiary);
 
+  }
 `
