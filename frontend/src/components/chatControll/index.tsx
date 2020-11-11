@@ -9,20 +9,11 @@ interface MessageType{
   destiny: string,
   content: string
 }
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
+
 const ChatControll: React.FC = () => {
   
-  const [messages, setMessages] = useState<MessageType[]>([
-    { author: "Teste",
-      destiny: "Teste",
-      content: "Testetstetste  ettstste  tete teevvet ss"},
-    { author: "Teste",
-      destiny: "Teste",
-      content: "Testetstetste  ettstste  tete teevvet ss"},
-    { author: "Teste",
-      destiny: "Teste",
-      content: "Testetstetste  ettstste  tete teevvet ss"},
-  ])
+  const [messages, setMessages] = useState<MessageType[]>([])
  
   socket.on('receivedMessage', (msg:MessageType)=>{
     const {author, destiny, content} = msg

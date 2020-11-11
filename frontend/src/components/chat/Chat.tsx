@@ -17,7 +17,8 @@ interface MessageType{
 }
 const user = localStorage.getItem('representation')
 const representation_type = localStorage.getItem('representation_type')
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
+
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
   
   const [message, setMessage] = useState('')
@@ -53,7 +54,6 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
       destiny: contat,
       content:message
     })
-    alert(message)
   }, [message]);
 
  if(!contat){
@@ -68,7 +68,6 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
           </div>
         <div id="messages">
           <Ul>
-             
              {messages ? messages.map(message=>(
                 <li className={message.my}><p>{message.content}</p></li>
                   )): <li>Não rolou</li>}

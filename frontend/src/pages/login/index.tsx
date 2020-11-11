@@ -6,7 +6,8 @@ import logo from '../../assets/logo.png'
 import {Background} from '../../components/backgroundImg/styles';
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
+
 interface User{
   token: string,
   representation: string,

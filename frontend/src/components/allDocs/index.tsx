@@ -2,7 +2,7 @@ import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
 import io from 'socket.io-client'
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
 
 interface Doc{
   name: string,
@@ -13,50 +13,7 @@ interface Doc{
 
 const AllDocs: React.FC = () => {
 
-  const [docs, setDocs] = useState<Doc[]>([
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-    { name: 'string',
-      link: 'string',
-      user: 'string'},
-  ])
+  const [docs, setDocs] = useState<Doc[]>([])
 
   socket.on("newDoc", (doc : Doc)=>{
     setDocs([...docs, doc])

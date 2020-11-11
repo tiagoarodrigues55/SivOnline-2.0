@@ -2,7 +2,8 @@ import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
 import io from 'socket.io-client'
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
+
 interface Props{
   moderator?: boolean
 }

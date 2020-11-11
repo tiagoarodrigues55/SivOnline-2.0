@@ -28,6 +28,8 @@ li.mine{
   li.notMine{
   width:100%;
    p{
+  margin:5px;
+
     width: fit-content;
     background-color: grey;
     border-radius:5px;

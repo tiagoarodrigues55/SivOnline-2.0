@@ -10,7 +10,7 @@ import {Grid} from './Layout'
 import {Div} from './Styles'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
 
 function Layout() {
   const token = localStorage.getItem('token')

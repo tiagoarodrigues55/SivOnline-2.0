@@ -11,7 +11,7 @@ interface Post{
   title: string,
   description: string
 }
-const socket = io('http://localhost:3001')
+const socket = io('http://177.8.161.242:3001')
 
 const News: React.FC<Props> = ({moderator}) => {
   //feed com notícias estáticas (iframe)

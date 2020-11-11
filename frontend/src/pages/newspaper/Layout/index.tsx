@@ -14,11 +14,11 @@ import api from '../../../services/api'
 function Layout() {
   const token = localStorage.getItem('token')
   const representation = localStorage.getItem('representation')
-  useEffect(()=>{
-    api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-    })
-  },[])
-  if(!token || representation==='null'){
+  // useEffect(()=>{
+  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
+  //   })
+  // },[])
+  if(representation==='null'){
     console.log('sem token ou representação')
     return(
       <Redirect to="Login" />
