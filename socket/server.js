@@ -3,7 +3,8 @@ const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
-
+const cors = require('cors')
+app.use(cors())
 let users = [
   {
     id: 1,

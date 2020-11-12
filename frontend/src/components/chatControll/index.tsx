@@ -9,7 +9,7 @@ interface MessageType{
   destiny: string,
   content: string
 }
-const socket = io('http://177.8.161.242:3001')
+const socket = io(process.env.SOCKET_URL || 'I hate typescript')
 
 const ChatControll: React.FC = () => {
   

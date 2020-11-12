@@ -17,7 +17,7 @@ interface MessageType{
 }
 const user = localStorage.getItem('representation')
 const representation_type = localStorage.getItem('representation_type')
-const socket = io('http://177.8.161.242:3001')
+const socket = io(process.env.SOCKET_URL || 'I hate typescript')
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
   
