@@ -116,7 +116,17 @@ let users = [
     representation: "Mesa-Caio",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
-  }
+  },
+  {
+    id: 12,
+    username: "Artur Santos",
+    email: "artur.santos@alunoviva.com.br",
+    password: "ArturSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Artur",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
 ]
 let messages = []
 let speechesList = []
@@ -205,7 +215,7 @@ io.on('connection', socket =>{
     actions.push(action)
     console.log(actions)
 
-    socket.emit('setActions', actions)
+    io.emit('setActions', actions)
   })
   socket.on('removeAction', action=>{
     console.log('removeAction')
@@ -291,7 +301,7 @@ io.on('connection', socket =>{
     io.emit('chronometer', status)
   })
   socket.on('reset', ()=>{
-    socket.emit('reset')
+    io.emit('reset')
   })
 
   //PostsPreview
@@ -301,7 +311,7 @@ io.on('connection', socket =>{
     postsPreview.push(post)
     console.log(post)
 
-    socket.emit('setPostsPreview', postsPreview)
+    io.emit('setPostsPreview', postsPreview)
   })
   socket.on('removePostPreview', post=>{
     console.log('removePostPreview')
