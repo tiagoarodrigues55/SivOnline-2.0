@@ -5,9 +5,8 @@ import {Div} from './styles'
 import logo from '../../assets/logo.png'
 import {Background} from '../../components/backgroundImg/styles';
 import io from 'socket.io-client'
-
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
-
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+console.log(socket)
 interface User{
   token: string,
   representation: string,
@@ -15,6 +14,8 @@ interface User{
   group?: number
 }
 const Index: React.FC = () => {
+console.log(socket)
+
   const history = useHistory()
   const [data, setData] = useState({email: '', password: ''})
   function login(event: FormEvent){

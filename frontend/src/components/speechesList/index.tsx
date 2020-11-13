@@ -11,7 +11,8 @@ interface Speech{
   name: string
 }
 const user : string = localStorage.getItem('representation') || ''
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+
 
 const SpeechesList: React.FC<Props> = ({moderator}) => {
   const [delegations, setDelegations] = useState<Speech[]>([

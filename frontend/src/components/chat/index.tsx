@@ -16,7 +16,8 @@ interface User{
 representation: string,
 representation_type: string
 }
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+
 
 const Chats: React.FC<Props> = ({moderator}) => {
   const [haveMessage, sethaveMessage] = useState('')

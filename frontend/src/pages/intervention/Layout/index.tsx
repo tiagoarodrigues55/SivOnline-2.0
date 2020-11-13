@@ -10,7 +10,8 @@ import {Grid} from './Layout'
 import {Div} from './Styles'
 import io from 'socket.io-client'
 
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+
 
 function Layout() {
   const token = localStorage.getItem('token')

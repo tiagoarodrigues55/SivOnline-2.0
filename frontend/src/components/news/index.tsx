@@ -11,7 +11,8 @@ interface Post{
   title: string,
   description: string
 }
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+
 
 const News: React.FC<Props> = ({moderator}) => {
   //feed com notícias estáticas (iframe)

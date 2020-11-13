@@ -4,7 +4,8 @@ import Styles from './styles'
 import io from 'socket.io-client'
 
 
-const socket = io(process.env.SOCKET_URL || 'I hate typescript')
+const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+
 
 const user : string = localStorage.getItem('representation') || ''
 
