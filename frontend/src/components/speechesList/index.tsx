@@ -11,11 +11,12 @@ interface Speech{
   flag: string,
   name: string
 }
-const user : string = localStorage.getItem('representation') || ''
 const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {
+  const user : string = localStorage.getItem('representation') || ''
+
   const [delegations, setDelegations] = useState<Speech[]>([
   ])
   const [buttonState, setButtonState] = useState('visible')

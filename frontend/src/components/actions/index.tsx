@@ -102,7 +102,7 @@ const Actions: React.FC<Props> = ({moderator}) => {
       <option value={quest.value}>{quest.text}</option>
     ))}
     </select>
-    <input type="text" onChange={handleInputChange} placeholder={placeholder}/>
+    <input type="text" onChange={handleInputChange} placeholder={placeholder}value={formData.text}/>
     <button type="submit">Enviar</button>
   </form>
   </Styles>
