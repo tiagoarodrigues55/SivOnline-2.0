@@ -28,11 +28,11 @@ function Layout() {
   const [newVote, setNewVote] = useState<NewVote>({title: 'Titulo', description: 'Descrição', link: 'http://localhost:3000/login'})
   const [display, setDisplay] = useState<string>('none')
 
-  useEffect(()=>{
-    api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-    })
-  },[])
-  if(!token || representation==='null'){
+  // useEffect(()=>{
+  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
+  //   })
+  // },[])
+  if(representation==='null'){
     console.log('sem token ou representação')
     return(
       <Redirect to="Login" />
