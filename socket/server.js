@@ -288,7 +288,7 @@ io.on('connection', socket =>{
   //Cronometro
 
   socket.on('startStop', (status)=>{
-    socket.emit('chronometer', status)
+    io.emit('chronometer', status)
   })
   socket.on('reset', ()=>{
     socket.emit('reset')
