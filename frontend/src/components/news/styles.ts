@@ -23,7 +23,7 @@ h1{
   font-size: 17px;
   margin-top: 6px;
 }
-h3{
+p{
   font-size: 13px;
   margin-top: 3px;
 }

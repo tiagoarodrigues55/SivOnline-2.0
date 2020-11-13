@@ -160,7 +160,9 @@ io.on('connection', socket =>{
 
   if(meet.room !== ''){
     socket.emit('setMeet', meet)
+    console.log('emit meetRoom' + meet)
   }
+  console.log('setActions' + actions)
 
   if(!actions[0]){
   io.emit('setActions', [])
@@ -185,7 +187,6 @@ io.on('connection', socket =>{
 
       }
     })
-    console.log(Messages)
     console.log(messages)
     socket.emit('previousMessages', Messages)
   })
@@ -200,6 +201,7 @@ io.on('connection', socket =>{
 
   socket.on('newSubscribe', representation =>{
     speechesList.push(representation)
+    console.log('speechesList: ')
     console.log(speechesList)
 
     io.emit('setSpeechesList', speechesList)
@@ -213,6 +215,7 @@ io.on('connection', socket =>{
   socket.on('newAction', action=>{
     console.log('newAction')
     actions.push(action)
+    console.log('New Action: ')
     console.log(actions)
 
     io.emit('setActions', actions)
@@ -244,7 +247,8 @@ io.on('connection', socket =>{
   //Imprensa
   socket.on('post', file=>{
     files.push(file)
-    console.log(files)
+    console.log('New Post: ')
+    console.log(file)
     io.emit('posts', files)
   })
 
@@ -286,35 +290,39 @@ io.on('connection', socket =>{
     privateDocs.push(doc)
     io.emit("setPrivateDocs", privateDocs)
     io.emit("newDoc", doc)
+    console.log('New Private Doc: ')
+    console.log(doc)
   })
   socket.on('newPublicDoc', doc=>{
     io.emit("newDoc", doc)
-
+    console.log('New Public  Doc: ')
+    console.log(doc)
     publicDocs.push(doc)
     io.emit("setPublicDocs", publicDocs)
-    console.log(publicDocs)
   })
 
   //Cronometro
 
   socket.on('startStop', (status)=>{
     io.emit('chronometer', status)
+    console.log(status+ ' chronometer')
   })
   socket.on('reset', ()=>{
     io.emit('reset')
+    console.log('reset chronometer')
   })
 
   //PostsPreview
 
   socket.on('postsPreview', post=>{
-    console.log('postsPreview')
+    console.log('postsPreview: ')
     postsPreview.push(post)
     console.log(post)
 
     io.emit('setPostsPreview', postsPreview)
   })
   socket.on('removePostPreview', post=>{
-    console.log('removePostPreview')
+    console.log('removePostPreview: ')
     postsPreview = postsPreview.filter(filter)
     console.log(postsPreview)
     if(!postsPreview[0]){
@@ -338,10 +346,12 @@ io.on('connection', socket =>{
 
 
   socket.on('login', user=>{
-    console.log('login')
+    
     for(i of users){
       if(user.email === i.email && user.password === i.password){
         socket.emit('login', i)
+        console.log('login: ')
+        console.log(user)
       }
     }
    

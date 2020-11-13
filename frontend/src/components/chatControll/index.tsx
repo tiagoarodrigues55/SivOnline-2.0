@@ -29,7 +29,7 @@ const ChatControll: React.FC = () => {
           <Div>
             <ul>
              {messages ? messages.map(message=>(
-                <li><p className="author">{message.author}</p><p> para </p><p className="destiny">{message.destiny}</p><p> dizendo: </p><p className="content">{message.content}</p></li>
+                <li><p className="author">{message.author} </p><p>  para  </p><p className="destiny"> {message.destiny} </p> <p>  dizendo:  </p> <p className="content"> {message.content} </p> </li>
                   )): <li>Não rolou</li>}
             </ul>
           </Div>

@@ -7,7 +7,16 @@ display: flex;
 align-items: top;
 margin-top:20px;
 div.actions{
-  background-color: var(--secondary)
+  background-color: var(--secondary);
+  overflow-y: auto;
+    ::-webkit-scrollbar {
+    display:auto;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    display:auto;
+
+  }
 }
 /* border: solid 1px gray; */
 /* background-color:var(--tertiary); */

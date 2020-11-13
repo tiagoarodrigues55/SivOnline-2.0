@@ -23,7 +23,7 @@ function Layout() {
   return (
     <Grid>
       <Video newspaperBoss/>
-      <SpeechesList/>
+      <SpeechesList newspaper/>
       <News/>
       <Chat/>
       <Post/>

@@ -95,9 +95,9 @@ const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}
     };
     React.useEffect(() => {
       initialiseJitsi();
-  
       return () => jitsi?.dispose?.();
     }, []);
+   
 
 
     return <div id={jitsiContainerId}  />;

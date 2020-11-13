@@ -11,7 +11,6 @@ import Votes from '../../../components/votes'
 import NewVote from '../../../components/votes/NewVote'
 import {Grid} from './Layout'
 import {Div} from './Styles'
-import {Background} from '../../../components/backgroundImg/styles'
 import api from '../../../services/api'
 import io from 'socket.io-client'
 
@@ -82,7 +81,6 @@ function Layout() {
       <Votes/>
       <Docs/>
     </Grid>
-    <Background/>
     </>
   );
 }

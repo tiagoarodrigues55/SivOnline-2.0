@@ -3,7 +3,8 @@ import Styles from './styles'
 import io from 'socket.io-client'
 
 interface Props{
-  moderator?: boolean
+  moderator?: boolean,
+  newspaper?: boolean
 }
 interface Speech{
   position: number,
@@ -14,7 +15,7 @@ const user : string = localStorage.getItem('representation') || ''
 const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
-const SpeechesList: React.FC<Props> = ({moderator}) => {
+const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {
   const [delegations, setDelegations] = useState<Speech[]>([
   ])
   const [buttonState, setButtonState] = useState('visible')
@@ -56,7 +57,7 @@ return(
         ))}
        
       </ul>
-     {moderator ? <button onClick={removeDelegation}>{`Remover ${delegations[0].name} da lista`}</button> : <button id={buttonState} onClick={handleSpeechList}>Inscreva-se na lista</button>}
+     {moderator || newspaper ? <button onClick={removeDelegation}>{`Remover ${delegations[0].name} da lista`}</button> : <button id={buttonState} onClick={handleSpeechList}>Inscreva-se na lista</button>}
       
       
 

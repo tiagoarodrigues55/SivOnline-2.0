@@ -7,6 +7,7 @@ grid-area: AD;
 display: flex;
   div.docs{
 background-color: var(--secondary);
+height:100px;
 margin:5px;
 padding:10px;
 display: flex;

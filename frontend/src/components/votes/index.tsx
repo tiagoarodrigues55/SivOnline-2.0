@@ -22,7 +22,12 @@ interface NewVote{
 }
 const Votes: React.FC<Props> = ({moderator}) => {
 
-  const [lastVote, setLastVote] = useState<LastVote>()
+  const [lastVote, setLastVote] = useState<LastVote>({
+    title: 'string',
+  favorables: ['teste', 'teste', 'teste', 'teste', 'teste'],
+  againsts: ['teste', 'teste', 'teste', 'teste', 'teste'],
+  decision: 'string',
+  })
   
   const [newVote, setNewVote] = useState<NewVote>({
     title: '',
@@ -36,6 +41,7 @@ const Votes: React.FC<Props> = ({moderator}) => {
   },[])
   function handleSubmit(event: FormEvent){
     const {title, description, link} = newVote
+    event.preventDefault()
     socket.emit('newVote', {
       title,
       description,
@@ -106,10 +112,11 @@ const Votes: React.FC<Props> = ({moderator}) => {
               ))}
             </ul>
           </div>
-        </div>
-        <div>
+          <div>
           <h3>{`Essa moção ${lastVote.decision} por ${lastVote.favorables.length} votos a ${lastVote.againsts.length}`}</h3>
         </div>
+        </div>
+       
       </div>
     </Styles>
   )

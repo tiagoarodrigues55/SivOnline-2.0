@@ -37,6 +37,7 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
    
   })
   useEffect(()=>{
+    
     socket.emit('changeContat', {
       user,
       contat

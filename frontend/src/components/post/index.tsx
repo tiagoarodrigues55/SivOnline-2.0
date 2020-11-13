@@ -16,7 +16,7 @@ const Post: React.FC = () => {
  function handleSubmit(event: FormEvent){
    event.preventDefault()
    alert('Seu artigo foi enviado com sucesso')
-   if(user==='Pedro José'){
+   if(localStorage.getItem('representation')==='Pedro José'){
      console.log(user)
     socket.emit('post', {
       title: post.title,
@@ -30,7 +30,7 @@ const Post: React.FC = () => {
       title: post.title,
       description: post.description,
       link: post.link,
-      representation: user
+      representation: localStorage.getItem('representation')
     })
   }
 

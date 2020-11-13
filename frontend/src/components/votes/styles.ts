@@ -20,10 +20,9 @@ border-radius: 5px 5px 0px 0px;
 }
 div.votes{
   width:500px;
-  height:100px;
   background-color: var(--secondary);
   border-radius: 0px 0px 5px 5px;
-
+padding:10px;
 }
 div#button{
   margin-top: -20px;
@@ -36,6 +35,11 @@ button{
 }
 h1{
   font-size:20px;
+  padding:10px;
+}
+li{
+  list-style :none;
+  padding:3px;
 }
 #favorable{
   background-color: green;

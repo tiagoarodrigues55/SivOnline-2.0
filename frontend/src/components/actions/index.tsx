@@ -45,6 +45,7 @@ const Actions: React.FC<Props> = ({moderator}) => {
     event.preventDefault()
     const {text} = formData
     const action = selectedAction.action
+    setFormData({text: ''})
     socket.emit('newAction', {
       title: action,
       type: selectedAction.type,

@@ -3,7 +3,6 @@ import api from '../../services/api'
 import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
-import {Background} from '../../components/backgroundImg/styles';
 import io from 'socket.io-client'
 const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 interface User{
@@ -114,7 +113,6 @@ const Index: React.FC = () => {
           </section>
         </div>
       </Div>
-      <Background />
     </>
   )
 }

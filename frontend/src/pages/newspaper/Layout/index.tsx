@@ -27,7 +27,7 @@ function Layout() {
   return (
     <Grid>
       <Video newspaper={true}/>
-      <SpeechesList/>
+      <SpeechesList newspaper/>
       <News/>
       <Chat/>
       <Post/>
