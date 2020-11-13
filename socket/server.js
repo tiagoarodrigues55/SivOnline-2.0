@@ -80,10 +80,10 @@ let users = [
   {
     id: 8,
     username: "Victória Schalch",
-    email: "vitoria.schalch@alunoviva.com.br",
+    email: "victoria.schalch@alunoviva.com.br",
     password: "VictoriaSiv",
-    representation_type: "Mesa",
-    representation: "Mesa-Victória",
+    representation_type: "imprensa",
+    representation: "imprensa-Victória",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
@@ -92,8 +92,8 @@ let users = [
     username: "Fernanda Bofelli",
     email: "fernanda.bofelli@alunoviva.com.br",
     password: "FernandaSiv",
-    representation_type: "Mesa",
-    representation: "Mesa-Fernanda",
+    representation_type: "Staff",
+    representation: "Staff-Fernanda",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
@@ -102,8 +102,8 @@ let users = [
     username: "Fernanda Issa",
     email: "fernanda.bottini@alunoviva.com.br",
     password: "FernandaSiv",
-    representation_type: "Mesa",
-    representation: "Mesa-Fernanda",
+    representation_type: "Delegado",
+    representation: "Delegada-Fernanda",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
@@ -122,8 +122,8 @@ let users = [
     username: "Artur Santos",
     email: "artur.santos@alunoviva.com.br",
     password: "ArturSiv",
-    representation_type: "Mesa",
-    representation: "Mesa-Artur",
+    representation_type: "Delegado",
+    representation: "Delegado-Artur",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
