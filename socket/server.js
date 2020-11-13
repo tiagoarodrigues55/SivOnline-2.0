@@ -51,9 +51,69 @@ let users = [
     id: 5,
     username: "Pedro José",
     email: "pedro.almeida@alunoviva.com.br",
-    password: "Pedro2003",
+    password: "PedroSiv",
     representation_type: "Chefe de imprensa",
     representation: "Pedro José",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 6,
+    username: "Pablito",
+    email: "pablo.quijada@escolaviva.com.br",
+    password: "PabloSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Pablo",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 7,
+    username: "Pedro Toldi",
+    email: "pedro.toldi@alunoviva.com.br",
+    password: "PedroSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Pedro",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 8,
+    username: "Victória Schalch",
+    email: "vitoria.schalch@alunoviva.com.br",
+    password: "VictoriaSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Victória",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 9,
+    username: "Fernanda Bofelli",
+    email: "fernanda.bofelli@alunoviva.com.br",
+    password: "FernandaSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Fernanda",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 10,
+    username: "Fernanda Issa",
+    email: "fernanda.bottini@alunoviva.com.br",
+    password: "FernandaSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Fernanda",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 11,
+    username: "Caio Suplicy",
+    email: "caio.suplicy@alunoviva.com.br",
+    password: "CaioSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Caio",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   }
