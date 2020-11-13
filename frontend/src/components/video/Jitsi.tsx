@@ -46,7 +46,12 @@ const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}
           userInfo: {displayName: user},
           width: 500,
           height: 350,
-         
+          devices: {
+            audioInput: '<deviceLabel>',
+            audioOutput: '<deviceLabel>',
+            videoInput: '<deviceLabel>'
+        },
+    
         });
       setJitsi(_jitsi)
 
