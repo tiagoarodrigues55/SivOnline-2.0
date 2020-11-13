@@ -19,9 +19,11 @@ const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {
   const [delegations, setDelegations] = useState<Speech[]>([
   ])
   const [buttonState, setButtonState] = useState('visible')
-  const timeOfSpeech = 2
+  const [timeOfSpeech, setTimeOfSpeech] = useState(90)
   
-
+  socket.on('setSpeechesTime', (res:number)=>{
+    setTimeOfSpeech(res)
+  })
   useEffect(() => {
     if(delegations.map(i=>i.name).indexOf(user)!==-1){
       setButtonState('unvisible')
@@ -50,14 +52,15 @@ return(
       <ul>
         {delegations.map(delegation=>(
           <div className="box">
-            <li key={delegation.position}>{delegation.name} -{` ${delegation.position * timeOfSpeech} minutos`}</li>
+            <li key={delegation.position}>{delegation.name} -{` ${Math.round(delegation.position * timeOfSpeech / 60)} minutos`}</li>
             <div className="separator"></div>
 
           </div>
         ))}
        
       </ul>
-     {moderator || newspaper ? <button onClick={removeDelegation}>{`Remover ${delegations[0].name} da lista`}</button> : <button id={buttonState} onClick={handleSpeechList}>Inscreva-se na lista</button>}
+     {moderator ? <button onClick={removeDelegation}>{`Remover ${delegations[0].name} da lista`}</button> : null}
+     {moderator || newspaper ? null: <button id={buttonState} onClick={handleSpeechList}>Inscreva-se na lista</button>}
       
       
 

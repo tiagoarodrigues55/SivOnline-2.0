@@ -26,7 +26,12 @@ class Chronometer extends Component {
           </button>
           <button onClick={()=>{ socket.emit('reset')}}>Reset</button>
        
-            <input onChange={(e)=>this.setState({count : Number(e.target.value), startCount: Number(e.target.value)})} type="number"/>
+            <input onChange={(e)=>{
+              this.setState({count : Number(e.target.value), startCount: Number(e.target.value)})
+              socket.emit('setSpeechesTime', Number(e.target.value))
+            }
+              
+              } type="number"/>
         </div>
       )
     }
