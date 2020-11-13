@@ -33,16 +33,17 @@ const Chats: React.FC<Props> = ({moderator}) => {
 socket.on('getUsers', (users: User[]) =>{
   const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
   const Siglas = ['Mes-T', 'Mes-P', 'Sta-T', 'Sta-A']
-  const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
+  const ContatsForModerator = []
+  // const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
   for(let i of users){
     if(i.representation === localStorage.getItem('representation')){
 
     }else{
-    if(i.representation_type === "Delegado"){
+    // if(i.representation_type === "Delegado"){
       Contats.push(i.representation)
       Siglas.push(i.representation.substr(0,3).toUpperCase())
       ContatsForModerator.push(i.representation)
-    }
+    // }
   }
   }
 
