@@ -1,10 +1,9 @@
 // import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import React, {useCallback, FormEvent, useState, ChangeEvent} from 'react'
 import Styles from './styles'
-import io from 'socket.io-client'
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
-
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const user : string = localStorage.getItem('representation') || ''

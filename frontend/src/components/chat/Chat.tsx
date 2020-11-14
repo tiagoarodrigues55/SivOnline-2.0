@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import io from 'socket.io-client'
+import {useSocket} from '../../socket'
+const socket = useSocket()
 import Ul from './Li'
 interface Props{
   contat: string,
@@ -17,7 +18,6 @@ interface MessageType{
 }
 const user = localStorage.getItem('representation')
 const representation_type = localStorage.getItem('representation_type')
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {

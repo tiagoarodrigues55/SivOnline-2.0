@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Styles from './styles'
-import io from 'socket.io-client'
+import {useSocket} from '../../socket'
+const socket = useSocket()
+
 
 interface Props{
   moderator?: boolean,
@@ -11,7 +13,6 @@ interface Speech{
   flag: string,
   name: string
 }
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {

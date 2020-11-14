@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import Article from './Article'
 import OrganizeNew from './OrganizeNew'
-import io from 'socket.io-client'
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
 import Styles from './styles'
 interface Props{
@@ -11,7 +12,6 @@ interface Post{
   title: string,
   description: string
 }
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const News: React.FC<Props> = ({moderator}) => {

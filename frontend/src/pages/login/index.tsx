@@ -3,8 +3,8 @@ import api from '../../services/api'
 import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
-import io from 'socket.io-client'
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../socket'
+const socket = useSocket()
 interface User{
   token: string,
   representation: string,

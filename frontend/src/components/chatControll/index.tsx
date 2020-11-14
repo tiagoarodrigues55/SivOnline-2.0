@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import io from 'socket.io-client'
 import Div from './styles'
 
 
@@ -9,7 +8,8 @@ interface MessageType{
   destiny: string,
   content: string
 }
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
 
 const ChatControll: React.FC = () => {

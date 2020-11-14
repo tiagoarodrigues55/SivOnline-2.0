@@ -1,9 +1,8 @@
 import React, {useState, FormEvent, ChangeEvent, useEffect} from 'react';
 import NewVote from './NewVote'
 import Styles from './styles'
-import io from 'socket.io-client'
-
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
 
 interface Props{

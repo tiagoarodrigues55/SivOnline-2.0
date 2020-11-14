@@ -10,9 +10,8 @@ import {Grid} from './Layout'
 import {Div} from './Styles'
 import api from '../../../services/api'
 import {Redirect} from 'react-router-dom'
-import io from 'socket.io-client'
-
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../../socket'
+const socket = useSocket()
 
 
 function Layout() {

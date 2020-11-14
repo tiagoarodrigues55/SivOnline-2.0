@@ -1,8 +1,8 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
-import io from 'socket.io-client'
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
 interface Doc{
   name: string,

@@ -12,9 +12,8 @@ import NewVote from '../../../components/votes/NewVote'
 import {Grid} from './Layout'
 import {Div} from './Styles'
 import api from '../../../services/api'
-import io from 'socket.io-client'
-
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+import {useSocket} from '../../../socket'
+const socket = useSocket()
 
 interface NewVote{
   title: string,

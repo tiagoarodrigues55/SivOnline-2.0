@@ -3,7 +3,8 @@ import Chat from './Chat'
 import Styles from './styles'
 import api from '../../services/api'
 import { AiFillBulb } from "react-icons/ai";
-import io from 'socket.io-client'
+import {useSocket} from '../../socket'
+const socket = useSocket()
 
 interface Props{
   moderator?: boolean
@@ -16,7 +17,6 @@ interface User{
 representation: string,
 representation_type: string
 }
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
 
 
 const Chats: React.FC<Props> = ({moderator}) => {
