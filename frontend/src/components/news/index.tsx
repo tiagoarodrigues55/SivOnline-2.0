@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import Article from './Article'
-import OrganizeNew from './OrganizeNew'
-import {useSocket} from '../../socket'
-const socket = useSocket()
-
 import Styles from './styles'
+
+import {useSocket} from '../../socket'
+
 interface Props{
   moderator?: boolean
 }
@@ -17,6 +16,7 @@ interface Post{
 const News: React.FC<Props> = ({moderator}) => {
   //feed com notícias estáticas (iframe)
   //anúncios fixados da mesa
+const socket = useSocket()
  
   const [articles, setArticles] = useState<Post[]>([])
   socket.on('previousEmits', (data : {posts : Post[]})=>{

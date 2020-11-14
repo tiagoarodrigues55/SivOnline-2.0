@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react'
-import {useSocket} from '../../socket'
-const socket = useSocket()
+
 
 
 class Chronometer extends Component {
@@ -21,14 +20,14 @@ class Chronometer extends Component {
       return (
         <div>
           <h1>{count}</h1>
-          <button name={this.state.status} onClick={()=>{socket.emit('startStop', this.state.status)}}>
+          <button name={this.state.status} onClick={()=>{this.props.socket.emit('startStop', this.state.status)}}>
             {this.state.status}
           </button>
-          <button onClick={()=>{ socket.emit('reset')}}>Reset</button>
+          <button onClick={()=>{ this.props.socket.emit('reset')}}>Reset</button>
        
             <input onChange={(e)=>{
               this.setState({count : Number(e.target.value), startCount: Number(e.target.value)})
-              socket.emit('setSpeechesTime', Number(e.target.value))
+              this.props.socket.emit('setSpeechesTime', Number(e.target.value))
             }
               
               } type="number"/>
@@ -49,7 +48,7 @@ class Chronometer extends Component {
     this.setState({
       count: startCount
     })
-    socket.on('chronometer', (status)=>{
+    this.props.socket.on('chronometer', (status)=>{
       if(status==='start'){
        console.log(this.state.status) 
        this.doIntervalChange()
@@ -66,7 +65,7 @@ class Chronometer extends Component {
        })
      }
    })
-   socket.on('reset', ()=>{
+   this.props.socket.on('reset', ()=>{
     this.setState({count: this.state.startCount})
    })
     // this.doIntervalChange()

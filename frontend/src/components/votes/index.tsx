@@ -2,7 +2,6 @@ import React, {useState, FormEvent, ChangeEvent, useEffect} from 'react';
 import NewVote from './NewVote'
 import Styles from './styles'
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 
 interface Props{
@@ -20,6 +19,7 @@ interface NewVote{
   link?: string
 }
 const Votes: React.FC<Props> = ({moderator}) => {
+  const socket = useSocket()
 
   const [lastVote, setLastVote] = useState<LastVote>({
     title: 'string',

@@ -13,9 +13,10 @@ import {Div} from './Styles'
 import api from '../../../services/api'
 import {Redirect} from 'react-router-dom'
 import {useSocket} from '../../../socket'
-const socket = useSocket()
 
 function Layout() {
+const socket = useSocket()
+
   const token = localStorage.getItem('token')
   const representation = localStorage.getItem('representation')
   const [favorables, setFavorables] = useState<string[]>([])

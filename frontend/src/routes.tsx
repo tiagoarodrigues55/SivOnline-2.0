@@ -7,8 +7,7 @@ import NewspaperPage from './pages/newspaper/Layout/index'
 import NewspaperBossPage from './pages/newspaperBoss/Layout/index'
 import Login from './pages/login/index'
 import React from 'react'
-import {useSocket} from './socket'
-const socket = useSocket()
+
 
 const Routes = () =>{
 

@@ -1,7 +1,6 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 
 interface Props{
@@ -16,6 +15,7 @@ interface action{
 const user : string = localStorage.getItem('representation') || ''
 
 const Actions: React.FC<Props> = ({moderator}) => {
+  const socket = useSocket()
 
   const [selectedAction, setSelectedAction] = useState({type:'ação', action: ''})
   const [actions, setActions] = useState<action[]>([])

@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {useSocket} from '../../socket'
-const socket = useSocket()
 import Ul from './Li'
+import {useSocket} from '../../socket'
+
+
 interface Props{
   contat: string,
   haveMessages: Function
@@ -21,6 +22,7 @@ const representation_type = localStorage.getItem('representation_type')
 
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
+const socket = useSocket()
   
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Messages[]>([])

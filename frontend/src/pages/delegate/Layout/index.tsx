@@ -13,7 +13,6 @@ import {Grid} from './Layout'
 import {Div} from './Styles'
 import api from '../../../services/api'
 import {useSocket} from '../../../socket'
-const socket = useSocket()
 
 interface NewVote{
   title: string,
@@ -21,6 +20,8 @@ interface NewVote{
   link?: string
 }
 function Layout() {
+const socket = useSocket()
+
   const token = localStorage.getItem('token')
   const representation = localStorage.getItem('representation')
   const [newVote, setNewVote] = useState<NewVote>({title: 'Titulo', description: 'Descrição', link: 'http://localhost:3000/login'})

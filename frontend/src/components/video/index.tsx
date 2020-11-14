@@ -2,13 +2,15 @@ import React, {useState, ChangeEvent, FormEvent} from 'react'
 import Styles from './styles'
 import Jitsi from './Jitsi'
 import Chronometer from '../Chronometer/index.js'
+import {useSocket} from '../../socket'
+
 interface Props{
   moderator?: boolean,
   newspaper?: boolean,
   newspaperBoss?: boolean,
 }
-
 const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
+  const socket = useSocket()
 
   const user = localStorage.getItem('representation') || "Brasil"
   const group : number = Number(localStorage.getItem('group')) || 0
@@ -34,7 +36,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
     return (
       <Styles className="components">
         <Jitsi moderator user={user} roomName={roomName} password={password}/>
-        <Chronometer moderator startCount={speechesTime}/>
+        <Chronometer socket={socket} moderator startCount={speechesTime}/>
         
       </Styles>
     )
@@ -67,7 +69,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   return(
     <Styles className="components">
         <Jitsi user={user} roomName={roomName} password={password}/>
-        <Chronometer startCount={speechesTime}/>
+        <Chronometer socket={socket} startCount={speechesTime}/>
 
     </Styles>
     )

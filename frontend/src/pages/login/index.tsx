@@ -4,7 +4,6 @@ import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
 import {useSocket} from '../../socket'
-const socket = useSocket()
 interface User{
   token: string,
   representation: string,
@@ -12,6 +11,7 @@ interface User{
   group?: number
 }
 const Index: React.FC = () => {
+  const socket = useSocket()
 
   const history = useHistory()
   const [data, setData] = useState({email: '', password: ''})

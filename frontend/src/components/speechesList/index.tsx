@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Styles from './styles'
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 
 interface Props{
@@ -16,6 +15,8 @@ interface Speech{
 
 
 const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {
+const socket = useSocket()
+
   const user : string = localStorage.getItem('representation') || ''
 
   const [delegations, setDelegations] = useState<Speech[]>([

@@ -2,13 +2,15 @@
 import React, {useCallback, FormEvent, useState, ChangeEvent} from 'react'
 import Styles from './styles'
 import {useSocket} from '../../socket'
-const socket = useSocket()
+
 
 
 
 const user : string = localStorage.getItem('representation') || ''
 
 const Post: React.FC = () => {
+const socket = useSocket()
+
   const [post, setPost] = useState({title: '', description: '', link: ''})
  
 

@@ -1,7 +1,6 @@
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 
 interface post{
@@ -11,6 +10,8 @@ interface post{
   representation: string
 }
 const PostsPreview: React.FC = () => {
+const socket = useSocket()
+
   const [posts, setPosts] = useState<post[]>([])
   socket.on('previousEmits', (data : {postsPreview : post[]})=>{
     setPosts(data.postsPreview)

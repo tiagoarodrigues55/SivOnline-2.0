@@ -2,7 +2,6 @@ import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 
 interface Props{
@@ -16,6 +15,8 @@ interface Doc{
 
 
 const Docs: React.FC<Props> = ({moderator}) => {
+const socket = useSocket()
+
   const user = localStorage.getItem('representation') || "Brasil"
 
   const [privateDocs, setPrivateDocs] = useState<Doc[]>([])

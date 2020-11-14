@@ -4,7 +4,6 @@ import Styles from './styles'
 import api from '../../services/api'
 import { AiFillBulb } from "react-icons/ai";
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 interface Props{
   moderator?: boolean
@@ -20,6 +19,8 @@ representation_type: string
 
 
 const Chats: React.FC<Props> = ({moderator}) => {
+const socket = useSocket()
+
   const [haveMessage, sethaveMessage] = useState<string[]>([])
   const [contats, setContats] = useState<string[]>([])
   const [contatsForModerator, setContatsForModerator] = useState<string[]>([])

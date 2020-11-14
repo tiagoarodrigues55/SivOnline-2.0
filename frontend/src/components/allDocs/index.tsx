@@ -2,7 +2,6 @@ import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
 import {useSocket} from '../../socket'
-const socket = useSocket()
 
 interface Doc{
   name: string,
@@ -12,6 +11,7 @@ interface Doc{
 
 
 const AllDocs: React.FC = () => {
+  const socket = useSocket()
 
   const [docs, setDocs] = useState<Doc[]>([])
 
