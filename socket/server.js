@@ -150,13 +150,16 @@ io.on('connection', socket =>{
   console.log('socket conectado: ' + socket.id)
 
   //Emits
-  socket.emit('previousMessages', messages)
-  socket.emit('setSpeechesList', speechesList)
-  socket.emit('posts', files)
-  socket.emit('lastVote', lastVote)
-  socket.emit("setPublicDocs", publicDocs)
-  socket.emit("setPrivateDocs", privateDocs)
-  socket.emit('setPostsPreview', postsPreview)
+  socket.emit('PreviousEmits', {
+    previousMessages : messages,
+    speechesList,
+    posts: files,
+    lastVote,
+    publicDocs,
+    privateDocs,
+    postsPreview
+  })
+
 
   if(meet.room !== ''){
     socket.emit('setMeet', meet)

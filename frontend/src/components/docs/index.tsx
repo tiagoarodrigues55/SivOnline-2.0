@@ -24,6 +24,11 @@ const Docs: React.FC<Props> = ({moderator}) => {
   const [publicLink, setPublicLink] = useState<String>()
   const [privateName, setPrivateName] = useState<String>()
   const [publicName, setPublicName] = useState<String>()
+  socket.on('previousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
+    const userDocs = filterDocs(data.privateDocs)
+    setPrivateDocs(userDocs)
+    setPublicDocs(data.publicDocs)
+  })
   socket.on("setPublicDocs", (docs : Doc[])=>{
     console.log(docs)
     setPublicDocs(docs)

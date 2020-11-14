@@ -34,6 +34,9 @@ const Votes: React.FC<Props> = ({moderator}) => {
     description: '',
     link: ''
   })
+  socket.on('previousEmits', (data : {lastVote : LastVote})=>{
+    setLastVote(data.lastVote)
+  })
   useEffect(()=>{
     socket.on('lastVote', (lastVote : LastVote) =>{
       setLastVote(lastVote)

@@ -21,7 +21,11 @@ const SpeechesList: React.FC<Props> = ({moderator, newspaper}) => {
   ])
   const [buttonState, setButtonState] = useState('visible')
   const [timeOfSpeech, setTimeOfSpeech] = useState(90)
-  
+  socket.on('previousEmits', (data : {speechesList: string[]})=>{
+    const List = data.speechesList.map(i=>({position: data.speechesList.indexOf(i)+1, flag: 'icon', name: i}))
+
+    setDelegations(List)
+  })
   socket.on('setSpeechesTime', (res:number)=>{
     setTimeOfSpeech(res)
   })

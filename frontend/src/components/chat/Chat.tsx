@@ -24,8 +24,8 @@ const Chat: React.FC<Props> = ({contat, haveMessages}) => {
   
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Messages[]>([])
-  socket.on('previousMessages', (msgs: Messages[]) =>{
-    setMessages(msgs)
+    socket.on('previousEmits', (msgs: {previousMessages: Messages[]}) =>{
+    setMessages(msgs.previousMessages)
   })
   socket.on('receivedMessage', (msg:MessageType)=>{
     if(msg.destiny === user && msg.author === contat){

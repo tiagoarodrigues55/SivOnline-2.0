@@ -12,6 +12,9 @@ interface post{
 }
 const PostsPreview: React.FC = () => {
   const [posts, setPosts] = useState<post[]>([])
+  socket.on('previousEmits', (data : {postsPreview : post[]})=>{
+    setPosts(data.postsPreview)
+  })
   useEffect(()=>{
     socket.on('setPostsPreview', (posts : post[]) =>{
       setPosts(posts)

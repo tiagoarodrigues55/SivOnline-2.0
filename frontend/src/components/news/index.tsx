@@ -19,6 +19,9 @@ const News: React.FC<Props> = ({moderator}) => {
   //anúncios fixados da mesa
  
   const [articles, setArticles] = useState<Post[]>([])
+  socket.on('previousEmits', (data : {posts : Post[]})=>{
+    setArticles(data.posts)
+  })
   socket.on('posts', (posts : Post[])=>{
     console.log(posts)
     setArticles(posts)
