@@ -44,6 +44,7 @@ const socket = useSocket()
       user,
       contat
     })
+  
   },[contat])
   
   const sendMessage = useCallback((e) => {

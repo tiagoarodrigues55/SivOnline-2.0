@@ -191,7 +191,7 @@ io.on('connection', socket =>{
       }
     })
     console.log(messages)
-    socket.emit('previousMessages', Messages)
+    socket.emit('PreviousEmits', {previousMessages: Messages})
   })
   socket.on('sendMessage', data =>{
     messages.push(data)
