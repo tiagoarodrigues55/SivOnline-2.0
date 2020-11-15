@@ -175,23 +175,19 @@ io.on('connection', socket =>{
 
   //Chat
   socket.on('changeContat', data=>{
-    console.log('changeContat', data.contat)
     let Messages = []
     messages.map(msg=>{
       if(msg.author === data.user && msg.destiny === data.contat){
         Messages.push({content: msg.content, my: 'mine'})
       }else{
-        console.log(msg.author, data.user, msg.destiny, data.contat)
       }
       if(msg.destiny === data.user && msg.author === data.contat){
         Messages.push({content: msg.content, my: 'notMine'})
       }else{
-        console.log(msg.author, data.user, msg.destiny, data.contat)
 
       }
     })
-    console.log(messages)
-    socket.emit('PreviousEmits', {previousMessages: Messages})
+    socket.emit('previousMessages', Messages)
   })
   socket.on('sendMessage', data =>{
     messages.push(data)

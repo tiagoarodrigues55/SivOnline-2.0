@@ -28,6 +28,10 @@ const socket = useSocket()
   const [messages, setMessages] = useState<Messages[]>([])
     socket.on('previousEmits', (msgs: {previousMessages: Messages[]}) =>{
     setMessages(msgs.previousMessages)
+    console.log(msgs.previousMessages)
+  })
+  socket.on('previousMessages', (msgs: Messages[])=>{
+    setMessages(msgs)
   })
   socket.on('receivedMessage', (msg:MessageType)=>{
     if(msg.destiny === user && msg.author === contat){
