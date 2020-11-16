@@ -2,16 +2,17 @@ import React, {useEffect, useState} from 'react';
 
 import Actions from '../../../components/actions'
 import Chat from '../../../components/chat'
-import AllDocs from '../../../components/allDocs'
+import Docs from '../../../components/docs'
 import News from '../../../components/news'
 import SpeechesList from '../../../components/speechesList'
 import Video from '../../../components/video'
+import Intervention from '../../../components/intervention'
 import {Grid} from './Layout'
 import {Div} from './Styles'
 import {useSocket} from '../../../socket'
 
 
-function Layout() {
+const Layout = ()=> {
 const socket = useSocket()
 
   const token = localStorage.getItem('token')
@@ -70,7 +71,8 @@ const socket = useSocket()
       <News moderator />
       <Chat moderator />
       <Actions moderator/>
-      <AllDocs/>
+      <Docs/>
+      <Intervention/>
     </Grid>
     </>
   );

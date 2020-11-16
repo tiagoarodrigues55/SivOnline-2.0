@@ -5,6 +5,7 @@ import StaffPage from './pages/staff/Layout/index'
 import ModeratorPage from './pages/moderator/Layout/index'
 import NewspaperPage from './pages/newspaper/Layout/index'
 import NewspaperBossPage from './pages/newspaperBoss/Layout/index'
+import InterventionPage from './pages/intervention/Layout/index'
 import Login from './pages/login/index'
 import React from 'react'
 
@@ -20,6 +21,7 @@ const Routes = () =>{
     <Route exact component={NewspaperPage} path="/Newspaper"/>
     <Route exact component={NewspaperBossPage} path="/NewspaperBoss"/>
     <Route exact component={Login} path="/Login"/>
+    <Route exact component={InterventionPage} path="/Intervention"/>
     </BrowserRouter>
 
   )

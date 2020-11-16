@@ -1,12 +1,10 @@
 import {createGlobalStyle} from 'styled-components'
-
 export default createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
-
   div{
     border-radius: 10px
   }
@@ -33,12 +31,13 @@ export default createGlobalStyle`
   }
  
   :root {
-    --primary: #BEC5C7;
-    --secondary:  rgba(190, 197, 199, 0.73);
-    --tertiary: #F4AD5E;
-    --quaternary: #96989D;
-    --quinary: #C4C4C4;
-    --senary: rgba(129, 129, 137, 0.6);
+    --primary: ${props => props.theme.primary};
+    --secondary: ${props => props.theme.secondary};
+    --tertiary: ${props => props.theme.tertiary};
+    --quaternary: ${props => props.theme.quaternary};
+    --quinary: ${props => props.theme.quinary};
+    --senary: ${props => props.theme.senary};
+ 
     
     --white: #fff;
     --gray: #8a8c90;

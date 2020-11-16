@@ -19,8 +19,9 @@ export const Grid = styled.div`
   
   'VD SL CH '
   'VD SL CH '
-  'AT NS NS '
-  'AD AD AD '
+  'VD NS NS '
+  'AT DC DC '
+  'IT DC DC '
   
   ;
   

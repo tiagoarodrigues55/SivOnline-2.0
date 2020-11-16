@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 import BackgroundImg from '../../assets/background.jpg';
-
+import BackgroundImg2 from '../../assets/background2.jpg';
+const backgroundImg = [BackgroundImg, BackgroundImg2]
 export const Background = styled.div`
   flex: 1;
-  background: url(${BackgroundImg}) no-repeat center;
+  background: url(${props => backgroundImg[props.theme.backgroundImg]}) no-repeat center;
   background-size: cover;
   position: absolute;
   min-height: 900px;

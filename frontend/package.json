@@ -16,7 +16,7 @@
     "@types/react-flags-select": "^1.1.2",
     "@types/react-router-dom": "^5.1.5",
     "@types/socket.io-client": "^1.4.33",
-    "@types/styled-components": "^5.1.0",
+    "@types/styled-components": "^5.1.4",
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "easytimer.js": "^4.3.0",
@@ -34,7 +34,7 @@
     "react-world-flags": "^1.3.0",
     "semantic-ui-react": "^2.0.0",
     "socket.io-client": "^2.3.0",
-    "styled-components": "^5.1.1",
+    "styled-components": "^5.2.1",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -47,5 +47,8 @@
     "extends": "react-app"
   },
   "browserslist": [],
-  "homepage": "/Login"
+  "homepage": "/Login",
+  "files": [
+    "src/styles/styles.d.ts"
+  ]
 }

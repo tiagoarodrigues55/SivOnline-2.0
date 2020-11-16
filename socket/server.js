@@ -298,6 +298,8 @@ io.on('connection', socket =>{
     console.log(doc)
     publicDocs.push(doc)
     io.emit("setPublicDocs", publicDocs)
+    
+
   })
 
   //Cronometro
@@ -358,6 +360,42 @@ io.on('connection', socket =>{
 
   socket.on('getUsers', ()=>{
     socket.emit('getUsers', users)
+  })
+
+  //Intervenção
+
+  socket.on('AddUser', ()=>{
+    console.log("AddUser")
+    users.push({
+      
+      id: 100,
+      username: "Guilherme Sá",
+      email: "guilherme.sa@alunoviva.com.br",
+      password: "SivGuilherme",
+      representation_type: "Delegado",
+      representation: "Brasil",
+      created_at: "2020-10-01 16:22:43",
+      updated_at: "2020-10-01 16:22:43"
+    
+    })
+    io.emit('getUsers', users)
+  })
+  socket.on('intervention', ()=>{
+    privateDocs = []
+    publicDocs = []
+    io.emit('intervention')
+    io.emit("setPublicDocs", publicDocs)
+    io.emit("setPrivateDocs", privateDocs)
+    console.log('intervention')
+  })
+  socket.on('inativeChat', ()=>{
+    console.log('inativeChat')
+    io.emit('inativeChat')
+  })
+  socket.on('inativeNews', ()=>{
+    console.log('inativeNews')
+
+    io.emit('inativeNews')
   })
 })
 server.listen(3001)

@@ -23,12 +23,17 @@ const socket = useSocket()
 
   const [haveMessage, sethaveMessage] = useState<string[]>([])
   const [contats, setContats] = useState<string[]>([])
+  const [inative, setInative] = useState(false)
   const [contatsForModerator, setContatsForModerator] = useState<string[]>([])
 
   useEffect(()=>{
     socket.emit('getUsers')
 
   },[])
+  socket.on('inativeChat', ()=>{
+    console.log('inativeChat')
+    setInative(true)
+  })
 socket.on('getUsers', (users: User[]) =>{
   // const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
   const Contats = []
@@ -86,24 +91,29 @@ socket.on('getUsers', (users: User[]) =>{
     sethaveMessage([...haveMessage, contat])
   }
 
-  if (moderator){
-    return (
-      <Styles className="components">
-        <div id="contats">
-        {contatsForModerator.map(contat=>(
-          <div className="contat">
-  
-          <li onClick={()=>renderContat(contat)} key={contat}>{contat}</li>{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}
-          </div>
-       
-        ))}
-        </div>
-        
-        <Chat haveMessages={haveMessages} contat={contat}/>
-      </Styles>
-    )
-  }
 
+  // if (moderator){
+  //   return (
+  //     <Styles className="components">
+  //       <div id="contats">
+  //       {contatsForModerator.map(contat=>(
+  //         <div className="contat">
+  
+  //         <li onClick={()=>renderContat(contat)} key={contat}>{contat}</li>{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}
+  //         </div>
+       
+  //       ))}
+  //       </div>
+        
+  //       <Chat haveMessages={haveMessages} contat={contat}/>
+  //     </Styles>
+  //   )
+  // }
+if(inative){
+  return(
+    <Styles>Chat inativo...</Styles>
+  )
+}
   return (
     <Styles className="components">
       <div id="contats">

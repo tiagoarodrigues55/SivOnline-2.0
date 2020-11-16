@@ -19,6 +19,7 @@ const News: React.FC<Props> = ({moderator}) => {
 const socket = useSocket()
  
   const [articles, setArticles] = useState<Post[]>([])
+  const [inative, setInative] = useState(false)
   socket.on('previousEmits', (data : {posts : Post[]})=>{
     setArticles(data.posts)
   })
@@ -26,8 +27,14 @@ const socket = useSocket()
     console.log(posts)
     setArticles(posts)
   })
-
- 
+  socket.on('inativeNews', ()=>{
+    setInative(true)
+  })
+ if(inative){
+   return(
+     <Styles>Não temos comunicação com a imprensa...</Styles>
+   )
+ }
   return (
     <Styles className="components">
       {articles.map(article=>(
