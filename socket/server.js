@@ -180,7 +180,6 @@ io.on('connection', socket =>{
     socket.emit('setMeet', meet)
     console.log('emit meetRoom' + meet)
   }
-  console.log('setActions' + actions)
 
   if(!actions[0]){
   io.emit('setActions', [])
@@ -384,6 +383,15 @@ io.on('connection', socket =>{
     for(i of users){
       if(user.email === i.email && user.password === i.password){
         socket.emit('login', i)
+        socket.emit('PreviousEmits', {
+          previousMessages : messages,
+          speechesList,
+          posts: files,
+          lastVote,
+          publicDocs,
+          privateDocs,
+          postsPreview
+        })
         console.log('login: ')
         console.log(user)
       }

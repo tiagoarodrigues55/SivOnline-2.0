@@ -31,13 +31,13 @@ const newsScroll = useRef<any>();
   const [inactive, setInactive] = useState(news)
  
 
-useEffect(()=>{
-  let articles2 = []
-  for(let i = 1; articles.length; i++){
-    articles2.push(articles[articles.length-i])
-  }
-  console.log(articles2)
-},[articles])
+// useEffect(()=>{
+//   let articles2 = []
+//   for(let i = 1; articles.length; i++){
+//     articles2.push(articles[articles.length-i])
+//   }
+//   console.log(articles2)
+// },[articles])
 
   socket.on('PreviousEmits', (data : {posts : Post[]})=>{
     
@@ -57,8 +57,7 @@ useEffect(()=>{
 
   })
   useEffect(()=>{
-    newsScroll.current.scrollIntoView( { behavior: 'smooth', block: 'start' });
-  
+    newsScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
   }, [articles])
  if(inactive){
    return(
@@ -67,7 +66,6 @@ useEffect(()=>{
  }
   return (
     <Styles className="components">
-                  <div ref={newsScroll}></div>
 
       {articles.map(article=>(
         <div className="article">
@@ -77,17 +75,13 @@ useEffect(()=>{
         <a href={article.link}>Link</a>
 
         <div className="separator"></div>
+
         </div>
        
       ))}
-      {/* {organizeNews.map(organizeNew=>(
-        <div id="mesa" className="article">
-        <OrganizeNew title={organizeNew.title} communicate={organizeNew.communicate} />
-        <div className="separator"></div>
-        </div>
+                  <div ref={newsScroll}></div>
 
-
-      ))} */}
+     
     </Styles>
   )
 }
