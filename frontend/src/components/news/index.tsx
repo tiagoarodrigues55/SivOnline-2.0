@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Article from './Article'
 import Styles from './styles'
 
@@ -25,14 +25,25 @@ const news = () =>{
     return false
   }
 }
+const newsScroll = useRef<any>();
+
   const [articles, setArticles] = useState<Post[]>([])
   const [inactive, setInactive] = useState(news)
-  
+ 
+
+useEffect(()=>{
+  let articles2 = []
+  for(let i = 1; articles.length; i++){
+    articles2.push(articles[articles.length-i])
+  }
+  console.log(articles2)
+},[articles])
+
   socket.on('PreviousEmits', (data : {posts : Post[]})=>{
+    
     setArticles(data.posts)
   })
   socket.on('posts', (posts : Post[])=>{
-    console.log(posts)
     setArticles(posts)
   })
   socket.on('inactiveNews', ()=>{
@@ -45,6 +56,10 @@ const news = () =>{
     localStorage.setItem('news', 'Ativar')
 
   })
+  useEffect(()=>{
+    newsScroll.current.scrollIntoView( { behavior: 'smooth', block: 'start' });
+  
+  }, [articles])
  if(inactive){
    return(
      <Styles>Não temos comunicação com a imprensa...</Styles>
@@ -52,7 +67,9 @@ const news = () =>{
  }
   return (
     <Styles className="components">
-      {articles.reverse().map(article=>(
+                  <div ref={newsScroll}></div>
+
+      {articles.map(article=>(
         <div className="article">
         <Article 
         title={article.title} 

@@ -68,9 +68,11 @@ const chatScroll = useRef<any>();
       destiny: contat,
       content:message
     })
-    chatScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
   }, [message]);
+useEffect(()=>{
+  chatScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
 
+}, [messages])
  if(!contat){
    contat = 'Brasil'
  }

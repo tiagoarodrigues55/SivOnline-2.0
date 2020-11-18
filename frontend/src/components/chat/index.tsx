@@ -65,26 +65,6 @@ socket.on('getUsers', (users: User[]) =>{
   setContatsForModerator(ContatsForModerator)
   setContats(Contats)
 })
-// api.get('/getUsers').then(users=>{
-//   const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
-//   const Siglas = ['Mes-T', 'Mes-P', 'Sta-T', 'Sta-A']
-//   const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
-//   for(let i of users.data){
-//     if(i.representation === localStorage.getItem('representation')){
-
-//     }else{
-//     if(i.representation_type === "Delegado"){
-//       Contats.push(i.representation)
-//       Siglas.push(i.representation.substr(0,3).toUpperCase())
-//       ContatsForModerator.push(i.representation)
-//     }
-//   }
-//   }
-
-//   setContatsForModerator(ContatsForModerator)
-//   setContats(Contats)
-//   setSiglas(Siglas)
-// })
 
   const [contat, setContat] = useState('')
   function renderContat(contat: string){
