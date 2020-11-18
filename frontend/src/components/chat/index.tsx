@@ -20,24 +20,36 @@ representation_type: string
 
 const Chats: React.FC<Props> = ({moderator}) => {
 const socket = useSocket()
-
+const chat = () =>{
+  if(localStorage.getItem('chat')==='Ativar'){
+    return true
+  }else{
+    return false
+  }
+}
   const [haveMessage, sethaveMessage] = useState<string[]>([])
   const [contats, setContats] = useState<string[]>([])
-  const [inative, setInative] = useState(false)
+  const [inactive, setInactive] = useState(chat)
   const [contatsForModerator, setContatsForModerator] = useState<string[]>([])
 
   useEffect(()=>{
     socket.emit('getUsers')
 
   },[])
-  socket.on('inativeChat', ()=>{
-    console.log('inativeChat')
-    setInative(true)
+  socket.on('inactiveChat', ()=>{
+    console.log('inactiveChat')
+    setInactive(true)
+    localStorage.setItem('chat', 'Ativar')
+  })
+  socket.on('activeChat', ()=>{
+    console.log('activeChat')
+    setInactive(false)
+    localStorage.setItem('chat', 'Inativar')
   })
 socket.on('getUsers', (users: User[]) =>{
   // const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
-  const Contats = []
-  const ContatsForModerator = []
+  const Contats = ['Correio Elegante']
+  const ContatsForModerator = ['Correio Elegante']
   // const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
   for(let i of users){
     if(i.representation === localStorage.getItem('representation')){
@@ -109,7 +121,7 @@ socket.on('getUsers', (users: User[]) =>{
   //     </Styles>
   //   )
   // }
-if(inative){
+if(inactive){
   return(
     <Styles>Chat inativo...</Styles>
   )

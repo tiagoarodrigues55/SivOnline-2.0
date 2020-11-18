@@ -13,7 +13,7 @@ const PostsPreview: React.FC = () => {
 const socket = useSocket()
 
   const [posts, setPosts] = useState<post[]>([])
-  socket.on('previousEmits', (data : {postsPreview : post[]})=>{
+  socket.on('PreviousEmits', (data : {postsPreview : post[]})=>{
     setPosts(data.postsPreview)
   })
   useEffect(()=>{

@@ -12,18 +12,13 @@ import {Grid} from './Layout'
 import api from '../../../services/api'
 
 function Layout() {
-  const token = localStorage.getItem('token')
-  const representation = localStorage.getItem('representation')
-  // useEffect(()=>{
-  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-  //   })
-  // },[])
-  if(representation==='null'){
-    console.log('sem token ou representação')
-    return(
-      <Redirect to="Login" />
-    )
-  }
+
+  // const representation_type = localStorage.getItem('representation_type')
+  // if(representation_type !== 'Imprensa'){
+  //   return(
+  //     <Redirect to="Login" />
+  //   )
+  // }
   return (
     <Grid>
       <Video newspaper={true}/>

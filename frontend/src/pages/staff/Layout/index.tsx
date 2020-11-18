@@ -14,12 +14,10 @@ interface NewVote{
   link?: string
 }
 function Layout() {
-  const token = localStorage.getItem('token')
-  const representation = localStorage.getItem('representation')
 
 
-  if( representation==='null'){
-    console.log('sem token ou representação')
+  const representation_type = localStorage.getItem('representation_type')
+  if(representation_type !== 'Staff'){
     return(
       <Redirect to="Login" />
     )

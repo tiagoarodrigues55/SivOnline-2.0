@@ -22,6 +22,7 @@ li.mine{
   border-radius:5px;
   background-color: greenyellow;
   padding: 5px;
+  margin:5px;
   }
 
 }

@@ -23,9 +23,8 @@ const socket = useSocket()
   ])
   const [buttonState, setButtonState] = useState('visible')
   const [timeOfSpeech, setTimeOfSpeech] = useState(90)
-  socket.on('previousEmits', (data : {speechesList: string[]})=>{
+  socket.on('PreviousEmits', (data : {speechesList: string[]})=>{
     const List = data.speechesList.map(i=>({position: data.speechesList.indexOf(i)+1, flag: 'icon', name: i}))
-
     setDelegations(List)
   })
   socket.on('setSpeechesTime', (res:number)=>{
@@ -38,6 +37,7 @@ const socket = useSocket()
       setButtonState('visible')
     }
   }, [delegations])
+  
   socket.on('setSpeechesList', (list : string[])=>{
       const List = list.map(i=>({position: list.indexOf(i)+1, flag: 'icon', name: i}))
       setDelegations(List)

@@ -11,15 +11,12 @@ import {Grid} from './Layout'
 import api from '../../../services/api'
 
 function Layout() {
-  const token = localStorage.getItem('token')
-  const representation = localStorage.getItem('representation')
- 
-  if(representation==='null'){
-    console.log('sem token ou representação')
-    return(
-      <Redirect to="Login" />
-    )
-  }
+  // const representation_type = localStorage.getItem('representation_type')
+  // if(representation_type !== 'Chefe de imprensa'){
+  //   return(
+  //     <Redirect to="Login" />
+  //   )
+  // }
   return (
     <Grid>
       <Video newspaperBoss/>

@@ -21,6 +21,7 @@ const Routes = () =>{
     <Route exact component={NewspaperPage} path="/Newspaper"/>
     <Route exact component={NewspaperBossPage} path="/NewspaperBoss"/>
     <Route exact component={Login} path="/Login"/>
+    <Route exact component={Login} path="/"/>
     <Route exact component={InterventionPage} path="/Intervention"/>
     </BrowserRouter>
 

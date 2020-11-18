@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Redirect} from 'react-router-dom'
 
 import Actions from '../../../components/actions'
 import Chat from '../../../components/chat'
@@ -15,18 +16,12 @@ import {useSocket} from '../../../socket'
 const Layout = ()=> {
 const socket = useSocket()
 
-  const token = localStorage.getItem('token')
-  const representation = localStorage.getItem('representation')
+ 
   const [favorables, setFavorables] = useState<string[]>([])
   const [againsts, setAgainsts] = useState<string[]>([])
   const [display, setDisplay] = useState<string>('none')
-  // useEffect(()=>{
-  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-  //     alert(`Bem vindo ${res.data.username}`)
-  //   })
-  // },[])
-  // if(!token || representation==='null'){
-  //   console.log('sem token ou representação')
+  const representation_type = localStorage.getItem('representation_type')
+  // if(representation_type !== 'Intervenção'){
   //   return(
   //     <Redirect to="Login" />
   //   )

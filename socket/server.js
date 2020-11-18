@@ -4,6 +4,14 @@ const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 const cors = require('cors')
+const { Client } = require('pg')
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'sivOn',
+  password: 'Tiago2003',
+  port: 5432,
+})
 app.use(cors())
 let users = [
   {
@@ -127,6 +135,7 @@ let users = [
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
+  
 ]
 let messages = []
 let speechesList = []
@@ -144,7 +153,13 @@ const meet = {
   room: '',
   password: ''
 }
-
+// ;(async () => {
+//   await client.connect()
+//   const res = await client.query('SELECT * from users ')
+//   users = res.rows
+//   console.log(users) // Hello world!
+//   await client.end()
+// })()
 io.on('connection', socket =>{
   //Conexão
   console.log('socket conectado: ' + socket.id)
@@ -345,6 +360,24 @@ io.on('connection', socket =>{
     }
   })
 
+  //login
+  socket.on('Cadastro', user=>{
+  
+    const text = 'INSERT INTO users(username, email, password, representation_type, representation) VALUES($1, $2, $3, $4, $5) RETURNING *'
+    const values = [user.username, user.email, user.password, user.representation_type, user.representation]
+    // callback
+    ;(async () =>{
+      await client.connect()
+    
+      client.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(res.rows)
+      }
+    })
+    })()
+  })
 
   socket.on('login', user=>{
     
@@ -388,14 +421,23 @@ io.on('connection', socket =>{
     io.emit("setPrivateDocs", privateDocs)
     console.log('intervention')
   })
-  socket.on('inativeChat', ()=>{
-    console.log('inativeChat')
-    io.emit('inativeChat')
+  socket.on('inactiveChat', ()=>{
+    console.log('inactiveChat')
+    io.emit('inactiveChat')
   })
-  socket.on('inativeNews', ()=>{
-    console.log('inativeNews')
+  socket.on('inactiveNews', ()=>{
+    console.log('inactiveNews')
 
-    io.emit('inativeNews')
+    io.emit('inactiveNews')
+  })
+  socket.on('activeChat', ()=>{
+    console.log('activeChat')
+    io.emit('activeChat')
+  })
+  socket.on('activeNews', ()=>{
+    console.log('activeNews')
+
+    io.emit('activeNews')
   })
 })
 server.listen(3001)

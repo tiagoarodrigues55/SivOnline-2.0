@@ -17,18 +17,11 @@ import {useSocket} from '../../../socket'
 function Layout() {
 const socket = useSocket()
 
-  const token = localStorage.getItem('token')
-  const representation = localStorage.getItem('representation')
   const [favorables, setFavorables] = useState<string[]>([])
   const [againsts, setAgainsts] = useState<string[]>([])
   const [display, setDisplay] = useState<string>('none')
-  // useEffect(()=>{
-  //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${localStorage.getItem('token')}`}}).then(res=>{
-  //     alert(`Bem vindo ${res.data.username}`)
-  //   })
-  // },[])
-  if( representation==='null'){
-    console.log('sem token ou representação')
+  const representation_type = localStorage.getItem('representation_type')
+  if(representation_type !== 'Mesa'){
     return(
       <Redirect to="Login" />
     )

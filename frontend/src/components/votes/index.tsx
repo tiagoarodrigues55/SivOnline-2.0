@@ -21,12 +21,7 @@ interface NewVote{
 const Votes: React.FC<Props> = ({moderator}) => {
   const socket = useSocket()
 
-  const [lastVote, setLastVote] = useState<LastVote>({
-    title: 'string',
-  favorables: ['teste', 'teste', 'teste', 'teste', 'teste'],
-  againsts: ['teste', 'teste', 'teste', 'teste', 'teste'],
-  decision: 'string',
-  })
+  const [lastVote, setLastVote] = useState<LastVote>()
   
   const [newVote, setNewVote] = useState<NewVote>({
     title: '',
