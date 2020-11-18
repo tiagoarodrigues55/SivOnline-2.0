@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import Ul from './Li'
 import {useSocket} from '../../socket'
 
@@ -12,6 +12,10 @@ interface Messages{
   my: string
 }
 
+// interface useRefProps {
+
+// }
+
 interface MessageType{
   author: string,
   destiny: string,
@@ -23,6 +27,7 @@ const representation_type = localStorage.getItem('representation_type')
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
 const socket = useSocket()
+const chatScroll = useRef<any>();
   
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Messages[]>([])
@@ -52,10 +57,10 @@ const socket = useSocket()
   },[contat])
   
   const sendMessage = useCallback((e) => {
+    e.preventDefault();
     if(!message){
       return
     }
-    e.preventDefault();
        setMessage('')
        setMessages([...messages, {content : message, my: 'mine' }])
     socket.emit('sendMessage', {
@@ -63,6 +68,7 @@ const socket = useSocket()
       destiny: contat,
       content:message
     })
+    chatScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
   }, [message]);
 
  if(!contat){
@@ -80,6 +86,7 @@ const socket = useSocket()
              {messages ? messages.map(message=>(
                 <li className={message.my}><p>{message.content}</p></li>
                   )): <li>Não rolou</li>}
+                  <div ref={chatScroll}></div>
           </Ul>
           <div className="input-wrapper">
             <input placeholder="Digite sua mensagem" onChange={e => setMessage(e.target.value)} value={message} type="text"/>
