@@ -8,7 +8,7 @@ interface User{
   token: string,
   representation: string,
   representation_type: string,
-  group?: number
+  group?: string
 }
 const Index: React.FC = () => {
   const socket = useSocket()
@@ -19,47 +19,7 @@ const Index: React.FC = () => {
     event.preventDefault()
     console.log(data)
     socket.emit('login', {email: data.email, password: data.password})
-    // api.post('/auth',{
-    //     email:data.email,
-    //     password:data.password
-    // }).then(res=>{
-    //   console.log(res.data.token.token)
-
-    //   localStorage.setItem('token', res.data.token.token)
-    //   api.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('token')}`
-    //   api.get('getUserInfo', {headers: {Authorization : `Bearer ${res.data.token.token}`}}).then(res=>{
-    //   localStorage.setItem('representation', res.data.representation)
-    //   localStorage.setItem('representation_type', res.data.representation_type)
-
-    //     if(res.data.representation_type === 'Mesa'){
-    //       history.push('/Moderator')
-    //     }else{
-    //       if(res.data.representation_type === 'Delegado'){
-    //         history.push('/Delegate')
-
-    //       }else{
-    //         if(res.data.representation_type === 'Staff'){
-    //           history.push('/Staff')
-    //       }else{
-    //         if(res.data.representation_type === 'Imprensa'){
-
-    //         history.push('/Newspaper')
-    //         }else{
-    //           if(res.data.representation_type === 'Chefe de imprensa'){
-
-    //             history.push('/NewspaperBoss')
-    //           }else{
-    //             console.log(res.data.representation_type)
-
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-
-    //   })
-
-    // }).catch(err=>console.log(err))
+  
   }
   socket.on('login', (data: User)=>{
     console.log(data)
@@ -78,7 +38,7 @@ const Index: React.FC = () => {
         }else{
           if(data.representation_type === 'Imprensa'){
             if(data.group){
-          localStorage.setItem('group', data.group.toString())
+          localStorage.setItem('group', data.group)
             }
           history.push('/Newspaper')
           }else{

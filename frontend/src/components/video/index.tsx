@@ -20,7 +20,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   const [speechesTime, setSpeechesTime] = useState(90)
   const [time, setTime] = useState(90)
   const [selectedRoom, setSelectedRoom] = useState('')
-  const salasImprensa = ['Sivjornal1', 'Sivjornal2', 'Sivjornal3', 'Sivjornal4', 'Sivjornal5', 'Sivjornal6']
+  const salasImprensa = ['The_Guardian', 'El_País', 'Le_Monde', 'Brasil_de_Fato']
   const [room, setRoom] = useState(false)
 
   function handleSelectRoom(event: ChangeEvent<HTMLSelectElement>){

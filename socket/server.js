@@ -343,9 +343,9 @@ io.on('connection', socket =>{
     io.emit("newDoc", doc)
     console.log('New Private Doc: ')
     console.log(doc)
-    const {title, link, author} = doc
-    const text = 'INSERT INTO private_docs(title, link, author) VALUES($1, $2, $3) RETURNING *'
-    const values = [title, link, author]
+    const {name, link, user} = doc
+    const text = 'INSERT INTO private_docs(name, link, user) VALUES($1, $2, $3) RETURNING *'
+    const values = [name, link, user]
       client.query(text, values, (err, res) => {
       if (err) {
         console.log(err.stack)
@@ -360,9 +360,9 @@ io.on('connection', socket =>{
     console.log(doc)
     publicDocs.push(doc)
     io.emit("setPublicDocs", publicDocs)
-    const {title, link} = doc
-    const text = 'INSERT INTO public_docs(title, link) VALUES($1, $2) RETURNING *'
-    const values = [title, link]
+    const {name, link} = doc
+    const text = 'INSERT INTO public_docs(name, link) VALUES($1, $2) RETURNING *'
+    const values = [name, link]
       client.query(text, values, (err, res) => {
       if (err) {
         console.log(err.stack)
@@ -402,7 +402,7 @@ io.on('connection', socket =>{
     io.emit('setPostsPreview', [])
 
     }else{
-      console.log(postsPreview[0].title)
+      console.log(postsPreview[0].name)
 
       io.emit('setPostsPreview', postsPreview)
     }
