@@ -158,15 +158,15 @@ const meet = {
   await client.connect()
   const usersPrevious = await client.query('SELECT * from users ')
   const messagesPrevious = await client.query('SELECT * from messages ')
-  // const postsPrevious = await client.query('SELECT * from posts ')
-  // const publicDocsPrevious = await client.query('SELECT * from public_docs ')
-  // const privateDocsPrevious = await client.query('SELECT * from private_docs ')
+  const postsPrevious = await client.query('SELECT * from posts ')
+  const publicDocsPrevious = await client.query('SELECT * from public_docs ')
+  const privateDocsPrevious = await client.query('SELECT * from private_docs ')
   users = usersPrevious.rows
   addVipClub()
   messages = messagesPrevious.rows
-  // files = postsPrevious.rows
-  // publicDocs = publicDocsPrevious.rows
-  // privateDocs = privateDocsPrevious.rows
+  files = postsPrevious.rows
+  publicDocs = publicDocsPrevious.rows
+  privateDocs = privateDocsPrevious.rows
   // await client.end()
 })()
 
