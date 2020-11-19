@@ -156,10 +156,27 @@ const meet = {
 }
 ;(async () => {
   await client.connect()
-  const res = await client.query('SELECT * from users ')
-  users = res.rows
-  console.log(users)
-  await client.end()
+  const usersPrevious = await client.query('SELECT * from users ')
+  const messagesPrevious = await client.query('SELECT * from messages ')
+  // const postsPrevious = await client.query('SELECT * from posts ')
+  // const publicDocsPrevious = await client.query('SELECT * from public_docs ')
+  // const privateDocsPrevious = await client.query('SELECT * from private_docs ')
+  users = usersPrevious.rows
+  users.push( {
+    id: 1,
+    username: "Tiago Rodrigues",
+    email: "tiago.americano.03@gmail.com",
+    password: "Tiago2003",
+    representation_type: "Mesa",
+    representation: "Mesa-Tiago",
+    created_at: "2020-10-01 16:22:43",
+    updated_at: "2020-10-01 16:22:43"
+  },)
+  messages = messagesPrevious.rows
+  // files = postsPrevious.rows
+  // publicDocs = publicDocsPrevious.rows
+  // privateDocs = privateDocsPrevious.rows
+  // await client.end()
 })()
 io.on('connection', socket =>{
   //Conexão
@@ -209,6 +226,16 @@ io.on('connection', socket =>{
     socket.broadcast.emit('receivedMessage',data)
     console.log('sendMessage: ')
     console.log(data)
+    const {author, destiny, content} = data
+    const text = 'INSERT INTO messages(author, destiny, content) VALUES($1, $2, $3) RETURNING *'
+    const values = [author, destiny, content]
+      client.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(res.rows)
+      }
+    })
   })
 
   //Lista de Discursos
@@ -264,6 +291,16 @@ io.on('connection', socket =>{
     console.log('New Post: ')
     console.log(file)
     io.emit('posts', files)
+    const {title, description, link} = file
+    const text = 'INSERT INTO posts(title, description, link) VALUES($1, $2, $3) RETURNING *'
+    const values = [title, description, link]
+      client.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(res.rows)
+      }
+    })
   })
 
   //Votes
@@ -306,6 +343,16 @@ io.on('connection', socket =>{
     io.emit("newDoc", doc)
     console.log('New Private Doc: ')
     console.log(doc)
+    const {title, link, author} = doc
+    const text = 'INSERT INTO private_docs(title, link, author) VALUES($1, $2, $3) RETURNING *'
+    const values = [title, link, author]
+      client.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(res.rows)
+      }
+    })
   })
   socket.on('newPublicDoc', doc=>{
     io.emit("newDoc", doc)
@@ -313,7 +360,16 @@ io.on('connection', socket =>{
     console.log(doc)
     publicDocs.push(doc)
     io.emit("setPublicDocs", publicDocs)
-    
+    const {title, link} = doc
+    const text = 'INSERT INTO public_docs(title, link) VALUES($1, $2) RETURNING *'
+    const values = [title, link]
+      client.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(res.rows)
+      }
+    })
 
   })
 
