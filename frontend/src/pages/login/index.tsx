@@ -46,8 +46,13 @@ const Index: React.FC = () => {
 
               history.push('/NewspaperBoss')
             }else{
-              console.log(data.representation_type)
+              if(data.representation_type === 'Panóptico'){
 
+                history.push('/Panoptic')
+              }else{
+                console.log(data.representation_type)
+  
+              }
             }
           }
         }

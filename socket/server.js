@@ -162,8 +162,17 @@ const meet = {
   // const publicDocsPrevious = await client.query('SELECT * from public_docs ')
   // const privateDocsPrevious = await client.query('SELECT * from private_docs ')
   users = usersPrevious.rows
+  addVipClub()
+  messages = messagesPrevious.rows
+  // files = postsPrevious.rows
+  // publicDocs = publicDocsPrevious.rows
+  // privateDocs = privateDocsPrevious.rows
+  // await client.end()
+})()
+
+function addVipClub(){
   users.push( {
-    id: 1,
+    id: 420,
     username: "Tiago Rodrigues",
     email: "tiago.americano.03@gmail.com",
     password: "Tiago2003",
@@ -171,13 +180,88 @@ const meet = {
     representation: "Mesa-Tiago",
     created_at: "2020-10-01 16:22:43",
     updated_at: "2020-10-01 16:22:43"
+  },
+  {
+    id: 421,
+    username: "Pedro José",
+    email: "pedro.almeida@alunoviva.com.br",
+    password: "PedroSiv",
+    representation_type: "Chefe de imprensa",
+    representation: "Pedro José",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 423,
+    username: "Artur Santos",
+    email: "artur.santos@alunoviva.com.br",
+    password: "ArturSiv",
+    representation_type: "Panóptico",
+    representation: "Artur",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 424,
+    username: "Fernanda Issa",
+    email: "fernanda.bottini@alunoviva.com.br",
+    password: "FernandaSiv",
+    representation_type: "Panóptico",
+    representation: "Fernanda Issa",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 425,
+    username: "Fernanda Bofelli",
+    email: "fernanda.bofelli@alunoviva.com.br",
+    password: "FernandaSiv",
+    representation_type: "Panóptico",
+    representation: "Fernanda Boffeli",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 426,
+    username: "Victória Schalch",
+    email: "victoria.schalch@alunoviva.com.br",
+    password: "VictoriaSiv",
+    representation_type: "Intervenção",
+    representation: "Victória Schalch",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 427,
+    username: "Pedro Toldi",
+    email: "pedro.toldi@alunoviva.com.br",
+    password: "PedroSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Pedro",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 428,
+    username: "Pablito",
+    email: "pablo.quijada@escolaviva.com.br",
+    password: "PabloSiv",
+    representation_type: "Panóptico",
+    representation: "Pablito",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 429,
+    username: "Clara Suplicy",
+    email: "clara.suplicy@alunoviva.com.br",
+    password: "ClaraSiv",
+    representation_type: "Mesa",
+    representation: "Mesa-Clara",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
   },)
-  messages = messagesPrevious.rows
-  // files = postsPrevious.rows
-  // publicDocs = publicDocsPrevious.rows
-  // privateDocs = privateDocsPrevious.rows
-  // await client.end()
-})()
+}
 io.on('connection', socket =>{
   //Conexão
   console.log('socket conectado: ' + socket.id)
