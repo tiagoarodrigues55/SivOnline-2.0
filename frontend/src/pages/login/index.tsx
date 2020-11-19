@@ -8,7 +8,7 @@ interface User{
   token: string,
   representation: string,
   representation_type: string,
-  group?: string
+  newspaper_group?: string
 }
 const Index: React.FC = () => {
   const socket = useSocket()
@@ -37,8 +37,8 @@ const Index: React.FC = () => {
             history.push('/Staff')
         }else{
           if(data.representation_type === 'Imprensa'){
-            if(data.group){
-          localStorage.setItem('group', data.group)
+            if(data.newspaper_group){
+          localStorage.setItem('newspaper_group', data.newspaper_group)
             }
           history.push('/Newspaper')
           }else{

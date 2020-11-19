@@ -13,7 +13,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   const socket = useSocket()
 
   const user = localStorage.getItem('representation') || "Brasil"
-  const group : number = Number(localStorage.getItem('group')) || 0
+  const group : number = Number(localStorage.getItem('newspaper_group')) || 0
 
   const [roomName, setRoomName] = useState('SivOnline100')
   const [password, setPassword] = useState('Tiago2003')
