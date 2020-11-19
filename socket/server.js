@@ -371,16 +371,7 @@ function addVipClub(){
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
-  {
-    id: 440,
-    username: "Karime Zamora",
-    email: 'karime.zamora@escolaviva.com.br',
-    password: "KarimeSiv",
-    representation_type: "Panóptico",
-    representation: "Karime Zamora",
-    created_at: "2020-11-03 11:05:21",
-    updated_at: "2020-11-03 11:05:21"
-  },
+
   {
     id: 440,
     username: "Tomas Porto",
@@ -404,10 +395,20 @@ function addVipClub(){
   {
     id: 442,
     username: "Isabela dos Santos",
-    email: 'Isabela.dossantos@escolaviva.com.br',
+    email: 'isabela.dossantos@escolaviva.com.br',
     password: "IsabelaSiv",
     representation_type: "Panóptico",
     representation: "Isabela dos Santos",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 443,
+    username: "Pedro Ortolani",
+    email: 'pedro.ortolani@alunoviva.com.br',
+    password: "PedroSiv",
+    representation_type: "Delegado",
+    representation: "Estados Unidos",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
