@@ -107,6 +107,7 @@ socket.on('getUsers', (users: User[]) =>{
                   Contats.Imprensa.push(i.representation)
                   Contats.Panóptico.push(i.representation)
                   Contats.Mesa.push(i.representation)
+                  Contats.Chefe.push(i.representation)
   
                 }
               }
