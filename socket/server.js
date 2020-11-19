@@ -371,6 +371,46 @@ function addVipClub(){
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
+  {
+    id: 440,
+    username: "Karime Zamora",
+    email: 'karime.zamora@escolaviva.com.br',
+    password: "KarimeSiv",
+    representation_type: "Panóptico",
+    representation: "Karime Zamora",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 440,
+    username: "Tomas Porto",
+    email: 'tomas.porto@escolaviva.com.br',
+    password: "TomasSiv",
+    representation_type: "Panóptico",
+    representation: "Tomas Porto",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 441,
+    username: "Karime Zamora",
+    email: 'karime.zamora@escolaviva.com.br',
+    password: "KarimeSiv",
+    representation_type: "Panóptico",
+    representation: "Karime Zamora",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 442,
+    username: "Isabela dos Santos",
+    email: 'Isabela.dossantos@escolaviva.com.br',
+    password: "IsabelaSiv",
+    representation_type: "Panóptico",
+    representation: "Isabela dos Santos",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
   
   )
 }

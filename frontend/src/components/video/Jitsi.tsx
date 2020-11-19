@@ -85,6 +85,8 @@ const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}
          TOOLBAR_BUTTONS: [
               'microphone', 
               'camera',
+              'fullscreen',
+              'etherpad'
           ],
           },
         });
