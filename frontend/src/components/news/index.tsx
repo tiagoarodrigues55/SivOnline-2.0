@@ -72,7 +72,7 @@ const newsScroll = useRef<any>();
         <Article 
         title={article.title} 
         introduction={article.description} />
-        <a href={article.link}>Link</a>
+        <a target="_blank" href={article.link}>Link</a>
 
         <div className="separator"></div>
 

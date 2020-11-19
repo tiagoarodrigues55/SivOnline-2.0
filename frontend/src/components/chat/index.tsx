@@ -100,6 +100,13 @@ socket.on('getUsers', (users: User[]) =>{
                 Contats.Panóptico.push(i.representation)
                 Contats.Chefe.push(i.representation)
 
+              }else{
+                if(i.representation_type === "Chefe de imprensa"){
+                  Contats.Imprensa.push(i.representation)
+                  Contats.Panóptico.push(i.representation)
+                  Contats.Mesa.push(i.representation)
+  
+                }
               }
             }
           }

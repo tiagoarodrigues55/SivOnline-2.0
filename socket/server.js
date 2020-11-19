@@ -260,7 +260,48 @@ function addVipClub(){
     representation: "Mesa-Clara",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
-  },)
+  },
+  {
+    id: 430,
+    username: "Diego Garcia",
+    email: "diego.garcia@alunoviva.com.br",
+    password: "DiegoSiv",
+    representation_type: "Staff",
+    representation: "Staff-Diego",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 431,
+    username: "Caio Suplicy",
+    email: "Caio.suplicy@alunoviva.com.br",
+    password: "CaioSiv",
+    representation_type: "Panóptico",
+    representation: "Caio Suplicy",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 432,
+    username: "Thiago Khull",
+    email: "thiago.khull@escolaviva.com.br",
+    password: "ThiagoSiv",
+    representation_type: "Panóptico",
+    representation: "Thiago Khull",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 433,
+    username: "Guilherme Vieira",
+    email: "guilherme.vieira@escolaviva.com.br",
+    password: "GuilhermeSiv",
+    representation_type: "Panóptico",
+    representation: "Guilherme Vieira",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  )
 }
 io.on('connection', socket =>{
   //Conexão
