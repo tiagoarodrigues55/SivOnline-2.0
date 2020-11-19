@@ -13,12 +13,12 @@ import api from '../../../services/api'
 
 function Layout() {
 
-  // const representation_type = localStorage.getItem('representation_type')
-  // if(representation_type !== 'Imprensa'){
-  //   return(
-  //     <Redirect to="Login" />
-  //   )
-  // }
+  const representation_type = localStorage.getItem('representation_type')
+  if(representation_type !== 'Imprensa'){
+    return(
+      <Redirect to="Login" />
+    )
+  }
   return (
     <Grid>
       <Video newspaper={true}/>

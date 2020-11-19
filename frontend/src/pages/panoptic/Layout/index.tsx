@@ -22,11 +22,11 @@ const socket = useSocket()
   const [againsts, setAgainsts] = useState<string[]>([])
   const [display, setDisplay] = useState<string>('none')
   const representation_type = localStorage.getItem('representation_type')
-  // if(representation_type !== 'Panóptico'){
-  //   return(
-  //     <Redirect to="Login" />
-  //   )
-  // }
+  if(representation_type !== 'Panóptico'){
+    return(
+      <Redirect to="Login" />
+    )
+  }
 
   socket.on('favorables', (representations: string[])=>{
     setFavorables(representations)

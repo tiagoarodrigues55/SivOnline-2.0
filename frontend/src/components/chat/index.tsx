@@ -16,7 +16,14 @@ interface User{
 representation: string,
 representation_type: string
 }
-
+interface Contats{
+  Delegado: string[],
+  Staff: string[],
+  Mesa: string[],
+  Imprensa: string[],
+  Chefe: string[],
+  Panóptico: string[],
+}
 
 const Chats: React.FC<Props> = ({moderator}) => {
 const socket = useSocket()
@@ -28,9 +35,16 @@ const chat = () =>{
   }
 }
   const [haveMessage, sethaveMessage] = useState<string[]>([])
-  const [contats, setContats] = useState<string[]>([])
   const [inactive, setInactive] = useState(chat)
-  const [contatsForModerator, setContatsForModerator] = useState<string[]>([])
+  const [contats, setContats] = useState<Contats>({
+    Delegado: [],
+    Staff: [],
+    Mesa: [],
+    Imprensa: [],
+    Chefe: [],
+    Panóptico: [],
+  })
+
 
   useEffect(()=>{
     socket.emit('getUsers')
@@ -48,22 +62,54 @@ const chat = () =>{
   })
 socket.on('getUsers', (users: User[]) =>{
   // const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
-  const Contats = ['Correio Elegante']
-  const ContatsForModerator = ['Correio Elegante']
-  // const ContatsForModerator = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico', 'Chefe de Staff', 'Chefe de imprensa', 'Artur', 'Pablo', 'Intervenção']
+  const Contats : Contats = {Delegado: [], Mesa: [], Imprensa: [], Staff: [], Panóptico: [], Chefe: []}
+  Contats.Delegado = ['Correio Elegante']
+  Contats.Mesa = ['Correio Elegante']
+  Contats.Imprensa = ['Correio Elegante']
+  Contats.Chefe = ['Correio Elegante']
+  Contats.Panóptico = ['Correio Elegante']
+  Contats.Staff = ['Correio Elegante', 'Fernanda Issa']
   for(let i of users){
     if(i.representation === localStorage.getItem('representation')){
-
     }else{
-    // if(i.representation_type === "Delegado"){
-      Contats.push(i.representation)
-      ContatsForModerator.push(i.representation)
-    // }
-  }
-  }
+      Contats.Mesa.push(i.representation)
+      if(i.representation_type === "Delegado"){
+        Contats.Delegado.push(i.representation)
+        Contats.Staff.push(i.representation)
+      }else{
+        if(i.representation_type === "Imprensa"){
+          Contats.Imprensa.push(i.representation)
+          Contats.Chefe.push(i.representation)
+          Contats.Staff.push(i.representation)
 
-  setContatsForModerator(ContatsForModerator)
+        }else{
+          if(i.representation_type === "Staff"){
+            Contats.Delegado.push(i.representation)
+            Contats.Staff.push(i.representation)
+            Contats.Imprensa.push(i.representation)
+            Contats.Chefe.push(i.representation)
+          }else{
+            if(i.representation_type === "Mesa"){
+              Contats.Delegado.push(i.representation)
+              Contats.Staff.push(i.representation)
+              Contats.Imprensa.push(i.representation)
+              Contats.Chefe.push(i.representation)
+              Contats.Panóptico.push(i.representation)
+            }else{
+              if(i.representation_type === "Panóptico"){
+                Contats.Panóptico.push(i.representation)
+                Contats.Chefe.push(i.representation)
+
+              }
+            }
+          }
+        }
+      }
+  }
+  }
+console.log(Contats)
   setContats(Contats)
+
 })
 
   const [contat, setContat] = useState('')
@@ -83,24 +129,30 @@ socket.on('getUsers', (users: User[]) =>{
     sethaveMessage([...haveMessage, contat])
   }
 
+  if (moderator){
+    return (
+      <Styles className="components">
+        <div id="contats">
+        {localStorage.getItem('representation_type') === "Panóptico"? contats.Panóptico.map(contat=>(
+        <div className="contat">
 
-  // if (moderator){
-  //   return (
-  //     <Styles className="components">
-  //       <div id="contats">
-  //       {contatsForModerator.map(contat=>(
-  //         <div className="contat">
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
+        { localStorage.getItem('representation_type') === "Mesa"? contats.Mesa.map(contat=>(
+          <div className="contat">
   
-  //         <li onClick={()=>renderContat(contat)} key={contat}>{contat}</li>{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}
-  //         </div>
+          <li onClick={()=>renderContat(contat)} key={contat}>{contat}</li>{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}
+          </div>
        
-  //       ))}
-  //       </div>
+        )): null}
+        </div>
         
-  //       <Chat haveMessages={haveMessages} contat={contat}/>
-  //     </Styles>
-  //   )
-  // }
+        <Chat haveMessages={haveMessages} contat={contat}/>
+      </Styles>
+    )
+  }
 if(inactive){
   return(
     <Styles>Chat inativo...</Styles>
@@ -109,13 +161,41 @@ if(inactive){
   return (
     <Styles className="components">
       <div id="contats">
-      {contats.map(contat=>(
+      {localStorage.getItem('representation_type') === "Delegado"? contats.Delegado.map(contat=>(
         <div className="contat">
 
         <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
         </div>
      
-      ))}
+      )): null}
+      {localStorage.getItem('representation_type') === "Imprensa"? contats.Imprensa.map(contat=>(
+        <div className="contat">
+
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
+      {localStorage.getItem('representation_type') === "Staff"? contats.Staff.map(contat=>(
+        <div className="contat">
+
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
+      {localStorage.getItem('representation_type') === "Panóptico"? contats.Panóptico.map(contat=>(
+        <div className="contat">
+
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
+      {localStorage.getItem('representation_type') === "Chefe de imprensa"? contats.Chefe.map(contat=>(
+        <div className="contat">
+
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
       </div>
       
       <Chat haveMessages={haveMessages}  contat={contat}/>

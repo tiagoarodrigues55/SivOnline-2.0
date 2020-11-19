@@ -28,11 +28,11 @@ const socket = useSocket()
   const [newVote, setNewVote] = useState<NewVote>({title: 'Titulo', description: 'Descrição', link: 'http://localhost:3000/login'})
   const [display, setDisplay] = useState<string>('none')
   const representation_type = localStorage.getItem('representation_type')
-  // if(representation_type !== 'Delegado'){
-  //   return(
-  //     <Redirect to="Login" />
-  //   )
-  // }
+  if(representation_type !== 'Delegado'){
+    return(
+      <Redirect to="Login" />
+    )
+  }
 
     socket.on('newVote', (vote: NewVote)=>{
       setNewVote(vote)
