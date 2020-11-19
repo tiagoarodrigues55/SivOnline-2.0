@@ -371,6 +371,16 @@ function addVipClub(){
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
+  {
+    id: 444,
+    username: "Tharcísio Angelo",
+    email: 'tharcisio.angelo02@gmail.com',
+    password: "1234",
+    representation_type: "Delegado",
+    representation: "Vietnam",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
 
   {
     id: 440,
