@@ -620,7 +620,10 @@ io.on('connection', socket =>{
     io.emit('reset')
     console.log('reset chronometer')
   })
-
+  socket.on('setSpeechesTime', (time)=>{
+    console.log(time)
+    io.emit('setSpeechesTime', time)
+  })
   //PostsPreview
 
   socket.on('postsPreview', post=>{
