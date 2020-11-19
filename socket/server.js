@@ -154,13 +154,13 @@ const meet = {
   room: '',
   password: ''
 }
-// ;(async () => {
-//   await client.connect()
-//   const res = await client.query('SELECT * from users ')
-//   users = res.rows
-//   console.log(users) // Hello world!
-//   await client.end()
-// })()
+;(async () => {
+  await client.connect()
+  const res = await client.query('SELECT * from users ')
+  users = res.rows
+  console.log(users)
+  await client.end()
+})()
 io.on('connection', socket =>{
   //Conexão
   console.log('socket conectado: ' + socket.id)
