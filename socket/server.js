@@ -98,7 +98,7 @@ let users = [
   },
   {
     id: 9,
-    username: "Fernanda Bofelli",
+    username: "Fernanda Boffelli",
     email: "fernanda.bofelli@alunoviva.com.br",
     password: "FernandaSiv",
     representation_type: "Staff",
@@ -213,8 +213,8 @@ function addVipClub(){
   },
   {
     id: 425,
-    username: "Fernanda Bofelli",
-    email: "fernanda.bofelli@alunoviva.com.br",
+    username: "Fernanda Boffelli",
+    email: "fernanda.boffelli@alunoviva.com.br",
     password: "FernandaSiv",
     representation_type: "Panóptico",
     representation: "Fernanda Boffeli",
@@ -274,7 +274,7 @@ function addVipClub(){
   {
     id: 431,
     username: "Caio Suplicy",
-    email: "Caio.suplicy@alunoviva.com.br",
+    email: "caio.suplicy@alunoviva.com.br",
     password: "CaioSiv",
     representation_type: "Panóptico",
     representation: "Caio Suplicy",
@@ -283,11 +283,11 @@ function addVipClub(){
   },
   {
     id: 432,
-    username: "Thiago Khull",
-    email: "thiago.khull@escolaviva.com.br",
+    username: "Thiago Kuhl",
+    email: "thiago.kuhl@escolaviva.com.br",
     password: "ThiagoSiv",
     representation_type: "Panóptico",
-    representation: "Thiago Khull",
+    representation: "Thiago Kuhl",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
@@ -298,6 +298,26 @@ function addVipClub(){
     password: "GuilhermeSiv",
     representation_type: "Panóptico",
     representation: "Guilherme Vieira",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 434,
+    username: "José Pedro",
+    email: 'jose.pedro@escolaviva.com.br',
+    password: "JoseSiv",
+    representation_type: "Panóptico",
+    representation: "José Pedro",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 434,
+    username: "Jonison Silva",
+    email: 'jonison.silva@escolaviva.com.br',
+    password: "JoseSiv",
+    representation_type: "Panóptico",
+    representation: "Jonison Silva",
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },

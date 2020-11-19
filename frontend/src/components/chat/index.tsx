@@ -88,6 +88,8 @@ socket.on('getUsers', (users: User[]) =>{
             Contats.Staff.push(i.representation)
             Contats.Imprensa.push(i.representation)
             Contats.Chefe.push(i.representation)
+            Contats.Panóptico.push(i.representation)
+
           }else{
             if(i.representation_type === "Mesa"){
               Contats.Delegado.push(i.representation)
@@ -115,6 +117,12 @@ socket.on('getUsers', (users: User[]) =>{
   }
   }
 console.log(Contats)
+Contats.Delegado.sort()
+Contats.Chefe.sort()
+Contats.Staff.sort()
+Contats.Imprensa.sort()
+Contats.Panóptico.sort()
+Contats.Mesa.sort()
   setContats(Contats)
 
 })
@@ -141,6 +149,13 @@ console.log(Contats)
       <Styles className="components">
         <div id="contats">
         {localStorage.getItem('representation_type') === "Panóptico"? contats.Panóptico.map(contat=>(
+        <div className="contat">
+
+        <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>
+        </div>
+     
+      )): null}
+        {localStorage.getItem('representation_type') === "Intervenção"? contats.Panóptico.map(contat=>(
         <div className="contat">
 
         <li onClick={()=>renderContat(contat)} key={contat}>{contat}{haveMessage.indexOf(contat)!==-1 ? <AiFillBulb/>:null}</li>

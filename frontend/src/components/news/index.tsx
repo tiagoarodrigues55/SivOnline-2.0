@@ -31,13 +31,6 @@ const newsScroll = useRef<any>();
   const [inactive, setInactive] = useState(news)
  
 
-// useEffect(()=>{
-//   let articles2 = []
-//   for(let i = 1; articles.length; i++){
-//     articles2.push(articles[articles.length-i])
-//   }
-//   console.log(articles2)
-// },[articles])
 
   socket.on('PreviousEmits', (data : {posts : Post[]})=>{
     
