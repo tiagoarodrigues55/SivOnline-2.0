@@ -82,11 +82,9 @@ const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}
             startVideoOnly: false 
           },
           interfaceConfigOverwrite: {
-         TOOLBAR_BUTTONS: [
-              'microphone', 
-              'camera',
-              'fullscreen',
-              'etherpad'
+            TOOLBAR_BUTTONS: [
+              'microphone', 'camera',            
+              'tileview', 'fullscreen'
           ],
           },
         });
