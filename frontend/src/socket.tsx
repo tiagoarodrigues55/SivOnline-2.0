@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, Children } from "react";
 
 import io from 'socket.io-client'
-const socket = io(process.env.REACT_APP_SOCKET_URL || '') 
+const socket = io(process.env.REACT_APP_SOCKET_URL || '', {secure: true}) 
 const SocketContext = createContext(socket);
 
 
