@@ -50,8 +50,13 @@ const Index: React.FC = () => {
 
                 history.push('/Panoptic')
               }else{
-                console.log(data.representation_type)
-  
+                if(data.representation_type === 'Intervenção'){
+
+                  history.push('/Intervention')
+                }else{
+                  console.log(data.representation_type)
+    
+                }
               }
             }
           }
