@@ -321,6 +321,57 @@ function addVipClub(){
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
+  {
+    id: 435,
+    username: "Ana Carvalho",
+    email: 'ana.carvalho@escolaviva.com.br',
+    password: "AnaSiv",
+    representation_type: "Staff",
+    representation: "Staff-Ana",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 436,
+    username: "Giulia Orioli",
+    email: 'giulia.orioli@escolaviva.com.br',
+    password: "GiuliaSiv",
+    representation_type: "Staff",
+    representation: "Staff-Giulia",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 437,
+    username: "Luan Foresti",
+    email: 'luan.foresti@escolaviva.com.br',
+    password: "LuanSiv",
+    representation_type: "Chefe de imprensa",
+    representation: "Imprensa-Luan",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 438,
+    username: "Laura Santos",
+    email: 'laura.santos@escolaviva.com.br',
+    password: "LauraSiv",
+    representation_type: "Chefe de imprensa",
+    representation: "Imprensa-Laura",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  {
+    id: 439,
+    username: "Lucas Costa",
+    email: 'lucas.costa@escolaviva.com.br',
+    password: "LucasSiv",
+    representation_type: "Chefe de imprensa",
+    representation: "Imprensa-Lucas",
+    created_at: "2020-11-03 11:05:21",
+    updated_at: "2020-11-03 11:05:21"
+  },
+  
   )
 }
 io.on('connection', socket =>{
