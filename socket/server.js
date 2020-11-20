@@ -155,6 +155,7 @@ let voteTitle
 let privateDocs = []
 let publicDocs = []
 let postsPreview = []
+let CorreioMessages = []
 const meet = {
   room: '',
   password: ''
@@ -162,7 +163,7 @@ const meet = {
 ;(async () => {
   await client.connect()
   const usersPrevious = await client.query('SELECT * from users ')
-  const messagesPrevious = await client.query('SELECT * from messages ')
+  // const messagesPrevious = await client.query('SELECT * from messages ')
   const postsPrevious = await client.query('SELECT * from posts ')
   const publicDocsPrevious = await client.query('SELECT * from public_docs ')
   const privateDocsPrevious = await client.query('SELECT * from private_docs ')
@@ -472,6 +473,10 @@ io.on('connection', socket =>{
 
   //Chat
   socket.on('sendMessage', ({author, destiny, content})=>{
+    if(destiny==="Correio Elegante"){
+      CorreioMessages.push(content)
+      return
+    }
     const Destiny = getCurrentUser(destiny)
     messages.push({author, destiny, content})
     if(!Destiny){
@@ -481,15 +486,15 @@ io.on('connection', socket =>{
     console.log(Destiny.id)
     socket.to(Destiny.id).emit('newMessage', author)
     console.log(author, destiny, content)
-    const text = 'INSERT INTO messages(author, destiny, content) VALUES($1, $2, $3) RETURNING *'
-    const values = [author, destiny, content]
-      client.query(text, values, (err, res) => {
-      if (err) {
-        console.log(err.stack)
-      } else {
-        console.log(res.rows)
-      }
-    })
+    // const text = 'INSERT INTO messages(author, destiny, content) VALUES($1, $2, $3) RETURNING *'
+    // const values = [author, destiny, content]
+    //   client.query(text, values, (err, res) => {
+    //   if (err) {
+    //     console.log(err.stack)
+    //   } else {
+    //     console.log(res.rows)
+    //   }
+    // })
   })
   socket.on('changeContat', ({contat, user})=>{
     let Messages = []
@@ -787,6 +792,12 @@ io.on('connection', socket =>{
     console.log('activeNews')
 
     io.emit('activeNews')
+  })
+
+  //Correio elegante
+
+  socket.on("CorreioElegante", ()=>{
+    socket.emit("CorreioElegante", CorreioMessages)
   })
 })
 server.listen(3001)
