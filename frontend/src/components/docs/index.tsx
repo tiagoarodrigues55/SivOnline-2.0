@@ -27,7 +27,7 @@ const socket = useSocket()
   const [publicName, setPublicName] = useState<String>()
 
   useEffect(()=>{
-    socket.on('previousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
+    socket.on('PreviousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
       const userDocs = filterDocs(data.privateDocs)
       setPrivateDocs(userDocs)
       setPublicDocs(data.publicDocs)

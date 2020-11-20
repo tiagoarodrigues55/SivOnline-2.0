@@ -169,7 +169,7 @@ const meet = {
   const privateDocsPrevious = await client.query('SELECT * from private_docs ')
   users = usersPrevious.rows
   addVipClub()
-  messages = messagesPrevious.rows
+  // messages = messagesPrevious.rows
   files = postsPrevious.rows
   publicDocs = publicDocsPrevious.rows
   privateDocs = privateDocsPrevious.rows
