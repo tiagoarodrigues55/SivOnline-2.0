@@ -442,6 +442,9 @@ io.on('connection', socket =>{
     if(representation_type==="Chefe de imprensa"){
       socket.join('Chefe de imprensa')
     }
+    if(representation_type==="Staff"){
+      socket.join('Staff')
+    }
   })
 
   //Conexão
@@ -485,6 +488,7 @@ io.on('connection', socket =>{
     console.log('Destiny.id: ')
     console.log(Destiny.id)
     socket.to(Destiny.id).emit('newMessage', author)
+    socket.to("Staff").emit('newMessage',{author, destiny, content})
     console.log(author, destiny, content)
     // const text = 'INSERT INTO messages(author, destiny, content) VALUES($1, $2, $3) RETURNING *'
     // const values = [author, destiny, content]

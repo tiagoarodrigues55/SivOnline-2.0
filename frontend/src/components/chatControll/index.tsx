@@ -16,7 +16,7 @@ const socket = useSocket()
   
   const [messages, setMessages] = useState<MessageType[]>([])
  useEffect(()=>{
-  socket.on('receivedMessage', (msg:MessageType)=>{
+  socket.on('newMessage', (msg:MessageType)=>{
     const {author, destiny, content} = msg
       setMessages([...messages, {
         author,
