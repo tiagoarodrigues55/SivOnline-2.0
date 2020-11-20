@@ -432,9 +432,12 @@ function addVipClub(){
 }
 io.on('connection', socket =>{
 
-  socket.on('connected', (username)=>{
+  socket.on('connected', ({username, representation_type})=>{
     const user = userJoin(socket.id, username)
     console.log(user)
+    if(representation_type==="Mesa"){
+      socket.join('Mesa')
+    }
   })
 
   //Conexão
@@ -442,7 +445,6 @@ io.on('connection', socket =>{
 
   //Emits
   socket.emit('PreviousEmits', {
-    previousMessages : messages,
     speechesList,
     posts: files,
     lastVote,
@@ -458,9 +460,11 @@ io.on('connection', socket =>{
   }
 
   if(!actions[0]){
-  io.emit('setActions', [])
+    io.to('Mesa').emit('setActions', [])
+
   }else{
-    io.emit('setActions', actions)
+    io.to('Mesa').emit('setActions', actions)
+
   }
 
   //Chat
@@ -529,7 +533,7 @@ io.on('connection', socket =>{
     console.log('New Action: ')
     console.log(actions)
 
-    io.emit('setActions', actions)
+    io.to('Mesa').emit('setActions', actions)
   })
   socket.on('removeAction', action=>{
     console.log('removeAction')
@@ -537,12 +541,14 @@ io.on('connection', socket =>{
     console.log(actions)
     if(!actions[0]){
       console.log([])
-    io.emit('setActions', [])
+      io.to('Mesa').emit('setActions', [])
+
 
     }else{
       console.log(actions[0].title)
 
-      io.emit('setActions', actions)
+      io.to('Mesa').emit('setActions', actions)
+
     }
     function filter(i){
       if(i.description!==action.description || i.representation !== action.representation){

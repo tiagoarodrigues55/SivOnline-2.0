@@ -5,7 +5,7 @@ import {useSocket} from '../../socket'
 
 interface Props{
   contat: string,
-  haveMessages: Function
+  haveMessages: Function,
 }
 interface Messages{
   content: string,

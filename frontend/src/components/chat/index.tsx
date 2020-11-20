@@ -46,7 +46,7 @@ const chat = () =>{
 
 
   useEffect(()=>{
-    socket.emit('connected', localStorage.getItem('representation'))
+    socket.emit('connected',{ username:localStorage.getItem('representation'), representation_type:localStorage.getItem('representation_type') })
     socket.emit('getUsers')
 
   },[])
@@ -175,7 +175,7 @@ const chat = () =>{
         )): null}
         </div>
         
-        <Chat haveMessages={haveMessages} contat={contat}/>
+        <Chat haveMessages={haveMessages}  contat={contat}/>
       </Styles>
     )
   }
@@ -224,7 +224,7 @@ if(inactive){
       )): null}
       </div>
       
-      <Chat haveMessages={haveMessages}  contat={contat}/>
+      <Chat haveMessages={haveMessages}   contat={contat}/>
     </Styles>
   )
 }
