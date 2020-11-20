@@ -21,6 +21,12 @@ export const Div = styled.div`
   border-radius:10px;
   margin:5px;
 }
+ul{
+  overflow-y: auto;
+  ::-webkit-scrollbar { /* Sem Barra de rolagem */
+    display: auto;
+  }
+}
 }
  
   #none{

@@ -156,6 +156,7 @@ let privateDocs = []
 let publicDocs = []
 let postsPreview = []
 let CorreioMessages = []
+let newspaperMessage = []
 const meet = {
   room: '',
   password: ''
@@ -445,6 +446,12 @@ io.on('connection', socket =>{
     if(representation_type==="Staff"){
       socket.join('Staff')
     }
+    if(representation_type==="Delegado"){
+      socket.join('Delegado')
+    }
+    if(representation_type==="Imprensa"){
+      socket.join('Imprensa')
+    }
   })
 
   //Conexão
@@ -480,6 +487,12 @@ io.on('connection', socket =>{
       CorreioMessages.push(content)
       return
     }
+    if(destiny==="Imprensa"){
+      newspaperMessage.push(content)
+    socket.to("Imprensa").emit('newMessage', "Delegados")
+
+      return
+    }
     const Destiny = getCurrentUser(destiny)
     messages.push({author, destiny, content})
     if(!Destiny){
@@ -501,6 +514,17 @@ io.on('connection', socket =>{
     // })
   })
   socket.on('changeContat', ({contat, user})=>{
+    if(contat==="Delegados"){
+      let NewspaperMessages = []
+      for(let i of newspaperMessage){
+        NewspaperMessages.push({content: i, my: 'notMine'})
+      }
+      console.log(contat, user)
+      console.log(NewspaperMessages)
+      console.log(newspaperMessage)
+    socket.emit('setMessages', NewspaperMessages)
+return
+    }
     let Messages = []
     console.log('changeContat:')
     console.log(contat)

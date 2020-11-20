@@ -15,7 +15,7 @@ li{
 li.mine{
   width:100%;
   min-height:35px;
-
+margin-top:2px;
   p{
     float:right;
   width: fit-content;
@@ -28,6 +28,8 @@ li.mine{
 }
   li.notMine{
   width:100%;
+margin-top:2px;
+
    p{
   margin:5px;
 

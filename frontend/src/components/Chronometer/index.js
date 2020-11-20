@@ -69,7 +69,7 @@ class Chronometer extends Component {
     this.setState({count: this.state.startCount})
    })
    this.props.socket.on('setSpeechesTime', (time)=>{
-    this.setState({count: time})
+    this.setState({count: time, startCount: time})
    })
     // this.doIntervalChange()
   }

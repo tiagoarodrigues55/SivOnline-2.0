@@ -25,8 +25,8 @@ const Actions: React.FC<Props> = ({moderator}) => {
   const moções = [
     {value:'tempo>', text:'aumento do tempo de discurso'},
     {value:'tempo<', text:'diminuição do tempo de discurso'},
-    {value:'>seção', text:'abrir seção'},
-    {value:'<seção', text:'fechar seção'},
+    {value:'>sessão', text:'abrir sessão'},
+    {value:'<sessão', text:'fechar sessão'},
     {value:'reconhecimento', text:'reconhecer delegação'},
     {value: 'outros', text: "outros"}
   ]

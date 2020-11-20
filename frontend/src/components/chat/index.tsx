@@ -64,9 +64,9 @@ const chat = () =>{
     socket.on('getUsers', (users: User[]) =>{
       // const Contats = ['Mesa-Tiago', 'Mesa-Pedro', 'Staff-Técnico', 'Staff-Acadêmico']
       const Contats : Contats = {Delegado: [], Mesa: [], Imprensa: [], Staff: [], Panóptico: [], Chefe: []}
-      Contats.Delegado = ['Correio Elegante']
+      Contats.Delegado = ['Correio Elegante', "Imprensa"]
       Contats.Mesa = ['Correio Elegante']
-      Contats.Imprensa = ['Correio Elegante']
+      Contats.Imprensa = ['Correio Elegante', "Delegados"]
       Contats.Chefe = ['Correio Elegante']
       Contats.Panóptico = ['Correio Elegante']
       Contats.Staff = ['Correio Elegante', 'Fernanda Issa']
