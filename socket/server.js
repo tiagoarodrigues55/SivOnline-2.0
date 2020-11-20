@@ -438,6 +438,9 @@ io.on('connection', socket =>{
     if(representation_type==="Mesa"){
       socket.join('Mesa')
     }
+    if(representation_type==="Chefe de imprensa"){
+      socket.join('Chefe de imprensa')
+    }
   })
 
   //Conexão
@@ -670,7 +673,7 @@ io.on('connection', socket =>{
     postsPreview.push(post)
     console.log(post)
 
-    io.emit('setPostsPreview', postsPreview)
+    io.to("Chefe de imprensa").emit('setPostsPreview', postsPreview)
   })
   socket.on('removePostPreview', post=>{
     console.log('removePostPreview: ')
@@ -678,12 +681,14 @@ io.on('connection', socket =>{
     console.log(postsPreview)
     if(!postsPreview[0]){
       console.log([])
-    io.emit('setPostsPreview', [])
+      io.to("Chefe de imprensa").emit('setPostsPreview', [])
+
 
     }else{
       console.log(postsPreview[0].name)
 
-      io.emit('setPostsPreview', postsPreview)
+      io.to("Chefe de imprensa").emit('setPostsPreview', postsPreview)
+
     }
     function filter(i){
       if(i.description!==post.description || i.representation !== post.representation){
