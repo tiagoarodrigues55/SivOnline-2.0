@@ -16,9 +16,6 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   const group : number = Number(localStorage.getItem('newspaper_group')) || 0
 
   const [roomName, setRoomName] = useState('SivOnline100')
-  const [password, setPassword] = useState('Tiago2003')
-  const [speechesTime, setSpeechesTime] = useState(90)
-  const [time, setTime] = useState(90)
   const [selectedRoom, setSelectedRoom] = useState('')
   const salasImprensa = ['The_Guardian', 'El_País', 'Le_Monde', 'Brasil_de_Fato']
   const [room, setRoom] = useState(false)
@@ -35,8 +32,8 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   if(moderator){
     return (
       <Styles className="components">
-        <Jitsi moderator user={user} roomName={roomName} password={password}/>
-        <Chronometer socket={socket} moderator startCount={speechesTime}/>
+        <Jitsi moderator user={user} roomName={roomName} />
+        <Chronometer socket={socket} moderator startCount={90}/>
         
       </Styles>
     )
@@ -44,7 +41,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   if(newspaper){
     return(
       <Styles className="components">
-        <Jitsi newspaper user={user} roomName={salasImprensa[group]} password={password}/>
+        <Jitsi newspaper user={user} roomName={salasImprensa[group]} />
 
     </Styles>
     )
@@ -52,7 +49,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   if(newspaperBoss){
     return(
       <Styles className="components">
-        {room ? <Jitsi newspaper user={user} roomName={roomName} password={password}/> : null}
+        {room ? <Jitsi newspaper user={user} roomName={roomName} /> : null}
       <form onSubmit={handleSubmit}>
         <select value={selectedRoom} onChange={handleSelectRoom}>
           <option  value=''>Escolha uma sala</option>
@@ -68,8 +65,8 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
   }
   return(
     <Styles className="components">
-        <Jitsi user={user} roomName={roomName} password={password}/>
-        <Chronometer socket={socket} startCount={speechesTime}/>
+        <Jitsi user={user} roomName={roomName} />
+        <Chronometer socket={socket} startCount={90}/>
 
     </Styles>
     )

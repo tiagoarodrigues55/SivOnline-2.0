@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import Global from './styles/Global'
 import Routes from './routes'
@@ -6,7 +6,6 @@ import {Background} from './components/backgroundImg/styles'
 import * as dotenv from 'dotenv';
 import SocketProvider from './socket'
 import {useSocket} from './socket'
-// const { ThemeProvider } = require('styled-components')
 import {ThemeProvider} from 'styled-components'
 dotenv.config();
 const themeColors = {
@@ -22,29 +21,34 @@ const themeColors = {
 function App() {
   const [theme, setTheme] = useState(themeColors)
   const socket = useSocket()
-  
-  socket.on('intervention', ()=>{
-    let number = 0
-    var interventionFunction = setInterval(()=>{
-      let colors = ['red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green',]
-      const toggleTheme = {
-        primary: colors[number],
-        secondary:  colors[number+1],
-        tertiary: colors[number+2],
-        quaternary: colors[number+3],
-        quinary: colors[number+4],
-        senary: colors[number+5],
-        backgroundImg: 1
-      }
-      setTheme(toggleTheme)
-      number++
-  }, 300);
-  setTimeout(()=>{
-    clearInterval(interventionFunction)
-    setTheme(themeColors)
+  useEffect(()=>{
+    socket.on('intervention', ()=>{
 
-  }, 20000)
-  })
+      let number = 0
+      var interventionFunction = setInterval(()=>{
+        let colors = ['red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green','red', 'blue', 'gray', 'green',]
+        const toggleTheme = {
+          primary: colors[number],
+          secondary:  colors[number+1],
+          tertiary: colors[number+2],
+          quaternary: colors[number+3],
+          quinary: colors[number+4],
+          senary: colors[number+5],
+          backgroundImg: 1
+        }
+        setTheme(toggleTheme)
+        number++
+    }, 300);
+    setTimeout(()=>{
+      clearInterval(interventionFunction)
+      setTheme(themeColors)
+  
+    }, 20000)
+    })
+    
+  },[])
+
+  
   return (
     <div className="App" >
       <ThemeProvider theme={theme}>

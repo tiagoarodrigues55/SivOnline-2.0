@@ -21,22 +21,25 @@ const socket = useSocket()
   const [againsts, setAgainsts] = useState<string[]>([])
   const [display, setDisplay] = useState<string>('none')
   const representation_type = localStorage.getItem('representation_type')
+  useEffect(()=>{
+    socket.on('favorables', (representations: string[])=>{
+      setFavorables(representations)
+      setDisplay('open')
+  
+    })
+    socket.on('againsts', (representations: string[])=>{
+      setAgainsts(representations)
+      setDisplay('open')
+  
+    })
+  },[])
   if(representation_type !== 'Intervenção'){
     return(
       <Redirect to="Login" />
     )
   }
 
-  socket.on('favorables', (representations: string[])=>{
-    setFavorables(representations)
-    setDisplay('open')
-
-  })
-  socket.on('againsts', (representations: string[])=>{
-    setAgainsts(representations)
-    setDisplay('open')
-
-  })
+ 
 
   
   

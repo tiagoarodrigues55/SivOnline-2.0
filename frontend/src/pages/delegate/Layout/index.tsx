@@ -11,7 +11,6 @@ import Votes from '../../../components/votes'
 import NewVote from '../../../components/votes/NewVote'
 import {Grid} from './Layout'
 import {Div} from './Styles'
-import api from '../../../services/api'
 import {useSocket} from '../../../socket'
 
 interface NewVote{
@@ -22,18 +21,13 @@ interface NewVote{
 function Layout() {
 const socket = useSocket()
 
-  const token = localStorage.getItem('token')
   const representation = localStorage.getItem('representation')
  
   const [newVote, setNewVote] = useState<NewVote>({title: 'Titulo', description: 'Descrição', link: 'http://localhost:3000/login'})
   const [display, setDisplay] = useState<string>('none')
   const representation_type = localStorage.getItem('representation_type')
-  if(representation_type !== 'Delegado'){
-    return(
-      <Redirect to="Login" />
-    )
-  }
 
+  useEffect(()=>{
     socket.on('newVote', (vote: NewVote)=>{
       setNewVote(vote)
       setDisplay('open')
@@ -44,7 +38,13 @@ const socket = useSocket()
       setDisplay('none')
 
     })
-
+  },[])
+ 
+  if(representation_type !== 'Delegado'){
+    return(
+      <Redirect to="Login" />
+    )
+  }
     function sendResponseN(){
       socket.emit('responseN', representation)
       setDisplay('none')

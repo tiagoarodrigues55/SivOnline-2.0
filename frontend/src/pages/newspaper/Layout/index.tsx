@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom'
 
 import Post from '../../../components/post'
@@ -9,7 +9,6 @@ import SpeechesList from '../../../components/speechesList'
 import Video from '../../../components/video'
 import Votes from '../../../components/votes'
 import {Grid} from './Layout'
-import api from '../../../services/api'
 
 function Layout() {
 

@@ -22,7 +22,6 @@ interface MessageType{
   content: string
 }
 const user = localStorage.getItem('representation')
-const representation_type = localStorage.getItem('representation_type')
 
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
@@ -31,22 +30,25 @@ const chatScroll = useRef<any>();
   
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Messages[]>([])
+  useEffect(()=>{
     socket.on('previousEmits', (msgs: {previousMessages: Messages[]}) =>{
-    setMessages(msgs.previousMessages)
-    console.log(msgs.previousMessages)
-  })
-  socket.on('previousMessages', (msgs: Messages[])=>{
-    setMessages(msgs)
-  })
-  socket.on('receivedMessage', (msg:MessageType)=>{
-    if(msg.destiny === user && msg.author === contat){
-      setMessages([...messages, {content: msg.content, my: 'notMine'}])
-    }
-    if(msg.destiny === user && msg.author !== contat){
-      haveMessages(msg.author)
-    }
-   
-  })
+      setMessages(msgs.previousMessages)
+      console.log(msgs.previousMessages)
+    })
+    socket.on('previousMessages', (msgs: Messages[])=>{
+      setMessages(msgs)
+    })
+    socket.on('receivedMessage', (msg:MessageType)=>{
+      if(msg.destiny === user && msg.author === contat){
+        setMessages([...messages, {content: msg.content, my: 'notMine'}])
+      }
+      if(msg.destiny === user && msg.author !== contat){
+        haveMessages(msg.author)
+      }
+     
+    })
+  },[])
+
   useEffect(()=>{
     
     socket.emit('changeContat', {

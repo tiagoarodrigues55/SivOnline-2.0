@@ -25,20 +25,25 @@ const socket = useSocket()
   const [publicLink, setPublicLink] = useState<String>()
   const [privateName, setPrivateName] = useState<String>()
   const [publicName, setPublicName] = useState<String>()
-  socket.on('previousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
-    const userDocs = filterDocs(data.privateDocs)
-    setPrivateDocs(userDocs)
-    setPublicDocs(data.publicDocs)
-  })
-  socket.on("setPublicDocs", (docs : Doc[])=>{
-    console.log(docs)
-    setPublicDocs(docs)
-  })
+
+  useEffect(()=>{
+    socket.on('previousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
+      const userDocs = filterDocs(data.privateDocs)
+      setPrivateDocs(userDocs)
+      setPublicDocs(data.publicDocs)
+    })
+    socket.on("setPublicDocs", (docs : Doc[])=>{
+      console.log(docs)
+      setPublicDocs(docs)
+    })
+   
+    socket.on("setPrivateDocs", (docs : Doc[])=>{
+      const userDocs = filterDocs(docs)
+      setPrivateDocs(userDocs)
+    })
+  },[])
+
  
-  socket.on("setPrivateDocs", (docs : Doc[])=>{
-    const userDocs = filterDocs(docs)
-    setPrivateDocs(userDocs)
-  })
   function filterDocs(docs : Doc[]){
     let userDocs = []
     for(let i of docs){

@@ -30,25 +30,27 @@ const newsScroll = useRef<any>();
   const [articles, setArticles] = useState<Post[]>([])
   const [inactive, setInactive] = useState(news)
  
-
-
-  socket.on('PreviousEmits', (data : {posts : Post[]})=>{
+  useEffect(()=>{
+    socket.on('PreviousEmits', (data : {posts : Post[]})=>{
     
-    setArticles(data.posts)
-  })
-  socket.on('posts', (posts : Post[])=>{
-    setArticles(posts)
-  })
-  socket.on('inactiveNews', ()=>{
-    setInactive(true)
-    localStorage.setItem('news', 'Inativar')
+      setArticles(data.posts)
+    })
+    socket.on('posts', (posts : Post[])=>{
+      setArticles(posts)
+    })
+    socket.on('inactiveNews', ()=>{
+      setInactive(true)
+      localStorage.setItem('news', 'Inativar')
+  
+    })
+    socket.on('activeNews', ()=>{
+      setInactive(false)
+      localStorage.setItem('news', 'Ativar')
+  
+    })
+  },[])
 
-  })
-  socket.on('activeNews', ()=>{
-    setInactive(false)
-    localStorage.setItem('news', 'Ativar')
 
-  })
   useEffect(()=>{
     newsScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
   }, [articles])

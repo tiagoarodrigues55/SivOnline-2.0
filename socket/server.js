@@ -4,7 +4,12 @@ const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
 const cors = require('cors')
-
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers
+} = require('./users');
 const { Client } = require('pg')
 const client = new Client({
   user: 'postgres',
@@ -154,21 +159,21 @@ const meet = {
   room: '',
   password: ''
 }
-;(async () => {
-  await client.connect()
-  const usersPrevious = await client.query('SELECT * from users ')
-  const messagesPrevious = await client.query('SELECT * from messages ')
-  const postsPrevious = await client.query('SELECT * from posts ')
-  const publicDocsPrevious = await client.query('SELECT * from public_docs ')
-  const privateDocsPrevious = await client.query('SELECT * from private_docs ')
-  users = usersPrevious.rows
-  addVipClub()
-  messages = messagesPrevious.rows
-  files = postsPrevious.rows
-  publicDocs = publicDocsPrevious.rows
-  privateDocs = privateDocsPrevious.rows
-  // await client.end()
-})()
+// ;(async () => {
+//   await client.connect()
+//   const usersPrevious = await client.query('SELECT * from users ')
+//   const messagesPrevious = await client.query('SELECT * from messages ')
+//   const postsPrevious = await client.query('SELECT * from posts ')
+//   const publicDocsPrevious = await client.query('SELECT * from public_docs ')
+//   const privateDocsPrevious = await client.query('SELECT * from private_docs ')
+//   users = usersPrevious.rows
+//   addVipClub()
+//   messages = messagesPrevious.rows
+//   files = postsPrevious.rows
+//   publicDocs = publicDocsPrevious.rows
+//   privateDocs = privateDocsPrevious.rows
+//   // await client.end()
+// })()
 
 function addVipClub(){
   users.push( {

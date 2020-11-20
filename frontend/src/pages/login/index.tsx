@@ -1,5 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent} from 'react'
-import api from '../../services/api'
+import React, { useState, ChangeEvent, FormEvent, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {Div} from './styles'
 import logo from '../../assets/logo.png'
@@ -21,49 +20,54 @@ const Index: React.FC = () => {
     socket.emit('login', {email: data.email, password: data.password})
   
   }
-  socket.on('login', (data: User)=>{
-    console.log(data)
-    localStorage.setItem('representation', data.representation)
-    localStorage.setItem('representation_type', data.representation_type)
 
-      if(data.representation_type === 'Mesa'){
-        history.push('/Moderator')
-      }else{
-        if(data.representation_type === 'Delegado'){
-          history.push('/Delegate')
-
+  useEffect(()=>{
+    socket.on('login', (data: User)=>{
+      console.log(data)
+      localStorage.setItem('representation', data.representation)
+      localStorage.setItem('representation_type', data.representation_type)
+  
+        if(data.representation_type === 'Mesa'){
+          history.push('/Moderator')
         }else{
-          if(data.representation_type === 'Staff'){
-            history.push('/Staff')
-        }else{
-          if(data.representation_type === 'Imprensa'){
-            if(data.newspaper_group){
-          localStorage.setItem('newspaper_group', data.newspaper_group)
-            }
-          history.push('/Newspaper')
+          if(data.representation_type === 'Delegado'){
+            history.push('/Delegate')
+  
           }else{
-            if(data.representation_type === 'Chefe de imprensa'){
-
-              history.push('/NewspaperBoss')
+            if(data.representation_type === 'Staff'){
+              history.push('/Staff')
+          }else{
+            if(data.representation_type === 'Imprensa'){
+              if(data.newspaper_group){
+            localStorage.setItem('newspaper_group', data.newspaper_group)
+              }
+            history.push('/Newspaper')
             }else{
-              if(data.representation_type === 'Panóptico'){
-
-                history.push('/Panoptic')
+              if(data.representation_type === 'Chefe de imprensa'){
+  
+                history.push('/NewspaperBoss')
               }else{
-                if(data.representation_type === 'Intervenção'){
-
-                  history.push('/Intervention')
+                if(data.representation_type === 'Panóptico'){
+  
+                  history.push('/Panoptic')
                 }else{
-                  console.log(data.representation_type)
-    
+                  if(data.representation_type === 'Intervenção'){
+  
+                    history.push('/Intervention')
+                  }else{
+                    console.log(data.representation_type)
+      
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-  })
+    })
+    
+  },[])
+
   function handleInputChange(event: ChangeEvent<HTMLInputElement>){
     const {name, value} = event.target
     

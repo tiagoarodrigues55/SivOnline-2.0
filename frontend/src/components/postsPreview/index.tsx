@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
+import React, {useState, useEffect} from 'react';
 import Styles from './styles'
 import {useSocket} from '../../socket'
 
@@ -13,12 +13,13 @@ const PostsPreview: React.FC = () => {
 const socket = useSocket()
 
   const [posts, setPosts] = useState<post[]>([])
-  socket.on('PreviousEmits', (data : {postsPreview : post[]})=>{
-    setPosts(data.postsPreview)
-  })
+
   useEffect(()=>{
     socket.on('setPostsPreview', (posts : post[]) =>{
       setPosts(posts)
+    })
+    socket.on('PreviousEmits', (data : {postsPreview : post[]})=>{
+      setPosts(data.postsPreview)
     })
   },[])
   function removePost(post : post){

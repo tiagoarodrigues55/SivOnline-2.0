@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import Div from './styles'
 import {useSocket} from '../../socket'
 
@@ -15,7 +15,7 @@ const ChatControll: React.FC = () => {
 const socket = useSocket()
   
   const [messages, setMessages] = useState<MessageType[]>([])
- 
+ useEffect(()=>{
   socket.on('receivedMessage', (msg:MessageType)=>{
     const {author, destiny, content} = msg
       setMessages([...messages, {
@@ -24,6 +24,8 @@ const socket = useSocket()
         content
       }])
   })
+
+ }, [])
 
   return (
           <Div>

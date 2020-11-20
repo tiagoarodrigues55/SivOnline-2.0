@@ -1,18 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom'
 
 import Chat from '../../../components/chat'
 import ChatControll from '../../../components/chatControll'
 import AllDocs from '../../../components/allDocs'
 import {Grid} from './Layout'
-import api from '../../../services/api'
 
 
-interface NewVote{
-  title: string,
-  description: string,
-  link?: string
-}
 function Layout() {
 
 

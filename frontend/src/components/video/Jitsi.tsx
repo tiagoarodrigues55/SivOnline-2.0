@@ -4,7 +4,6 @@ interface Props{
   moderator?: boolean,
   newspaper?: boolean,
   roomName: string,
-  password: string
   user: string,
 }
 interface JitsiTypes{
@@ -16,7 +15,8 @@ interface ParticipantJoined{
   id: string, 
   // displayName: string
 }
-const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName, password, user}): React.ReactElement => {
+declare const window: any;
+const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName,  user}): React.ReactElement => {
 
     const jitsiContainerId = "jitsi-container-id";
     const [jitsi, setJitsi] = useState<JitsiTypes>({});

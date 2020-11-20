@@ -1,4 +1,4 @@
-import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
+import React, {useState, useEffect, } from 'react';
 import Styles from './styles'
 import {AiFillFileText} from "react-icons/ai";
 import {useSocket} from '../../socket'
@@ -16,10 +16,12 @@ const AllDocs: React.FC<Props> = ({limit}) => {
   const socket = useSocket()
 
   const [docs, setDocs] = useState<Doc[]>([])
-
-  socket.on("newDoc", (doc : Doc)=>{
-    setDocs([...docs, doc])
-  })
+  useEffect(()=>{
+    socket.on("newDoc", (doc : Doc)=>{
+      setDocs([...docs, doc])
+    })
+  },[])
+ 
 if(limit){
   return(
     <Styles className="components">

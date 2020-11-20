@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom'
 
 import Post from '../../../components/post'
@@ -8,7 +8,6 @@ import News from '../../../components/news'
 import SpeechesList from '../../../components/speechesList'
 import Video from '../../../components/video'
 import {Grid} from './Layout'
-import api from '../../../services/api'
 
 function Layout() {
   const representation_type = localStorage.getItem('representation_type')

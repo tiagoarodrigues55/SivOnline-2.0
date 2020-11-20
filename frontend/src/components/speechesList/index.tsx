@@ -23,13 +23,21 @@ const socket = useSocket()
   ])
   const [buttonState, setButtonState] = useState('visible')
   const [timeOfSpeech, setTimeOfSpeech] = useState(90)
-  socket.on('PreviousEmits', (data : {speechesList: string[]})=>{
-    const List = data.speechesList.map(i=>({position: data.speechesList.indexOf(i)+1, flag: 'icon', name: i}))
-    setDelegations(List)
+
+  useEffect(()=>{
+    socket.on('PreviousEmits', (data : {speechesList: string[]})=>{
+      const List = data.speechesList.map(i=>({position: data.speechesList.indexOf(i)+1, flag: 'icon', name: i}))
+      setDelegations(List)
+    })
+    socket.on('setSpeechesTime', (res:number)=>{
+      setTimeOfSpeech(res)
+    })
+    socket.on('setSpeechesList', (list : string[])=>{
+      const List = list.map(i=>({position: list.indexOf(i)+1, flag: 'icon', name: i}))
+      setDelegations(List)
   })
-  socket.on('setSpeechesTime', (res:number)=>{
-    setTimeOfSpeech(res)
-  })
+  }, [])
+ 
   useEffect(() => {
     if(delegations.map(i=>i.name).indexOf(user)!==-1){
       setButtonState('unvisible')
@@ -38,10 +46,7 @@ const socket = useSocket()
     }
   }, [delegations])
   
-  socket.on('setSpeechesList', (list : string[])=>{
-      const List = list.map(i=>({position: list.indexOf(i)+1, flag: 'icon', name: i}))
-      setDelegations(List)
-  })
+
   function handleSpeechList(){
     socket.emit('newSubscribe', user)
   }

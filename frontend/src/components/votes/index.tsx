@@ -1,5 +1,4 @@
 import React, {useState, FormEvent, ChangeEvent, useEffect} from 'react';
-import NewVote from './NewVote'
 import Styles from './styles'
 import {useSocket} from '../../socket'
 
@@ -28,13 +27,21 @@ const Votes: React.FC<Props> = ({moderator}) => {
     description: '',
     link: ''
   })
-  socket.on('previousEmits', (data : {lastVote : LastVote})=>{
-    setLastVote(data.lastVote)
-  })
+
+
   useEffect(()=>{
     socket.on('lastVote', (lastVote : LastVote) =>{
       setLastVote(lastVote)
     })
+    
+  socket.on('previousEmits', (data : {lastVote : LastVote})=>{
+    setLastVote(data.lastVote)
+  })
+  socket.on('finishVote', (lastVote : LastVote) =>{
+    setLastVote(lastVote)
+    console.log(lastVote)
+
+  })
   },[])
   function handleSubmit(event: FormEvent){
     const {title, description, link} = newVote
@@ -45,11 +52,7 @@ const Votes: React.FC<Props> = ({moderator}) => {
       link
     })
   }
-  socket.on('finishVote', (lastVote : LastVote) =>{
-    setLastVote(lastVote)
-    console.log(lastVote)
 
-  })
   function handleTitle(event: ChangeEvent<HTMLInputElement>){
     const {value} = event.target
     setNewVote({title: value, description: newVote.description, link: newVote.link})
