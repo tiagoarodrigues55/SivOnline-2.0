@@ -7,9 +7,10 @@ const cors = require('cors')
 const {
   userJoin,
   getCurrentUser,
+  getCurrentUserById,
   userLeave,
   getRoomUsers
-} = require('./users');
+} = require('./user');
 const { Client } = require('pg')
 const client = new Client({
   user: 'postgres',
@@ -154,26 +155,25 @@ let voteTitle
 let privateDocs = []
 let publicDocs = []
 let postsPreview = []
-
 const meet = {
   room: '',
   password: ''
 }
-// ;(async () => {
-//   await client.connect()
-//   const usersPrevious = await client.query('SELECT * from users ')
-//   const messagesPrevious = await client.query('SELECT * from messages ')
-//   const postsPrevious = await client.query('SELECT * from posts ')
-//   const publicDocsPrevious = await client.query('SELECT * from public_docs ')
-//   const privateDocsPrevious = await client.query('SELECT * from private_docs ')
-//   users = usersPrevious.rows
-//   addVipClub()
-//   messages = messagesPrevious.rows
-//   files = postsPrevious.rows
-//   publicDocs = publicDocsPrevious.rows
-//   privateDocs = privateDocsPrevious.rows
-//   // await client.end()
-// })()
+;(async () => {
+  await client.connect()
+  const usersPrevious = await client.query('SELECT * from users ')
+  const messagesPrevious = await client.query('SELECT * from messages ')
+  const postsPrevious = await client.query('SELECT * from posts ')
+  const publicDocsPrevious = await client.query('SELECT * from public_docs ')
+  const privateDocsPrevious = await client.query('SELECT * from private_docs ')
+  users = usersPrevious.rows
+  addVipClub()
+  messages = messagesPrevious.rows
+  files = postsPrevious.rows
+  publicDocs = publicDocsPrevious.rows
+  privateDocs = privateDocsPrevious.rows
+  // await client.end()
+})()
 
 function addVipClub(){
   users.push( {
@@ -431,6 +431,12 @@ function addVipClub(){
   )
 }
 io.on('connection', socket =>{
+
+  socket.on('connected', (username)=>{
+    const user = userJoin(socket.id, username)
+    console.log(user)
+  })
+
   //Conexão
   console.log('socket conectado: ' + socket.id)
 
@@ -458,27 +464,16 @@ io.on('connection', socket =>{
   }
 
   //Chat
-  socket.on('changeContat', data=>{
-    let Messages = []
-    messages.map(msg=>{
-      if(msg.author === data.user && msg.destiny === data.contat){
-        Messages.push({content: msg.content, my: 'mine'})
-      }else{
-      }
-      if(msg.destiny === data.user && msg.author === data.contat){
-        Messages.push({content: msg.content, my: 'notMine'})
-      }else{
-
-      }
-    })
-    socket.emit('previousMessages', Messages)
-  })
-  socket.on('sendMessage', data =>{
-    messages.push(data)
-    socket.broadcast.emit('receivedMessage',data)
-    console.log('sendMessage: ')
-    console.log(data)
-    const {author, destiny, content} = data
+  socket.on('sendMessage', ({author, destiny, content})=>{
+    const Destiny = getCurrentUser(destiny)
+    messages.push({author, destiny, content})
+    if(!Destiny){
+      return
+    }
+    console.log('Destiny.id: ')
+    console.log(Destiny.id)
+    socket.to(Destiny.id).emit('newMessage', author)
+    console.log(author, destiny, content)
     const text = 'INSERT INTO messages(author, destiny, content) VALUES($1, $2, $3) RETURNING *'
     const values = [author, destiny, content]
       client.query(text, values, (err, res) => {
@@ -489,6 +484,29 @@ io.on('connection', socket =>{
       }
     })
   })
+  socket.on('changeContat', ({contat, user})=>{
+    let Messages = []
+    console.log('changeContat:')
+    console.log(contat)
+    if(!user){
+      console.log('user is null')
+      return
+    }
+    messages.map(msg=>{
+      if(msg.author === user && msg.destiny === contat){
+        Messages.push({content: msg.content, my: 'mine'})
+      }else{
+        
+      }
+      if(msg.destiny === user && msg.author === contat){
+        Messages.push({content: msg.content, my: 'notMine'})
+      }
+    })
+    console.log(Messages)
+    socket.emit('setMessages', Messages)
+  })
+
+
 
   //Lista de Discursos
 

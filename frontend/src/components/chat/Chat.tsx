@@ -31,29 +31,30 @@ const chatScroll = useRef<any>();
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState<Messages[]>([])
   useEffect(()=>{
-    socket.on('previousEmits', (msgs: {previousMessages: Messages[]}) =>{
-      setMessages(msgs.previousMessages)
-      console.log(msgs.previousMessages)
-    })
-    socket.on('previousMessages', (msgs: Messages[])=>{
-      setMessages(msgs)
-    })
-    socket.on('receivedMessage', (msg:MessageType)=>{
-      if(msg.destiny === user && msg.author === contat){
-        setMessages([...messages, {content: msg.content, my: 'notMine'}])
-      }
-      if(msg.destiny === user && msg.author !== contat){
-        haveMessages(msg.author)
-      }
-     
-    })
+    socket.emit('changeContat', {contat, user})
   },[])
+  useEffect(()=>{
+    socket.on('newMessage', (author:string)=>{
+      console.log('Nova mensagem')
+      if(author === contat){
+        console.log(author, contat)
+          socket.emit('changeContat', {contat, user})
+        return
+      }else{
+        console.log(author, contat)
+      }
+      haveMessages(author)
+    })
+    socket.on('setMessages', (messages: Messages[])=>{
+      setMessages(messages)
+    })
+  },[contat])
 
   useEffect(()=>{
     
     socket.emit('changeContat', {
-      user,
-      contat
+      contat,
+      user
     })
   
   },[contat])
@@ -75,9 +76,9 @@ useEffect(()=>{
   chatScroll.current.scrollIntoView( { behavior: 'smooth', block: 'end' });
 
 }, [messages])
- if(!contat){
-   contat = 'Brasil'
- }
+//  if(!contat){
+//    contat = 'Brasil'
+//  }
 
   return (
         <form onSubmit={sendMessage}>

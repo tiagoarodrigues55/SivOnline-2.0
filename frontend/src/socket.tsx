@@ -4,7 +4,6 @@ import io from 'socket.io-client'
 const socket = io.connect(process.env.REACT_APP_SOCKET_URL || '') 
 const SocketContext = createContext(socket);
 
-
 const SocketProvider: React.FC = ({children}) => {
 
 

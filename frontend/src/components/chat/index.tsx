@@ -46,6 +46,7 @@ const chat = () =>{
 
 
   useEffect(()=>{
+    socket.emit('connected', localStorage.getItem('representation'))
     socket.emit('getUsers')
 
   },[])
