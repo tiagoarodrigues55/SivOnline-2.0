@@ -33,11 +33,11 @@ const socket = useSocket()
   
     })
   },[])
-  if(representation_type !== 'Intervenção'){
-    return(
-      <Redirect to="Login" />
-    )
-  }
+  // if(representation_type !== 'Intervenção'){
+  //   return(
+  //     <Redirect to="Login" />
+  //   )
+  // }
 
  
 

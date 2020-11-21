@@ -797,7 +797,7 @@ return
   })
   socket.on('intervention', ()=>{
     privateDocs = []
-    publicDocs = []
+    publicDocs = [{name: '"VOCÊS FALHARAM NOVAMENTE"',  link: "https://docs.google.com/document/d/1E2lLEhX9OeIrNbPyzpAb5Bjk1fUZQMYSUrAPhEjMkLQ/edit?pli=1"}]
     io.emit('intervention')
     io.emit("setPublicDocs", publicDocs)
     io.emit("setPrivateDocs", privateDocs)
