@@ -56,7 +56,10 @@ const newsScroll = useRef<any>();
   }, [articles])
  if(inactive){
    return(
-     <Styles>Não temos comunicação com a imprensa...</Styles>
+     <Styles>Não temos comunicação com a imprensa...
+                  <div ref={newsScroll}></div>
+
+     </Styles>
    )
  }
   return (
