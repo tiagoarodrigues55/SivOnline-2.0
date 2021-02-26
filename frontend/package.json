@@ -35,7 +35,8 @@
     "semantic-ui-react": "^2.0.0",
     "socket.io-client": "^2.3.0",
     "styled-components": "^5.2.1",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "vercel": "^21.2.3"
   },
   "scripts": {
     "start": "react-scripts start",
