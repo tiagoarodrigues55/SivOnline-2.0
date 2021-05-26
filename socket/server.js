@@ -162,6 +162,7 @@ const meet = {
   password: ''
 }
 ;(async () => {
+  if(process.env.BANCO){
   await client.connect()
   const usersPrevious = await client.query('SELECT * from users ')
   // const messagesPrevious = await client.query('SELECT * from messages ')
@@ -169,12 +170,22 @@ const meet = {
   const publicDocsPrevious = await client.query('SELECT * from public_docs ')
   const privateDocsPrevious = await client.query('SELECT * from private_docs ')
   users = usersPrevious.rows
+  console.log('users')
+  console.log(users)
   addVipClub()
   // messages = messagesPrevious.rows
   files = postsPrevious.rows
   publicDocs = publicDocsPrevious.rows
   privateDocs = privateDocsPrevious.rows
   // await client.end()
+  }else{
+    users = []
+    addVipClub()
+    // messages = messagesPrevious.rows
+    files = []
+    publicDocs = []
+    privateDocs = []
+  }
 })()
 
 function addVipClub(){

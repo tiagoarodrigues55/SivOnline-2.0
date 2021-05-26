@@ -344,6 +344,7 @@ for(i of users){
 
 }
 ;(async () =>{
+  if(process.env.BANCO){
   await client.connect()
 for(user of usersCorrigido){
   const text = 'INSERT INTO users(username, email, password, newspaper_group, representation_type, representation) VALUES($1, $2, $3, $4, $5, $6) RETURNING *'
@@ -359,6 +360,9 @@ for(user of usersCorrigido){
     }
   })
 }
+  }else{
+    
+  }
   })()
 
    
