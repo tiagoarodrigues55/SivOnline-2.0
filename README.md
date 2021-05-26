@@ -1,4 +1,4 @@
-***SivOnline-1.0***
+***SivOnline-2.0***
 
 Este é o repositório da plataforma de simulações virtuais em desenvolvimento. 
 A ideia do projeto é criar uma plataforma que contemple toda a experiencia de uma simulações modelo MUN, em formato virtual.
