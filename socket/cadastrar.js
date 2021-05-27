@@ -341,6 +341,18 @@ for(i of users){
   
     })
   }
+  if(i.representation_type === 'Investidor'){
+    usersCorrigido.push({
+      username: i.Nome,
+      email: i.email,
+      representation_type: i.representation_type,
+      newspaper_group: null,
+      representation: `Investidor-${i.Nome.split(' ')[0]}`,
+      newspaper_group: i.Reprsentações,
+      password: 1234
+  
+    })
+  }
 
 }
 ;(async () =>{

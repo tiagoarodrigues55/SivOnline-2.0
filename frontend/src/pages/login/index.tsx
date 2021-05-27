@@ -55,8 +55,12 @@ const Index: React.FC = () => {
   
                     history.push('/Intervention')
                   }else{
+                    if(data.representation_type === 'Investidor'){
+  
+                      history.push('/Investidor')
+                    }else{
                     console.log(data.representation_type)
-      
+                    }
                   }
                 }
               }

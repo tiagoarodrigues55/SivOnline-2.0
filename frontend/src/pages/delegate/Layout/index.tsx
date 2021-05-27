@@ -45,15 +45,17 @@ const socket = useSocket()
       <Redirect to="Login" />
     )
   }
-    function sendResponseN(){
-      socket.emit('responseN', representation)
-      setDisplay('none')
-    }
-    function sendResponseY(){
-      socket.emit('responseY', representation)
-      setDisplay('none')
 
-    }
+  function sendResponseN(){
+    socket.emit('responseN', representation)
+    setDisplay('none')
+  }
+  
+  function sendResponseY(){
+    socket.emit('responseY', representation)
+    setDisplay('none')
+
+  }
 
   return (
     <>

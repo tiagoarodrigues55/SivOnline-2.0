@@ -194,7 +194,7 @@ function addVipClub(){
     username: "Tiago Rodrigues",
     email: "tiago.americano.03@gmail.com",
     password: "Tiago2003",
-    representation_type: "Mesa",
+    representation_type: "Investidor",
     representation: "Mesa-Tiago",
     vivacoins:100,
     positions:[],
@@ -469,6 +469,9 @@ io.on('connection', socket =>{
     }
     if(representation_type==="Imprensa"){
       socket.join('Imprensa')
+    }
+    if(representation_type==="Investidor"){
+      socket.join('Investidor')
     }
   })
 
