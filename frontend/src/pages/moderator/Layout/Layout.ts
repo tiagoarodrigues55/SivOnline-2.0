@@ -17,8 +17,8 @@ export const Grid = styled.div`
   grid-template-areas:
    
   
-  'VD SL CH '
-  'VD SL CH '
+  'VD SL BD '
+  'VD SL BD '
   'VD NS NS '
   'AT DC DC '
   'VT DC DC '

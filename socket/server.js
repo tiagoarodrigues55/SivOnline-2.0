@@ -196,6 +196,8 @@ function addVipClub(){
     password: "Tiago2003",
     representation_type: "Mesa",
     representation: "Mesa-Tiago",
+    vivacoins:100,
+    positions:[],
     created_at: "2020-10-01 16:22:43",
     updated_at: "2020-10-01 16:22:43"
   },
@@ -396,6 +398,8 @@ function addVipClub(){
     password: "1234",
     representation_type: "Delegado",
     representation: "Vietnam",
+    value: 7,
+    positions: [],
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
@@ -437,12 +441,15 @@ function addVipClub(){
     password: "PedroSiv",
     representation_type: "Delegado",
     representation: "Estados Unidos",
+    value: 8,
+    positions: [],
     created_at: "2020-11-03 11:05:21",
     updated_at: "2020-11-03 11:05:21"
   },
   
   )
 }
+console.log(users[0])
 io.on('connection', socket =>{
 
   socket.on('connected', ({username, representation_type})=>{
@@ -491,7 +498,32 @@ io.on('connection', socket =>{
     io.to('Mesa').emit('setActions', actions)
 
   }
+  const delegates = []
+  users.map(res=>res.representation_type === 'Delegado' ? delegates.push(res) : null)
+  console.log(delegates)
+  socket.emit('getDelegates', delegates)
 
+  //Investidor
+  socket.on('BuyDelegate', ({quantity, value, delegateId, capitalist})=>{
+
+    var userId = 0
+    const total = quantity * value
+    console.log(total, value, quantity)
+    users.map(res=>{
+        if(res.representation === capitalist){userId = users.indexOf(res)}else{
+        }})
+    users[userId].vivacoins = users[userId].vivacoins - total
+    var positionId = null
+    users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)
+    positionId !== null ? users[userId].positions[positionId].quantity += quantity : users[userId].positions.push({id: delegateId, quantity})
+    console.log(users[0])
+  })
+  socket.on('getDelegates', ()=>{
+    const delegates = []
+    users.map(res=>res.representation_type === 'Delegado' ? delegates.push(res) : null)
+    console.log(delegates)
+    socket.emit('getDelegates', delegates)
+  })
   //Chat
   socket.on('sendMessage', ({author, destiny, content})=>{
     if(destiny==="Correio Elegante"){

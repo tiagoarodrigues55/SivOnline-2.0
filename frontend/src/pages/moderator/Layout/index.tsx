@@ -7,6 +7,7 @@ import News from '../../../components/news'
 import SpeechesList from '../../../components/speechesList'
 import Video from '../../../components/video'
 import Votes from '../../../components/votes'
+import BuyDelegates from '../../../components/buyDelegates'
 // import Teste from '../Testes.js'
 import {Grid} from './Layout'
 import {Div} from './Styles'
@@ -87,6 +88,7 @@ const socket = useSocket()
       <Actions moderator/>
       <Votes moderator />
       <Docs moderator />
+      <BuyDelegates moderator />
     </Grid>
     </>
   );
