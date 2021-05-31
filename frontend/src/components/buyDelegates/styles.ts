@@ -33,7 +33,6 @@ input{
   margin-top: 3px;
   border-radius:15px;
 }
-
 button{
   margin-top:4px;
   width:25%;
@@ -53,6 +52,9 @@ ul{
 }
 li{
   margin:8px;
+}
+p{
+  text-align: right;
 }
 
 `

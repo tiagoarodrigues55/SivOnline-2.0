@@ -513,9 +513,16 @@ io.on('connection', socket =>{
     const total = quantity * value
     console.log(total, value, quantity)
     users.map(res=>{
-        if(res.representation === capitalist){userId = users.indexOf(res)}else{
-        }})
-    users[userId].vivacoins = users[userId].vivacoins - total
+      if(res.representation === capitalist){userId = users.indexOf(res)}else{
+    }})
+
+    if(users[userId].vivacoins - total >= 0){
+      users[userId].vivacoins = users[userId].vivacoins - total
+    } else {
+      console.log("out of funds")
+    }
+    socket.emit('getCurrentMoney', users[userId].vivacoins)
+
     var positionId = null
     users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)
     positionId !== null ? users[userId].positions[positionId].quantity += quantity : users[userId].positions.push({id: delegateId, quantity})
@@ -527,6 +534,7 @@ io.on('connection', socket =>{
     console.log(delegates)
     socket.emit('getDelegates', delegates)
   })
+  
   //Chat
   socket.on('sendMessage', ({author, destiny, content})=>{
     if(destiny==="Correio Elegante"){

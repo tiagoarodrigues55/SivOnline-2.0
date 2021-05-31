@@ -1,3 +1,4 @@
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 import React, {useState, useEffect, FormEvent, ChangeEvent} from 'react';
 import {useSocket} from '../../socket'
 import Styles from './styles'
@@ -24,10 +25,17 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
   const [selectedAction, setSelectedAction] = useState({type:'ação', action: ''})
   const [delegates, setDelegates] = useState<User[]>([])
 
+  var UpdateMoney
+
   useEffect(()=>{
     socket.on('getDelegates', (delegates : User[]) =>{
       setDelegates(delegates)
     })
+    UpdateMoney = () =>{
+      socket.on('getCurrentMoney', (money : number) =>{
+        return money
+      })
+    }
   },[])
 
   function handleSubmit(event: FormEvent){
@@ -44,35 +52,47 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
     const {value} = event.target
   }
   function handleSelectAction(event: ChangeEvent<HTMLSelectElement>){
-    const action = event.target.value
-    const type = event.target.className
-    setSelectedAction({type, action})
+    var val: number = +event.target.value
+    setQuantity(val)
+    val = 0
   }
+
+  const quantities = [1,2,3,4,5,6,7,8,9,10]
+  const [quantity, setQuantity] = useState(0)
   function Buy(delegateId:number){
-    const quantity = 10
     var value = 0
     delegates.map(res=>{
       if(res.id === delegateId){
-        value = res.value}})
+        value = res.value
+      }
+    })
     socket.emit('BuyDelegate', {quantity, value, delegateId, capitalist:user})
+    setQuantity(0)
   }
 
-    return (
-      <Styles className="components">
-        <div className="delegates">
-          <ul>
-            {delegates ? delegates.map(delegate=>(
-              <>
-              <li key={delegate.id}> V$ {delegate.value},00
-              <button onClick={()=>Buy(delegate.id)}>Comprar</button>
+  return (
+    <Styles className="components">
+      <div className="delegates">
+        <p>V$ {UpdateMoney}</p>
+        <ul>
+          {delegates ? delegates.map(delegate=>(
+            <>
+              <li key={delegate.id}>
+                {delegate.username} ({delegate.representation}): V$ {delegate.value},00 
+                <select value={quantity} onChange={handleSelectAction}>
+                  <option  value= '0'>Escolha a quantidade</option>
+                  {quantities.map(quantity=>(
+                    <option value={quantity}>{quantity}</option>
+                  ))}
+                </select>
+                <button onClick={()=>Buy(delegate.id)}>Comprar</button>
               </li>
-              </>
-            )): null}
-           
-          </ul>
-        </div>
-      </Styles>
-      )
+            </>
+          )): null}
+        </ul>
+      </div>
+    </Styles>
+    )
  
 }
 
