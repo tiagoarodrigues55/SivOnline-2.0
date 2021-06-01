@@ -517,17 +517,13 @@ io.on('connection', socket =>{
     const total = quantity * value
     console.log(total, value, quantity)
 
-    var purchaseMsg
-
     if(users[userId].vivacoins - total >= 0){
       users[userId].vivacoins = users[userId].vivacoins - total
-      purchaseMsg = 'Compra efetuada com sucesso'
     } else {
       console.log("out of funds")
-      purchaseMsg = 'Fundos insuficientes'
+      socket.emit('noMoney')
     }
     socket.emit('getCurrentMoney', users[userId].vivacoins)
-    socket.emit('purchaseComplete', purchaseMsg)
 
     var positionId = null
     users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)

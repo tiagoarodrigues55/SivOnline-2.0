@@ -33,8 +33,8 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
     socket.on('getCurrentMoney', (money : number)=>{
       setMoney(money)
     })
-    socket.on('purchaseComplete', (msg : string)=>{
-      alert(msg)
+    socket.on('noMoney', ()=>{
+      alert('Fundos insuficientes')
     })
   },[])
 
