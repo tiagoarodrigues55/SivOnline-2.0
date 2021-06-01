@@ -75,16 +75,16 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
       <div className="delegates">
         <p>V$ {UpdateMoney}</p>
         <ul>
-          {delegates ? delegates.map(delegate=>(
-            <>
-              <li key={delegate.id}>
-                {delegate.username} ({delegate.representation}): V$ {delegate.value},00 
-                <select value={quantity} onChange={handleSelectAction}>
+          <select value={quantity} onChange={handleSelectAction}>
                   <option  value= '0'>Escolha a quantidade</option>
                   {quantities.map(quantity=>(
                     <option value={quantity}>{quantity}</option>
                   ))}
-                </select>
+          </select>
+          {delegates ? delegates.map(delegate=>(
+            <>
+              <li key={delegate.id}>
+                {delegate.username} ({delegate.representation}): V$ {delegate.value},00 
                 <button onClick={()=>Buy(delegate.id)}>Comprar</button>
               </li>
             </>
