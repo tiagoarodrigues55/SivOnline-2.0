@@ -196,7 +196,7 @@ function addVipClub(){
     password: "Tiago2003",
     representation_type: "Investidor",
     representation: "Mesa-Tiago",
-    vivacoins:10000,
+    vivacoins:100,
     positions:[],
     created_at: "2020-10-01 16:22:43",
     updated_at: "2020-10-01 16:22:43"
@@ -517,12 +517,17 @@ io.on('connection', socket =>{
     const total = quantity * value
     console.log(total, value, quantity)
 
+    var purchaseMsg
+
     if(users[userId].vivacoins - total >= 0){
       users[userId].vivacoins = users[userId].vivacoins - total
+      purchaseMsg = 'Compra efetuada com sucesso'
     } else {
       console.log("out of funds")
+      purchaseMsg = 'Fundos insuficientes'
     }
     socket.emit('getCurrentMoney', users[userId].vivacoins)
+    socket.emit('purchaseComplete', purchaseMsg)
 
     var positionId = null
     users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)
