@@ -54,7 +54,7 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
   function handleSelectAction(event: ChangeEvent<HTMLSelectElement>){
     var val: number = +event.target.value
     setQuantity(val)
-    val = 0
+    val = 1
   }
 
   const quantities = [1,2,3,4,5,6,7,8,9,10]
@@ -67,7 +67,7 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
       }
     })
     socket.emit('BuyDelegate', {quantity, value, delegateId, capitalist:user})
-    setQuantity(0)
+    setQuantity(1)
   }
 
   return (
