@@ -519,15 +519,15 @@ io.on('connection', socket =>{
 
     if(users[userId].vivacoins - total >= 0){
       users[userId].vivacoins = users[userId].vivacoins - total
+
+      var positionId = null
+      users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)
+      positionId !== null ? users[userId].positions[positionId].quantity += quantity : users[userId].positions.push({id: delegateId, quantity})
     } else {
       console.log("out of funds")
       socket.emit('noMoney')
     }
     socket.emit('getCurrentMoney', users[userId].vivacoins)
-
-    var positionId = null
-    users[userId].positions.map(pos=>pos.id===delegateId ? positionId = users[userId].positions.indexOf(pos) : positionId = null)
-    positionId !== null ? users[userId].positions[positionId].quantity += quantity : users[userId].positions.push({id: delegateId, quantity})
     console.log(users[0])
   })
   socket.on('getDelegates', ()=>{
