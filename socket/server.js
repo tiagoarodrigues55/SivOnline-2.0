@@ -196,7 +196,7 @@ function addVipClub(){
     password: "Tiago2003",
     representation_type: "Investidor",
     representation: "Mesa-Tiago",
-    vivacoins:100,
+    vivacoins:10000,
     positions:[],
     created_at: "2020-10-01 16:22:43",
     updated_at: "2020-10-01 16:22:43"
@@ -507,14 +507,15 @@ io.on('connection', socket =>{
   socket.emit('getDelegates', delegates)
 
   //Investidor
+  var userId = 0
+  users.map(res=>{
+    if(res.representation === 'Investidor'){userId = users.indexOf(res)}else{}})
+  socket.emit('getCurrentMoney', users[userId].vivacoins)
+
   socket.on('BuyDelegate', ({quantity, value, delegateId, capitalist})=>{
 
-    var userId = 0
     const total = quantity * value
     console.log(total, value, quantity)
-    users.map(res=>{
-      if(res.representation === capitalist){userId = users.indexOf(res)}else{
-    }})
 
     if(users[userId].vivacoins - total >= 0){
       users[userId].vivacoins = users[userId].vivacoins - total

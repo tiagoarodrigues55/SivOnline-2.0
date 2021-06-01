@@ -24,18 +24,15 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
 
   const [selectedAction, setSelectedAction] = useState({type:'ação', action: ''})
   const [delegates, setDelegates] = useState<User[]>([])
-
-  var UpdateMoney
+  const [updateMoney, setMoney] = useState(0)
 
   useEffect(()=>{
     socket.on('getDelegates', (delegates : User[]) =>{
       setDelegates(delegates)
     })
-    UpdateMoney = () =>{
-      socket.on('getCurrentMoney', (money : number) =>{
-        return money
-      })
-    }
+    socket.on('getCurrentMoney', (money : number)=>{
+      setMoney(money)
+    })
   },[])
 
   function handleSubmit(event: FormEvent){
@@ -73,7 +70,7 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
   return (
     <Styles className="components">
       <div className="delegates">
-        <p>V$ {UpdateMoney}</p>
+        <p>V$ {updateMoney},00</p>
         <ul>
           <select value={quantity} onChange={handleSelectAction}>
                   <option  value= '1'>Escolha a quantidade</option>
