@@ -16,7 +16,8 @@ interface User{
   password: string,
   value: number,
   representation_type: string,
-  }
+}
+
 const user : string = localStorage.getItem('representation') || ''
 
 const BuyDelegates: React.FC<Props> = ({moderator}) => {
@@ -58,7 +59,7 @@ const BuyDelegates: React.FC<Props> = ({moderator}) => {
   }
 
   const quantities = [1,2,3,4,5,6,7,8,9,10]
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   function Buy(delegateId:number){
     var value = 0
     delegates.map(res=>{
