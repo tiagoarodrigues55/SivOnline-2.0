@@ -511,7 +511,16 @@ io.on('connection', socket =>{
   users.map(res=>{
     if(res.representation === 'Investidor'){userId = users.indexOf(res)}else{}})
   socket.emit('getCurrentMoney', users[userId].vivacoins)
-
+  socket.on('GetPositions', ({userId})=>{
+    const positions = []
+    users[userId].positions.map(position=>{
+      positions.push({
+        delegate: delegates[position.delegateId], 
+        quantity: position.quantity
+    })
+    socket.emit('GetPositions', {positions})
+  })
+})
   socket.on('BuyDelegate', ({quantity, value, delegateId, capitalist})=>{
 
     const total = quantity * value
@@ -885,5 +894,3 @@ return
   })
 })
 server.listen(3001)
-
-
