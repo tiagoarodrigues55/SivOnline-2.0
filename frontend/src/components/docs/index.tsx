@@ -19,7 +19,6 @@ const socket = useSocket()
 
   const user = localStorage.getItem('representation') || "Brasil"
 
-  const [privateDocs, setPrivateDocs] = useState<Doc[]>([])
   const [publicDocs, setPublicDocs] = useState<Doc[]>([])
   const [privateLink, setPrivateLink] = useState<String>()
   const [publicLink, setPublicLink] = useState<String>()
@@ -27,20 +26,14 @@ const socket = useSocket()
   const [publicName, setPublicName] = useState<String>()
 
   useEffect(()=>{
-    socket.on('PreviousEmits', (data : {privateDocs: Doc[], publicDocs: Doc[]})=>{
-      const userDocs = filterDocs(data.privateDocs)
-      setPrivateDocs(userDocs)
-      setPublicDocs(data.publicDocs)
+    socket.on('PreviousEmits', (data : {Docs: Doc[]})=>{
+      setPublicDocs(data.Docs)
     })
     socket.on("setPublicDocs", (docs : Doc[])=>{
       console.log(docs)
       setPublicDocs(docs)
     })
    
-    socket.on("setPrivateDocs", (docs : Doc[])=>{
-      const userDocs = filterDocs(docs)
-      setPrivateDocs(userDocs)
-    })
   },[])
 
  
@@ -71,6 +64,7 @@ const socket = useSocket()
     setPublicLink(value)
   }
   function handlePrivateDoc(event: FormEvent){
+    return
     event.preventDefault()
     socket.emit('newPrivateDoc', {
       name: privateName,
@@ -130,7 +124,7 @@ const socket = useSocket()
         <div className="titlePrivateDocs">Documentos privados</div>
         <div className="privates">
           <ul>
-            {privateDocs.map(doc=>(
+            {publicDocs.map(doc=>(
               <div className="doc">
                 <li>{doc.name}
                   <a target="_blank" rel="noopener noreferrer" href={doc.link}><AiFillFileText/></a>

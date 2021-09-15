@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import {useSocket} from '../../socket'
 
 interface Props{
   moderator?: boolean,
@@ -10,6 +11,7 @@ interface JitsiTypes{
   dispose?: Function,
   executeCommand?: Function
   getParticipantsInfo?: Function
+  addListener?: Function
 }
 interface ParticipantJoined{
   id: string, 
@@ -17,9 +19,14 @@ interface ParticipantJoined{
 }
 declare const window: any;
 const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName,  user}): React.ReactElement => {
+    const socket = useSocket()
 
     const jitsiContainerId = "jitsi-container-id";
     const [jitsi, setJitsi] = useState<JitsiTypes>({});
+    useEffect(()=>{
+
+    },[])
+
     const loadJitsiScript = () => {
       let resolveLoadJitsiScriptPromise = null;
   
@@ -69,8 +76,12 @@ const Jitsi: React.FC<Props> = ({moderator, newspaper, roomName,  user}): React.
               videoInput: '<deviceLabel>'
           },
           });
+          _jitsi.addListener("dominantSpeakerChanged", (speaker: {id:String})=>{
+            const participants = _jitsi.getParticipantsInfo()
+            socket.emit("changeSpeaker", {id:speaker, participants})
+          });
         setJitsi(_jitsi)
-  
+        return _jitsi
         }else{
         const _jitsi = new window.JitsiMeetExternalAPI("meet.jit.si", {
           roomName,

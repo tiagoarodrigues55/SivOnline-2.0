@@ -3,6 +3,7 @@ import Styles from './styles'
 import Jitsi from './Jitsi'
 import Chronometer from '../Chronometer/index.js'
 import {useSocket} from '../../socket'
+import Aplauso from './aplausos'
 
 interface Props{
   moderator?: boolean,
@@ -34,7 +35,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
       <Styles className="components">
         <Jitsi moderator user={user} roomName={roomName} />
         <Chronometer socket={socket} moderator startCount={90}/>
-        
+        <Aplauso/>
       </Styles>
     )
   }
@@ -42,7 +43,6 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
     return(
       <Styles className="components">
         <Jitsi newspaper user={user} roomName={salasImprensa[group]} />
-
     </Styles>
     )
   }
@@ -67,7 +67,7 @@ const Video: React.FC<Props> = ({moderator, newspaper, newspaperBoss}) =>{
     <Styles className="components">
         <Jitsi user={user} roomName={roomName} />
         <Chronometer socket={socket} startCount={90}/>
-
+        <Aplauso/>
     </Styles>
     )
 }

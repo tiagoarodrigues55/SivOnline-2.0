@@ -17,19 +17,30 @@ interface User{
   value: number,
   representation_type: string,
 }
-
-const user : string = localStorage.getItem('representation') || ''
+let user = ''
+if (typeof window !== "undefined") {
+  user = window.localStorage.getItem('representation') || ''
+}
 
 const BuyDelegates: React.FC<Props> = ({moderator}) => {
   const socket = useSocket()
 
   const [selectedAction, setSelectedAction] = useState({type:'ação', action: ''})
-  const [delegates, setDelegates] = useState<User[]>([])
+  const [delegates, setDelegates] = useState<User[]>([
+    {  representation: 'Brasil',
+      username: 'Tiago',
+      id: 123,
+      email: 'tanto faz',
+      password: 'tanto faz',
+      value: 30,
+      representation_type: 'Delegate',}
+  ])
   const [updateMoney, setMoney] = useState(0)
 
   useEffect(()=>{
     socket.on('getDelegates', (delegates : User[]) =>{
       setDelegates(delegates)
+      console.log(delegates[0])
     })
     socket.on('getCurrentMoney', (money : number)=>{
       setMoney(money)

@@ -5,8 +5,10 @@ import {useSocket} from '../../socket'
 
 
 
-
-const user : string = localStorage.getItem('representation') || ''
+let user = ''
+if (typeof window !== "undefined") {
+  user = window.localStorage.getItem('representation') || ''
+}
 
 const Post: React.FC = () => {
 const socket = useSocket()
@@ -17,8 +19,7 @@ const socket = useSocket()
  function handleSubmit(event: FormEvent){
    event.preventDefault()
    alert('Seu artigo foi enviado com sucesso')
-   if(localStorage.getItem('representation')==='Pedro José'){
-     console.log(user)
+   if(localStorage.getItem('representation')==='Chefe de imprensa'){
     socket.emit('post', {
       title: post.title,
       description: post.description,

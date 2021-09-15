@@ -12,8 +12,11 @@ interface action{
   type: string,
   representation: string
 }
-const user : string = localStorage.getItem('representation') || ''
 
+let user = ''
+if (typeof window !== "undefined") {
+  user = window.localStorage.getItem('representation') || ''
+}
 const Actions: React.FC<Props> = ({moderator}) => {
   const socket = useSocket()
 

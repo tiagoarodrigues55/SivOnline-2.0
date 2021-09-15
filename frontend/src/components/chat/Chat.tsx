@@ -21,8 +21,10 @@ interface MessageType{
   destiny: string,
   content: string
 }
-const user = localStorage.getItem('representation')
-
+let user = ''
+if (typeof window !== "undefined") {
+  user = window.localStorage.getItem('representation') || ''
+}
 
 const Chat: React.FC<Props> = ({contat, haveMessages}) => {
 const socket = useSocket()

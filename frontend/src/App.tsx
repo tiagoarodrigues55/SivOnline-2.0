@@ -3,11 +3,9 @@ import React, {useEffect, useState} from 'react';
 import Global from './styles/Global'
 import Routes from './routes'
 import {Background} from './components/backgroundImg/styles'
-import * as dotenv from 'dotenv';
 import SocketProvider from './socket'
 import {useSocket} from './socket'
 import {ThemeProvider} from 'styled-components'
-dotenv.config();
 const themeColors = {
   primary: '#BEC5C7',
   secondary:  'rgba(190, 197, 199, 0.73)',
@@ -60,7 +58,6 @@ function App() {
      <Background theme={theme} />
      </SocketProvider>
      </ThemeProvider>
-
     </div>
   );
 }

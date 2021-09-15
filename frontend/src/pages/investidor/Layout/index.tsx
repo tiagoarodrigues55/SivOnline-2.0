@@ -19,11 +19,11 @@ const Layout = ()=> {
   const [display, setDisplay] = useState<string>('none')
 
   const representation_type = localStorage.getItem('representation_type')
-  if(representation_type !== 'Investidor'){
-    return(
-      <Redirect to="Login" />
-    )
-  }
+  // if(representation_type !== 'Investidor'){
+  //   return(
+  //     <Redirect to="Login" />
+  //   )
+  // }
   
   return (
     <>

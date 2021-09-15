@@ -23,7 +23,6 @@ const Index: React.FC = () => {
 
   useEffect(()=>{
     socket.on('login', (data: User)=>{
-      console.log(data)
       localStorage.setItem('representation', data.representation)
       localStorage.setItem('representation_type', data.representation_type)
   
